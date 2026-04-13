@@ -1,0 +1,6 @@
+# Ignore raw data and privacy risk files
+/25-26-team-samples/
+*.mbox
+email_insights.md
+*.py
+/original-pdfs/

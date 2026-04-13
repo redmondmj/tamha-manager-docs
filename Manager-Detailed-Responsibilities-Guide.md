@@ -1,0 +1,41 @@
+# Manager Detailed Responsibilities Guide
+
+This comprehensive guide outlines the primary responsibilities and "nice-to-have" tasks for team managers throughout the hockey season. It acts as a detailed reference manual, providing context and instruction for the items listed in your Quick-Start Checklist. It is ordered by level of critical importance.
+
+## 1. Safety & Compliance
+*   **Certifications:** Verify coaching and bench staff waivers, certifications, and CRCs by emailing TAMHA at [info@trurominorhockey.ca](mailto:info@trurominorhockey.ca) to request the current status for your team. A full list of required coaching clinics can be found on the [Hockey Nova Scotia Website](https://hockeynovascotia.ca/coach/coaching-requirements).
+*   **Form Collection (Target: October 22nd):** Collect all mandatory documentation at the start of the season. This includes Player Medical Forms (keep copies in a secure binder on the bench at all times), signed Codes of Conduct, Social Media Policies, Bench Code of Conduct, Fair Play Policy, and Jersey Agreements.
+*   **Injury Reports:** Complete and file Injury Reports with Hockey Nova Scotia anytime a player requires medical attention or misses ice time due to injury.
+*   **Emergency Action Plan:** Assign an individual (often the Safety Person) to execute the Emergency Action Plan (EAP) during games/practices if needed.
+
+## 2. Financial Management
+*   **Team Banking:** Email [info@trurominorhockey.ca](mailto:info@trurominorhockey.ca) or [vpfinance@trurominorhockey.ca](mailto:vpfinance@trurominorhockey.ca) to request a letter be sent to the bank to add you as a signer to the existing team account (these remain open from year to year). Include your full name, position (Manager, Treasurer, Head Coach), email, and phone. You will need to go to the bank to sign and set up online access. E-transfers will require approval from a second signer (ensure this person is engaged and comfortable with online banking). Withdrawals will require two signers present at the bank at the same time.
+*   **TAMHA Rep Fees (Rep Teams Only):** The rep fees amount is **$7700 per team** (although this amount may be updated each year). Fees may now be paid to TAMHA in two separate payments (giving teams and families the opportunity to break up the expense). Exact dates will be emailed, but likely 50% mid-Nov and 50% end of Jan.
+*   **Jersey Fund Contribution:** A mandatory jersey fund contribution of **$550 per team** is required.
+*   **Jersey Deposit:** Collect a $150/player Jersey Deposit for Rep teams ($50 for House teams) alongside the signed Jersey Agreement. Post-dated cheques are ideal, but if a family does not have cheques, an acceptable alternative is to take a cash deposit or an e-transfer. **Important:** It is the team's responsibility to return the uncashed cheque/cash, or refund the e-transfer in full at the end of the year when the jerseys are returned.
+*   **Financial Reporting Deadlines:** 
+    *   Submit Preliminary Budget to VP Finance by **Oct 30th**.
+    *   Provide Mid-Season Financial Statement to Parents by **Dec 31st**.
+    *   Submit Interim Budget to VP Finance by **Jan 15th**.
+    *   Submit Final Budget to VP Finance by **Mar 31st**.
+    *   Provide Final Financial Statement to Parents by **Apr 15th**.
+
+## 3. Roster & Game Management
+*   **GrayJay Account Setup:** Email `tamhaweb@trurominorhockey.ca` with your Name, Position, Date of Birth, and Hockey Canada Registry (HCR) Number to set up your team manager access.
+*   **Affiliate Tracking:** To be confirmed by both Head Coaches any time a player plays with another team as an affiliate. Once confirmed, send an email to `tamhaweb@trurominorhockey.ca` with the player's name and D.O.B. so they can be properly rostered for the game. **Note:** Managers must track the number of games an affiliate plays, as they are subject to a strict 10-game maximum for the season.
+*   **Scheduling & Games:** Regular season games will likely be scheduled and entered into Grayjay by the league. Managers should confirm that the scheduled games match the ice schedule and confirm that officials and timekeepers are assigned via Grayjay Leagues.
+*   **Game Cancellations:** Notify the RIC, info@trurominorhockey.ca and league scheduler immediately upon cancellation of any home games in order for officials and timekeepers to be cancelled as well.
+*   **Roster Sign-offs:** Ensure the electronic game sheet (GrayJay) or paper game sheet is set up properly before puck drop. Managers (or coaches) must complete roster signoffs via Grayjay Leagues (or use the shortcut from the Grayjay Teams App) before the game. ([Instructions Here](https://docs.google.com/document/d/1PQM1Sas88e1EOcS75XnC8xvsAbSuqKio4BvtIJ_9-8M/edit?tab=t.0#heading=h.g2tiv659bjyb))
+*   **Tournaments & Travel:** Identify target tournaments early in the season with the Head Coach. Use the following provincial resources to find sanctioned tournaments:
+    *   **Nova Scotia:** [Hockey NS Tournament Listings](https://hockeynovascotia.ca/admin-member/tournaments/minor-hockey-tournaments/) *(Note: Not all tournaments get listed centrally, be sure to check individual association sites as well.)*
+    *   **New Brunswick:** [Hockey NB Tournaments](https://hnb.ca/en/tournaments)
+    *   **PEI:** PEI tournaments are typically managed locally, so check individual MHA websites (e.g., Summerside, Charlottetown) or [Hockey PEI](https://hockeypei.com/).
+*   **Travel Permits:** Required for ANY non-regular season games (tournaments and exhibition). These are obtained through the Spordle website: [https://myaccount.spordle.com/manage/permit](https://myaccount.spordle.com/manage/permit).
+
+## 4. Team Culture & "Nice to Haves"
+*   **Pre-Season Parent Meeting:** Schedule the introductory parent meeting as soon as the final roster is selected. Present the team budget, tournament plans, and seek volunteers. Set expectations for parent behavior in the stands and clearly outline the **24-Hour Rule**: Parents must wait 24 hours after a game before approaching coaches with any complaints or issues. "Leave the coaching to the coaches."
+*   **Team Communications:** Primary team communication should be email and the **Grayjay Teams App** (parent chat) for quick updates and last-minute changes. A secondary communication channel like a private Facebook group may be set up to post info and photos for extended family members and fans. **Always include the team's division in your email subjects** (e.g., "U13C-Campbell: Schedule Update").
+*   **Team Apparel & Swag:** Coordinate orders for team tracksuits, jackets, or practice jerseys according to TAMHA branding guidelines. Coordinate orders for player gear like matching team socks and custom namebars.
+*   **Team Events & Culture:** Book team photography (individual and team photos) early in the season. Organize team-building events (e.g., pizza parties, escape rooms, attending a junior hockey game). Plan and execute an end-of-year team party and coordinate coaches’ gifts.
+*   **Fundraising & Sponsorships:** Recruit a parent volunteer to lead fundraising initiatives (e.g., 50/50, bottle drives, silent auctions). Distribute the team sponsorship letter to local businesses to subsidize tournament or apparel costs. Ensure accurate tracking of funds raised and allocate them fairly.
+*   **Exhibition Games:** Reach out to managers of teams in similar divisions to schedule extra exhibition/friendly games. Book the extra exhibition ice, coordinate referees, and submit the required exhibition travel permits via Spordle.
