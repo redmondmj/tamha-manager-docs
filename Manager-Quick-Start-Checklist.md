@@ -8,7 +8,7 @@ This is your bare-bones, chronological checklist for getting your team set up, c
 
 ### 📋 Phase 2: Administrative Setup (Week 1)
 - [ ] **Collect Player Medical Forms:** Secure signed Medical Forms and keep copies in the bench binder at all times! ([See Safety & Compliance](./Manager-Detailed-Responsibilities-Guide.md#1-safety--compliance))
-- [ ] **Identify Target Tournaments:** Identify target tournaments, register immediately, and submit early payments to secure spots. ([See Roster & Game Management](./Manager-Detailed-Responsibilities-Guide.md#3-roster--game-management))
+- [ ] **Identify Target Tournaments:** Identify target tournaments, register immediately or mark your calendar and submit early payments to secure spots. ([See Roster & Game Management](./Manager-Detailed-Responsibilities-Guide.md#3-roster--game-management))
 - [ ] **Jersey Deposits & Sign-outs:** Collect $150/player (Rep) or $50/player (House). *Must be refunded at year-end upon safe return.* ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
 - [ ] **Host Parent Meeting:** Pitch the budget, detail the **24-Hour Rule**, set dressing room rules (Two Deep Method), and assign volunteer roles (Treasurer, Safety Person). ([See Team Culture](./Manager-Detailed-Responsibilities-Guide.md#4-team-culture--nice-to-haves))
 - [ ] **Collect Forms:** Secure signed Codes of Conduct, Social Media Policies, Bench Code of Conduct, Fair Play Policy, and Jersey Agreements. ([See Safety & Compliance](./Manager-Detailed-Responsibilities-Guide.md#1-safety--compliance))

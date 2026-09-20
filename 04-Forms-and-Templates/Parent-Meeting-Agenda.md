@@ -33,9 +33,9 @@
 *   **Dressing Room Monitors:** (To fulfill the Two-Deep requirements).
 
 ## 7. Action Items Checklist
-*   [ ] Collect Player Medical Forms.
-*   [ ] Collect Signed Code of Conduct forms (Parent & Player).
-*   [ ] Collect $x Jersey Deposit (post-dated cheque).
+*   [ ] Collect Player Medical Forms (due Oct 22).
+*   [ ] Collect Signed Code of Conduct forms (Parent & Player) and Social Media Policy (due Oct 22).
+*   [ ] Collect Jersey Deposit ($150 Rep / $50 House cheque post-dated to May 15, 2027 payable to TAMHA).
 
 ## 8. Q&A
 *   Open floor for parent questions.

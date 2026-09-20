@@ -26,13 +26,12 @@ Drawing from successful manager communication patterns across TAMHA, this timeli
 
 ### Friday: Game Day Prep
 - Ensure the GrayJay electronic game sheet is active for the weekend (home games).
-- Ensure the Coach's Binder is updated with current medical forms and travel permits. 
-- 
+- Ensure the Coach's Binder is updated with current medical forms and travel permits.
 
 ### Saturday/Sunday: Game Day
 - **Pre-Game:** Grab the sponsor banner and dressing room banner for setup at the rink.
 - **Pre-Game:** Use the link in the Teams App or log into GrayJay Leagues to sign off on the roster.
-- **Pre-Game:** If your team is lucky enough to have a livestreamer in the crowd, share the link and add to to the "watch link" in GrayJay Leagues.
+- **Pre-Game:** If your team is lucky enough to have a livestreamer in the crowd, share the link and add to the "watch link" in GrayJay Leagues.
 - **Game-Time:** Try to enjoy the game and cheer on the whole team. Keep an eye on the bench and be ready to assist the coaches if needed (e.g. items left in the dressing room or flagging down a parent).
 - **Post-Game:** Remind parents of the **24-Hour Rule** if it was a contentious game. Celebrate the successes. 
 
@@ -47,7 +46,7 @@ Hi Team,
 Hope everyone had a great weekend! Here is what we have coming up this week:
 
 **Action Required This Week:**
-- **Jersey Deposits:** We are still missing 3 jersey deposit cheques. Please bring a $150 post-dated cheque (dated May 15, payable to *Truro Area Minor Hockey Association*) to Thursday's practice.
+- **Jersey Deposits:** We are still missing 3 jersey deposit cheques. Please bring a $150 post-dated cheque (dated May 15, 2027, payable to *Truro Area Minor Hockey Association*) to Thursday's practice.
 - **Sponsors Needed:** We are looking for sponsors for our team. Please contact [Name] at [Email] if you are interested or know someone who might be.
 
 **This Week's Schedule:**
