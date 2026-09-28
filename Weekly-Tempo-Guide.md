@@ -55,4 +55,4 @@ Hope everyone had a great weekend! Here is what we have coming up this week:
 
 See you at the rink!
 [Your Name]
-Manager, U11A Bearcats
+Manager, [Team Name / Division]
