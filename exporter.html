@@ -421,9 +421,10 @@
             <h1>Truro Area Minor Hockey</h1>
             <p>Official GrayJay Practice & Event Exporter</p>
         </div>
-        <div class="live-badge">
+        <div class="live-badge" style="display: flex; align-items: center; gap: 8px;">
             <span class="live-dot"></span>
             <span id="syncStatus">Syncing with Master Ice Schedule...</span>
+            <button type="button" onclick="promptCustomSheet()" title="Connect custom or updated Google Sheet" style="background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #FFF; border-radius: 4px; padding: 2px 7px; font-size: 11px; cursor: pointer; transition: background 0.2s;">⚙️ Change Sheet</button>
         </div>
     </div>
 
@@ -506,8 +507,33 @@
 
 <script>
     // Configuration: Public Google Sheet Gviz CSV Endpoint
-    const SHEET_ID = '1K_Dxq9oqbwKcFjOIAmX-XjR44wYYuVgwKeAu_6nEg2o';
-    const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Schedule_Slots_Data`;
+    const DEFAULT_SHEET_ID = '1K_Dxq9oqbwKcFjOIAmX-XjR44wYYuVgwKeAu_6nEg2o';
+
+    function getActiveSheetId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('sheetId') || localStorage.getItem('tamha_custom_sheet_id') || DEFAULT_SHEET_ID;
+    }
+
+    function getGvizUrl(sheetId, tabName = 'Schedule_Slots_Data') {
+        return `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(tabName)}`;
+    }
+
+    function promptCustomSheet() {
+        const current = getActiveSheetId();
+        const input = prompt("Enter your Google Sheet ID or full Google Sheet URL\n(Note: The sheet must be shared as 'Anyone with the link can view'):", current !== DEFAULT_SHEET_ID ? current : "");
+        if (input === null) return;
+        const trimmed = input.trim();
+        if (!trimmed) {
+            localStorage.removeItem('tamha_custom_sheet_id');
+            alert("Reset to default master schedule.");
+        } else {
+            let match = trimmed.match(/\/d\/([a-zA-Z0-9-_]+)/);
+            let id = match ? match[1] : trimmed;
+            localStorage.setItem('tamha_custom_sheet_id', id);
+            alert(`Updated active Google Sheet connection! Reloading schedule...`);
+        }
+        fetchScheduleData();
+    }
 
     // Venue name canonical mapping for GrayJay Central
     const VENUE_MAP = {
@@ -1322,16 +1348,23 @@
 
     async function fetchScheduleData() {
         const syncStatus = document.getElementById('syncStatus');
+        const activeSheetId = getActiveSheetId();
+        const gvizUrl = getGvizUrl(activeSheetId);
         try {
             syncStatus.innerHTML = '<span class="loading-spinner"></span> Connecting...';
-            const response = await fetch(GVIZ_URL);
+            const response = await fetch(gvizUrl);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const csvText = await response.text();
+            if (csvText.includes('<!DOCTYPE html>') || csvText.includes('google-signin')) {
+                throw new Error("Sheet is private. Requires 'Anyone with link can view' sharing setting.");
+            }
             parseScheduleCsv(csvText);
-            syncStatus.textContent = 'Live Schedule Connected';
+            const isCustom = (activeSheetId !== DEFAULT_SHEET_ID);
+            syncStatus.textContent = isCustom ? 'Custom Live Sheet Connected' : 'Live Schedule Connected';
         } catch (err) {
             console.error('Failed to fetch from Google Sheets:', err);
-            syncStatus.textContent = 'Demo Mode (Offline Data)';
+            const isCustom = (activeSheetId !== DEFAULT_SHEET_ID);
+            syncStatus.textContent = isCustom ? 'Custom Sheet Inaccessible (Check Permissions)' : 'Demo Mode (Offline Data)';
             loadFallbackData();
         }
     }
