@@ -16,6 +16,7 @@ function onOpen() {
   ui.createMenu('TAMHA Ice Tools')
     .addItem('📅 Copy Current Week to Next Week (+7 Days - Weekday & Weekend)', 'copyCurrentWeekToNextWeek')
     .addSeparator()
+    .addItem('📋 Add Dropdowns to Deuvilles & Debert (Weekend)', 'ensureAllWeekendDropdowns')
     .addItem('🎨 Fix & Apply Auto Colors (Current Sheet)', 'applyColorsToActiveSheet')
     .addItem('📋 Fix Dropdown List (Removes Red Triangles)', 'fixDropdownValidationList')
     .addItem('🧹 Scrub Active Sheet to [OPEN] Available', 'scrubActiveSheetSlots')
@@ -385,6 +386,36 @@ function syncMasterSlotsTab() {
     'Sync Status',
     5
   );
+}
+
+/**
+ * Adds valid team dropdowns to all empty weekend slots across Deuvilles and Debert.
+ */
+function ensureAllWeekendDropdowns() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getActiveSheet();
+  const teamsSheet = ss.getSheetByName('Teams_and_Divisions');
+  
+  if (!teamsSheet) {
+    SpreadsheetApp.getUi().alert('Sheet "Teams_and_Divisions" was not found.');
+    return;
+  }
+
+  const lastRow = teamsSheet.getLastRow();
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInRange(teamsSheet.getRange(2, 2, Math.max(lastRow - 1, 1), 1))
+    .setAllowInvalid(true)
+    .build();
+
+  // Deuvilles Weekend (Cols C & E, rows 6 to 15)
+  sheet.getRange('C6:C15').setDataValidation(rule);
+  sheet.getRange('E6:E15').setDataValidation(rule);
+
+  // Debert Weekend (Cols H & J, rows 19 to 28)
+  sheet.getRange('H19:H28').setDataValidation(rule);
+  sheet.getRange('J19:J28').setDataValidation(rule);
+
+  ss.toast('Dropdowns successfully added to Deuvilles & Debert weekend slots!', '📋 Dropdowns Ready', 6);
 }
 
 function showSchedulerHelp() {
