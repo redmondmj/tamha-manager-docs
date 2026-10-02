@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMHA GrayJay Practice Exporter</title>
+    <!-- SheetJS for generating native binary Excel (.xlsx) files client-side -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        :root {
+            --tamha-navy: #1F497D;
+            --tamha-gold: #E5A823;
+            --tamha-dark: #112233;
+            --tamha-green: #2E7D32;
+            --tamha-bg: #F4F7FB;
+            --tamha-card: #FFFFFF;
+            --tamha-border: #DDE3EA;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--tamha-bg);
+            color: #333333;
+            padding: 24px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header-card {
+            background: linear-gradient(135deg, var(--tamha-navy) 0%, #102B4E 100%);
+            color: #FFFFFF;
+            padding: 28px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(31, 73, 125, 0.15);
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .header-title p {
+            font-size: 14px;
+            color: #D6E4F0;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .live-dot {
+            width: 9px;
+            height: 9px;
+            background-color: #4ADE80;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #4ADE80;
+        }
+
+        .card {
+            background: var(--tamha-card);
+            border: 1px solid var(--tamha-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--tamha-navy);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--tamha-navy);
+            background-color: #FFFDF5;
+            border: 2px solid var(--tamha-gold);
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        select:focus {
+            box-shadow: 0 0 0 3px rgba(229, 168, 35, 0.25);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--tamha-green);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: #236527;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.25);
+        }
+
+        .btn-secondary {
+            background-color: #F0F4F8;
+            color: var(--tamha-navy);
+            border: 1px solid #CFDCE8;
+        }
+
+        .btn-secondary:hover {
+            background-color: #E2EAF2;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .status-banner {
+            background-color: #EBF5FB;
+            border-left: 4px solid var(--tamha-navy);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-banner strong {
+            color: var(--tamha-navy);
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--tamha-border);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1F497D;
+            color: #FFFFFF;
+            font-weight: 600;
+            padding: 10px 12px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #EEEEEE;
+            white-space: nowrap;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+
+        tr:hover {
+            background-color: #F1F5F9;
+        }
+
+        .badge-full {
+            display: inline-block;
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-half {
+            display: inline-block;
+            background-color: #FFF3E0;
+            color: #E65100;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .btn-remove {
+            background-color: #FFF5F5;
+            border: 1px solid #FEB2B2;
+            color: #C53030;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-remove:hover {
+            background-color: #FED7D7;
+            border-color: #E53E3E;
+        }
+
+        .btn-reset {
+            background-color: #F7FAFC;
+            border: 1px solid #CBD5E0;
+            color: #4A5568;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+
+        .btn-reset:hover {
+            background-color: #EDF2F7;
+        }
+
+        .row-excluded {
+            opacity: 0.45;
+            background-color: #F8F9FA !important;
+            text-decoration: line-through;
+        }
+
+        .instructions-card {
+            background-color: #FAFBFD;
+            border: 1px solid #E1E8F0;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .instructions-card h3 {
+            font-size: 15px;
+            color: var(--tamha-navy);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-list {
+            padding-left: 20px;
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: #4A5568;
+        }
+
+        .step-list li {
+            margin-bottom: 6px;
+        }
+
+        .step-list a {
+            color: var(--tamha-navy);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #8C9BAE;
+            margin-top: 24px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .site-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            border-bottom: 3px solid #C8102E;
+            gap: 12px;
+        }
+        .site-title {
+            font-size: 1.15em;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .site-title span { color: #C8102E; }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .nav-link {
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.88em;
+            font-weight: 600;
+            transition: background 0.15s;
+        }
+        .nav-link.active {
+            background-color: #C8102E;
+            color: #FFFFFF;
+        }
+        .nav-link:not(.active) {
+            background-color: #2D2D2D;
+            color: #EEEEEE;
+        }
+        .nav-link:not(.active):hover {
+            background-color: #3D3D3D;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- SITE NAV -->
+    <header class="site-header">
+        <a href="index.html" class="site-title">TAMHA <span>Manager's Desk</span></a>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">📋 Quick-Start</a>
+            <a href="detailed-guide.html" class="nav-link">📖 Detailed Guide</a>
+            <a href="tempo-guide.html" class="nav-link">⏱️ Weekly Tempo</a>
+            <a href="resources.html" class="nav-link">📁 Resources</a>
+            <a href="exporter.html" class="nav-link active">🧊 GrayJay Exporter</a>
+        </nav>
+    </header>
+
+    <!-- Header -->
+    <div class="header-card">
+        <div class="header-title">
+            <h1>Truro Area Minor Hockey</h1>
+            <p>Official GrayJay Practice & Event Exporter</p>
+        </div>
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            <span id="syncStatus">Syncing with Master Ice Schedule...</span>
+        </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card">
+        <div class="control-row">
+            <div class="form-group" style="flex: 1; min-width: 200px;">
+                <label for="teamSelect">1. Schedule Team</label>
+                <select id="teamSelect" onchange="onTeamSelectChange()">
+                    <option value="">-- Choose Team (e.g. U11A, U13A) --</option>
+                </select>
+            </div>
+            <div class="form-group" style="flex: 1; min-width: 240px;">
+                <label for="grayjayTeamName">2. GrayJay Name (League + Team)</label>
+                <input type="text" id="grayjayTeamName" placeholder="e.g. U13-C - Bearcats 2" oninput="renderPractices()" style="width: 100%; padding: 12px 14px; font-size: 15px; font-weight: 600; color: #1F497D; background-color: #FFFDF5; border: 2px solid #E5A823; border-radius: 8px; outline: none;">
+            </div>
+            <div class="btn-group" style="align-self: flex-end;">
+                <button id="btnDownloadXlsx" class="btn btn-primary" onclick="downloadGrayJayXlsx()" disabled>
+                    📥 Download Official GrayJay Import (.xlsx)
+                </button>
+                <button id="btnDownloadCsv" class="btn btn-secondary" onclick="downloadCsv()" disabled>
+                    📄 Download CSV
+                </button>
+            </div>
+        </div>
+
+        <div id="statusBanner" class="status-banner" style="display: none; align-items: center; justify-content: space-between;">
+            <div>
+                Found <strong id="slotCount">0</strong> practice sessions (<strong id="includedCount">0</strong> selected) for <strong id="selectedTeamName">-</strong>.
+                <button type="button" class="btn-reset" onclick="resetPractices()" title="Restore all original practice slots">↺ Reset All</button>
+            </div>
+            <div style="font-size: 12px; color: #555;">
+                Using GrayJay team ID: <strong id="displayGjTeam" style="color: #1F497D;">-</strong>
+            </div>
+        </div>
+
+        <!-- Table Preview -->
+        <div class="table-responsive">
+            <table id="practiceTable">
+                <thead>
+                    <tr>
+                        <th style="width: 50px; text-align: center;" title="Include in download">Inc.</th>
+                        <th>Event Title</th>
+                        <th>League + Team</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Venue (GrayJay)</th>
+                        <th>Ice Surface</th>
+                        <th style="width: 90px; text-align: center;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="9" style="text-align: center; color: #888; padding: 24px;">
+                            Please select a team above to load practices.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions-card">
+        <h3>📋 How to Import into GrayJay Central</h3>
+        <ol class="step-list">
+            <li>Select your team in the dropdown above and click <strong>"Download Official GrayJay Import (.xlsx)"</strong>.</li>
+            <li>Log into <a href="https://grayjaycentral.ca" target="_blank" rel="noopener">GrayJay Central</a> (or your GrayJay Leagues Team Admin).</li>
+            <li>Navigate to <strong>Schedule &gt; Practices &gt; Import</strong> (or Team Events Import).</li>
+            <li>Upload the downloaded Excel file. GrayJay will parse all dates, start/end times, arenas, and Full Ice settings automatically!</li>
+            <li>Review and hit <strong>Confirm</strong>. Your entire team calendar is populated with zero manual typing.</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        TAMHA Ice Scheduling Suite &bull; Colchester Legion Stadium &bull; Deuville’s Rink &bull; RECC &bull; West Colchester United Arena
+    </div>
+</div>
+
+<script>
+    // Configuration: Public Google Sheet Gviz CSV Endpoint
+    const SHEET_ID = '1K_Dxq9oqbwKcFjOIAmX-XjR44wYYuVgwKeAu_6nEg2o';
+    const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Schedule_Slots_Data`;
+
+    // Venue name canonical mapping for GrayJay Central
+    const VENUE_MAP = {
+        'deuvilles': "Deuville’s Rink, Truro, NS",
+        'stadium': "Colchester Legion Stadium, Truro, NS",
+        'recc': "Rath Eastlink Community Centre, Truro, NS",
+        'debert': "West Colchester United Arena, Debert, NS"
+    };
+
+    const BUILTIN_SCHEDULE_DATA = [
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Int",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11A",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13B",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15A",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Adv",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11B",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18A",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U7-5 Orange",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13C Campbell",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15C Bernard",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11C Simms",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18C Wood",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Deuville\u2019s Rink, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13A",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "06:30 PM",
+        "endTime": "07:20 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15AA",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "07:30 PM",
+        "endTime": "08:20 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AAA",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13A",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AA",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15A",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "08:00 PM",
+        "endTime": "08:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11AA",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AAA",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "08:00 PM",
+        "endTime": "08:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11AA",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AAA",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "08:00 PM",
+        "endTime": "08:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15AA",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "05:30 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18A",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18AA",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "08:00 PM",
+        "endTime": "08:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13C Campbell",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "07:30 PM",
+        "endTime": "08:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15C Campbell",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "08:30 PM",
+        "endTime": "09:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11B",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "05:30 PM",
+        "endTime": "06:20 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AA",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "06:30 PM",
+        "endTime": "07:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18C Masters",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "05:30 PM",
+        "endTime": "06:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18C Wood",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "06:30 PM",
+        "endTime": "07:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13B",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "07:30 PM",
+        "endTime": "08:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "JrA Games",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "JrA Games",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11A",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13A",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18AA",
+        "date": "2026-10-09",
+        "day": "Friday",
+        "startTime": "07:00 PM",
+        "endTime": "07:50 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U7-5 Blue",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 John",
+        "date": "2026-10-05",
+        "day": "Monday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11C Bernard",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13C Cameron",
+        "date": "2026-10-06",
+        "day": "Tuesday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U7-6",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Jayasinghe",
+        "date": "2026-10-07",
+        "day": "Wednesday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15AA",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "05:00 PM",
+        "endTime": "05:50 PM",
+        "duration": "50 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Development Session",
+        "team": "TAMHA Development",
+        "date": "2026-10-08",
+        "day": "Thursday",
+        "startTime": "06:00 PM",
+        "endTime": "06:50 PM",
+        "duration": "80 min",
+        "venue": "West Colchester United Arena, Debert, NS",
+        "surface": "Half Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11 Bernard",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "9:00 PM",
+        "endTime": "9:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13 Campbell",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "10:00 PM",
+        "endTime": "10:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15 Bernard",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "11:00 PM",
+        "endTime": "11:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18 Masters",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "12:00 PM",
+        "endTime": "12:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "Officials",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "1:00 PM",
+        "endTime": "1:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "Officials",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "2:00 PM",
+        "endTime": "2:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Int",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "3:00 PM",
+        "endTime": "3:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Adv",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "4:00 PM",
+        "endTime": "4:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11B",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "5:00 PM",
+        "endTime": "5:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11 Simms",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "9:00 PM",
+        "endTime": "9:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13 Cameron",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "10:00 PM",
+        "endTime": "10:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15 Campbell",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "11:00 PM",
+        "endTime": "11:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18 Wood",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "12:00 PM",
+        "endTime": "12:50 PM",
+        "duration": "50 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AA",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "1:00 PM",
+        "endTime": "2:20 PM",
+        "duration": "80 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15A",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "2:30 PM",
+        "endTime": "3:50 PM",
+        "duration": "80 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13A",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "4:00 PM",
+        "endTime": "5:30 PM",
+        "duration": "80 min",
+        "venue": "Colchester Legion Stadium, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11AA",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "2:00 PM",
+        "endTime": "3:20 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U13AAA",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "3:30 PM",
+        "endTime": "4:50 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15AA",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "5:00 PM",
+        "endTime": "6:20 PM",
+        "duration": "80 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "Tentative",
+        "date": "2026-10-10",
+        "day": "Saturday",
+        "startTime": "8:00 PM",
+        "endTime": "9:20 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Int",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "9:00 PM",
+        "endTime": "9:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U9 Adv",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "10:00 PM",
+        "endTime": "10:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18AA",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "11:00 PM",
+        "endTime": "11:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11A",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "12:00 PM",
+        "endTime": "12:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U11B",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "3:00 PM",
+        "endTime": "3:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U18A",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "4:00 PM",
+        "endTime": "4:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    },
+    {
+        "eventTitle": "Practice",
+        "team": "U15AA",
+        "date": "2026-10-11",
+        "day": "Sunday",
+        "startTime": "5:00 PM",
+        "endTime": "5:50 PM",
+        "duration": "50 min",
+        "venue": "Rath Eastlink Community Centre, Truro, NS",
+        "surface": "Full Ice"
+    }
+];
+    let allSlots = [...BUILTIN_SCHEDULE_DATA];
+    let currentTeamPractices = [];
+
+    // Fetch live slots from Google Sheets on load (instantly populates with 38 builtin teams first)
+    window.addEventListener('DOMContentLoaded', () => {
+        loadFallbackData();
+        fetchScheduleData();
+    });
+
+    async function fetchScheduleData() {
+        const syncStatus = document.getElementById('syncStatus');
+        try {
+            syncStatus.innerHTML = '<span class="loading-spinner"></span> Connecting...';
+            const response = await fetch(GVIZ_URL);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const csvText = await response.text();
+            parseScheduleCsv(csvText);
+            syncStatus.textContent = 'Live Schedule Connected';
+        } catch (err) {
+            console.error('Failed to fetch from Google Sheets:', err);
+            syncStatus.textContent = 'Demo Mode (Offline Data)';
+            loadFallbackData();
+        }
+    }
+
+    function parseScheduleCsv(csvText) {
+        // Robust CSV row splitter
+        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
+        if (lines.length < 2) return;
+
+        allSlots = [];
+        const teamSet = new Set();
+
+        for (let i = 1; i < lines.length; i++) {
+            const cols = parseCsvLine(lines[i]);
+            if (cols.length < 13) continue;
+
+            const date = cols[1];
+            const day = cols[2];
+            const startTime = cols[3];
+            const endTime = cols[4];
+            const duration = cols[5];
+            const venueShort = cols[6];
+            const rawTeam = cols[7];
+            const eventTitle = cols[8] || 'Practice';
+            const cleanTeam = cols[12] ? cols[12].trim() : '';
+            const officialVenue = cols[13] || VENUE_MAP[venueShort.toLowerCase()] || `${venueShort}, Truro, NS`;
+            const surfaceOption = cols[14] || (eventTitle.includes('Dev') ? 'Half Ice' : 'Full Ice');
+
+            if (cleanTeam && !cleanTeam.startsWith('[OPEN]') && !cleanTeam.startsWith('[DEAD]')) {
+                teamSet.add(cleanTeam);
+                allSlots.push({
+                    eventTitle: eventTitle,
+                    team: cleanTeam,
+                    date: date,
+                    day: day,
+                    startTime: startTime,
+                    endTime: endTime,
+                    duration: duration,
+                    venue: officialVenue,
+                    surface: surfaceOption
+                });
+            }
+        }
+
+        // Populate dropdown
+        const select = document.getElementById('teamSelect');
+        select.innerHTML = '<option value="">-- Choose Team (e.g. U11A, U13A) --</option>';
+        const sortedTeams = Array.from(teamSet).sort();
+        sortedTeams.forEach(t => {
+            const opt = document.createElement('option');
+            opt.value = t;
+            opt.textContent = t;
+            select.appendChild(opt);
+        });
+
+        // Auto select first available team or U13C / U11A for instant view
+        if (sortedTeams.includes('U13C - Campbell')) {
+            select.value = 'U13C - Campbell';
+            onTeamSelectChange();
+        } else if (sortedTeams.includes('U11A')) {
+            select.value = 'U11A';
+            onTeamSelectChange();
+        } else if (sortedTeams.length > 0) {
+            select.value = sortedTeams[0];
+            onTeamSelectChange();
+        }
+    }
+
+    function parseCsvLine(line) {
+        const result = [];
+        let insideQuote = false;
+        let entry = '';
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"' && (i === 0 || line[i-1] !== '\\')) {
+                insideQuote = !insideQuote;
+            } else if (char === ',' && !insideQuote) {
+                result.push(entry.trim());
+                entry = '';
+            } else {
+                entry += char;
+            }
+        }
+        result.push(entry.trim());
+        return result.map(s => s.replace(/^"|"$/g, ''));
+    }
+
+    function loadFallbackData() {
+        allSlots = [...BUILTIN_SCHEDULE_DATA];
+
+        const teamSet = new Set(allSlots.map(s => s.team));
+        const select = document.getElementById('teamSelect');
+        select.innerHTML = '<option value="">-- Choose Team (e.g. U11A, U13A) --</option>';
+        const sortedTeams = Array.from(teamSet).sort();
+        sortedTeams.forEach(t => {
+            const opt = document.createElement('option');
+            opt.value = t;
+            opt.textContent = t;
+            select.appendChild(opt);
+        });
+
+        if (sortedTeams.includes('U13C - Campbell')) {
+            select.value = 'U13C - Campbell';
+            onTeamSelectChange();
+        } else if (sortedTeams.length > 0) {
+            select.value = sortedTeams[0];
+            onTeamSelectChange();
+        }
+    }
+
+    function onTeamSelectChange() {
+        const team = document.getElementById('teamSelect').value;
+        const gjInput = document.getElementById('grayjayTeamName');
+        if (team) {
+            // Suggest known GrayJay team names if applicable
+            if (team === 'U13C - Campbell' || team === 'U13C - Cameron' || team === 'U13C' || team === 'U13 Campbell' || team === 'U13 Cameron') {
+                gjInput.value = 'U13-C - Bearcats 2';
+            } else if (team === 'U11A') {
+                gjInput.value = 'U11-A - Bearcats';
+            } else if (team === 'U13A') {
+                gjInput.value = 'U13-A - Bearcats';
+            } else if (team === 'U11AA') {
+                gjInput.value = 'U11-AA - Bearcats';
+            } else if (team === 'U15AA') {
+                gjInput.value = 'U15-AA - Bearcats';
+            } else {
+                gjInput.value = team;
+            }
+            // Populate practices with unique IDs and included state
+            currentTeamPractices = allSlots
+                .filter(s => s.team.toLowerCase() === team.toLowerCase())
+                .map((p, idx) => ({ ...p, _id: idx, _included: true }));
+        } else {
+            gjInput.value = '';
+            currentTeamPractices = [];
+        }
+        renderPractices();
+    }
+
+    function removePractice(id) {
+        currentTeamPractices = currentTeamPractices.filter(p => p._id !== id);
+        renderPractices();
+    }
+
+    function togglePractice(id, isChecked) {
+        const p = currentTeamPractices.find(item => item._id === id);
+        if (p) p._included = isChecked;
+        updatePracticeCountsAndButtons();
+        const row = document.getElementById(`row-${id}`);
+        if (row) {
+            if (isChecked) row.classList.remove('row-excluded');
+            else row.classList.add('row-excluded');
+        }
+    }
+
+    function resetPractices() {
+        const team = document.getElementById('teamSelect').value;
+        if (team) {
+            currentTeamPractices = allSlots
+                .filter(s => s.team.toLowerCase() === team.toLowerCase())
+                .map((p, idx) => ({ ...p, _id: idx, _included: true }));
+            renderPractices();
+        }
+    }
+
+    function updatePracticeCountsAndButtons() {
+        const included = currentTeamPractices.filter(p => p._included !== false);
+        const slotCountEl = document.getElementById('slotCount');
+        const includedCountEl = document.getElementById('includedCount');
+        if (slotCountEl) slotCountEl.textContent = currentTeamPractices.length;
+        if (includedCountEl) includedCountEl.textContent = included.length;
+        const btnXlsx = document.getElementById('btnDownloadXlsx');
+        const btnCsv = document.getElementById('btnDownloadCsv');
+        if (btnXlsx) btnXlsx.disabled = included.length === 0;
+        if (btnCsv) btnCsv.disabled = included.length === 0;
+    }
+
+    function renderPractices() {
+        const team = document.getElementById('teamSelect').value;
+        const gjTeam = document.getElementById('grayjayTeamName').value.trim() || team;
+        const btnXlsx = document.getElementById('btnDownloadXlsx');
+        const btnCsv = document.getElementById('btnDownloadCsv');
+        const banner = document.getElementById('statusBanner');
+        const tbody = document.getElementById('tableBody');
+
+        if (!team) {
+            btnXlsx.disabled = true;
+            btnCsv.disabled = true;
+            banner.style.display = 'none';
+            tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: #888; padding: 24px;">Please select a team above to load practices.</td></tr>';
+            return;
+        }
+
+        document.getElementById('selectedTeamName').textContent = team;
+        document.getElementById('displayGjTeam').textContent = gjTeam;
+        banner.style.display = 'flex';
+
+        updatePracticeCountsAndButtons();
+
+        if (currentTeamPractices.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #888; padding: 24px;">No practices currently in list for ${team}. Click "↺ Reset All" above to restore.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = currentTeamPractices.map(p => `
+            <tr id="row-${p._id}" class="${p._included ? '' : 'row-excluded'}">
+                <td style="text-align: center;">
+                    <input type="checkbox" ${p._included ? 'checked' : ''} onchange="togglePractice(${p._id}, this.checked)" title="Check to include in export" style="cursor: pointer; width: 16px; height: 16px;" />
+                </td>
+                <td><strong>${p.eventTitle}</strong></td>
+                <td><strong style="color: #1F497D;">${gjTeam}</strong></td>
+                <td>${p.date} (${p.day})</td>
+                <td>${p.startTime}</td>
+                <td>${p.endTime}</td>
+                <td>${p.venue}</td>
+                <td>
+                    <span class="${p.surface === 'Full Ice' ? 'badge-full' : 'badge-half'}">
+                        ${p.surface}
+                    </span>
+                </td>
+                <td style="text-align: center;">
+                    <button type="button" class="btn-remove" onclick="removePractice(${p._id})" title="Remove this practice slot">
+                        ✕ Remove
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function dateToExcelSerial(dateStr) {
+        if (!dateStr) return 0;
+        const parts = dateStr.split('-').map(Number);
+        if (parts.length < 3) return 0;
+        const [y, m, d] = parts;
+        const dt = new Date(Date.UTC(y, m - 1, d));
+        const epoch = new Date(Date.UTC(1899, 11, 30));
+        return Math.round((dt - epoch) / (24 * 60 * 60 * 1000));
+    }
+
+    function timeToExcelSerial(timeStr) {
+        if (!timeStr) return 0;
+        const match = timeStr.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+        if (!match) return 0;
+        let h = parseInt(match[1], 10);
+        const m = parseInt(match[2], 10);
+        const ampm = match[3].toUpperCase();
+        if (ampm === 'PM' && h < 12) h += 12;
+        if (ampm === 'AM' && h === 12) h = 0;
+        return (h * 60 + m) / 1440;
+    }
+
+    function downloadGrayJayXlsx() {
+        const exportPractices = currentTeamPractices.filter(p => p._included !== false);
+        if (!exportPractices || exportPractices.length === 0) return;
+        const team = document.getElementById('teamSelect').value;
+        const gjTeam = document.getElementById('grayjayTeamName').value.trim() || team;
+
+        const wb = XLSX.utils.book_new();
+        const ws = {};
+        const headers = ['Event Title', 'League + Team', 'Date (YYYY-MM-DD)', 'Start Time (HH:MM PM)', 'End Time (HH:MM PM)', 'Venue', 'Full Ice / Half Ice'];
+        
+        headers.forEach((h, colIdx) => {
+            const cellRef = XLSX.utils.encode_cell({ r: 0, c: colIdx });
+            ws[cellRef] = { t: 's', v: h };
+        });
+
+        exportPractices.forEach((p, rowIdx) => {
+            const r = rowIdx + 1;
+            // Col A: Event Title (string)
+            ws[XLSX.utils.encode_cell({ r, c: 0 })] = { t: 's', v: p.eventTitle || 'Practice' };
+            // Col B: League + Team (string)
+            ws[XLSX.utils.encode_cell({ r, c: 1 })] = { t: 's', v: gjTeam };
+            // Col C: Date (numeric serial, date format)
+            ws[XLSX.utils.encode_cell({ r, c: 2 })] = { t: 'n', v: dateToExcelSerial(p.date), z: 'yyyy-mm-dd' };
+            // Col D: Start Time (numeric fraction, time format)
+            ws[XLSX.utils.encode_cell({ r, c: 3 })] = { t: 'n', v: timeToExcelSerial(p.startTime), z: 'h:mm AM/PM' };
+            // Col E: End Time (numeric fraction, time format)
+            ws[XLSX.utils.encode_cell({ r, c: 4 })] = { t: 'n', v: timeToExcelSerial(p.endTime), z: 'h:mm AM/PM' };
+            // Col F: Venue (string)
+            ws[XLSX.utils.encode_cell({ r, c: 5 })] = { t: 's', v: p.venue || '' };
+            // Col G: Surface (string)
+            ws[XLSX.utils.encode_cell({ r, c: 6 })] = { t: 's', v: p.surface || 'Full Ice' };
+        });
+
+        const range = { s: { r: 0, c: 0 }, e: { r: exportPractices.length, c: 6 } };
+        ws['!ref'] = XLSX.utils.encode_range(range);
+
+        // Set column widths matching GrayJay template
+        ws['!cols'] = [
+            { wch: 20 }, // Event Title
+            { wch: 24 }, // League + Team
+            { wch: 18 }, // Date
+            { wch: 22 }, // Start Time
+            { wch: 22 }, // End Time
+            { wch: 45 }, // Venue
+            { wch: 20 }  // Full Ice / Half Ice
+        ];
+
+        XLSX.utils.book_append_sheet(wb, ws, 'Worksheet');
+
+        // Append Ice sheet
+        const wsIce = XLSX.utils.aoa_to_sheet([['Full Ice'], ['Half Ice']]);
+        XLSX.utils.book_append_sheet(wb, wsIce, 'Ice');
+
+        // Append Teams sheet with exact GrayJay team name
+        const wsTeams = XLSX.utils.aoa_to_sheet([[gjTeam]]);
+        XLSX.utils.book_append_sheet(wb, wsTeams, 'Teams');
+
+        // Append Venues sheet
+        const venuesList = [
+            ['Colchester Legion Stadium, Truro, NS'],
+            ['Deuville’s Rink, Truro, NS'],
+            ['Rath Eastlink Community Centre, Truro, NS'],
+            ['West Colchester United Arena, Debert, NS']
+        ];
+        const wsVenues = XLSX.utils.aoa_to_sheet(venuesList);
+        XLSX.utils.book_append_sheet(wb, wsVenues, 'Venues');
+
+        // Download as Excel (.xlsx)
+        const filename = `${gjTeam.replace(/[^a-zA-Z0-9_-]/g, '_')}_GrayJay_Practice_Import.xlsx`;
+        XLSX.writeFile(wb, filename);
+    }
+
+    function downloadCsv() {
+        const exportPractices = currentTeamPractices.filter(p => p._included !== false);
+        if (!exportPractices || exportPractices.length === 0) return;
+        const team = document.getElementById('teamSelect').value;
+
+        const headers = ['Event Title', 'League + Team', 'Date (YYYY-MM-DD)', 'Start Time (HH:MM PM)', 'End Time (HH:MM PM)', 'Venue', 'Full Ice / Half Ice'];
+        const csvRows = [headers.join(',')];
+
+        exportPractices.forEach(p => {
+            const row = [
+                `"${p.eventTitle}"`,
+                `"${p.team}"`,
+                p.date,
+                `"${p.startTime}"`,
+                `"${p.endTime}"`,
+                `"${p.venue}"`,
+                `"${p.surface}"`
+            ];
+            csvRows.push(row.join(','));
+        });
+
+        const csvContent = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvRows.join('\n'));
+        const link = document.createElement('a');
+        link.setAttribute('href', csvContent);
+        link.setAttribute('download', `${team.replace(/\\s+/g, '_')}_Practices.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>

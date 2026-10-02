@@ -4,3 +4,34 @@
 email_insights.md
 *.py
 /original-pdfs/
+2025-2026 u11a archive/
+*archive*
+
+# OAuth & Authentication tokens
+credentials.json
+token.json
+*token*.json
+*.token
+client_secret*.json
+
+# Generated preview/sample files
+sample_filled_medical_form.pdf
+sample_preview.png
+*Weston*.pdf
+*.png
+*test*.pdf
+
+# Scratch & temporary test directories
+scratch/
+exports/
+~$*
+templates/~$*
+templates/*Private*
+templates/*_v2.xlsx
+templates/*_v3.xlsx
+templates/*DEMO.xlsx
+templates/*DEMO_v2.xlsx
+templates/test_form_responses_sample.csv
+templates/test_roster_sample.csv
+templates/Truro Minor Hockey Association - Practice Import Template (1).xlsx
+
