@@ -16,6 +16,7 @@ function onOpen() {
   ui.createMenu('TAMHA Ice Tools')
     .addItem('📅 Copy Current Week to Next Week (+7 Days - Weekday & Weekend)', 'copyCurrentWeekToNextWeek')
     .addSeparator()
+    .addItem('🔄 Update Manager Tab Banner & Links', 'updateExporterTabBanner')
     .addItem('📋 Add Dropdowns to Deuvilles & Debert (Weekend)', 'ensureAllWeekendDropdowns')
     .addItem('🎨 Fix & Apply Auto Colors (Current Sheet)', 'applyColorsToActiveSheet')
     .addItem('📋 Fix Dropdown List (Removes Red Triangles)', 'fixDropdownValidationList')
@@ -416,6 +417,37 @@ function ensureAllWeekendDropdowns() {
   sheet.getRange('J19:J28').setDataValidation(rule);
 
   ss.toast('Dropdowns successfully added to Deuvilles & Debert weekend slots!', '📋 Dropdowns Ready', 6);
+}
+
+/**
+ * Updates Manager_Practice_Export / Manager_GrayJay_Export with the live web tool link.
+ */
+function updateExporterTabBanner() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName('Manager_Practice_Export') || ss.getSheetByName('Manager_GrayJay_Export');
+  
+  if (!sheet) {
+    SpreadsheetApp.getUi().alert('Manager Export tab was not found.');
+    return;
+  }
+
+  sheet.getRange('A1').setValue('TEAM MANAGER GRAYJAY PRACTICE EXPORTER & VIEWER');
+  sheet.getRange('A2').setValue('Select your team in C4. Use the recommended 1-click web tool or the manual fallback below.');
+  sheet.getRange('A3').setValue('🚀 RECOMMENDED (1-Click Exporter): Visit https://hockey.redmond.link/exporter.html to download your official GrayJay .xlsx file with zero manual typing!');
+  sheet.getRange('D4').setValue('📋 MANUAL FALLBACK: Select your team in C4 -> Highlight rows B7:H below -> Copy (Ctrl+C) -> Paste into GrayJay Template!');
+
+  // Clear obsolete rows at the bottom
+  const maxRow = sheet.getLastRow();
+  for (let r = 20; r <= Math.max(maxRow, 30); r++) {
+    for (let c = 1; c <= 8; c++) {
+      let val = sheet.getRange(r, c).getValue();
+      if (typeof val === 'string' && (val.toLowerCase().includes('exports') || val.toLowerCase().includes('zero-click alternative'))) {
+        sheet.getRange(r, c).setValue('');
+      }
+    }
+  }
+
+  ss.toast('Manager export banner & links updated successfully!', '✅ Banner Refreshed', 6);
 }
 
 function showSchedulerHelp() {
