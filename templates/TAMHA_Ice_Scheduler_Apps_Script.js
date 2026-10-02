@@ -7,26 +7,27 @@
  * Instructions:
  * 1. Open the TAMHA Ice Schedule Google Sheet.
  * 2. Click "Extensions" > "Apps Script".
- * 3. Replace the existing code with this updated version and click Save (💾).
+ * 3. Replace all existing code with this script and click Save (💾).
  * 4. Refresh the Google Sheet. The "TAMHA Ice Tools" menu will update immediately!
  */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('TAMHA Ice Tools')
-    .addItem('📅 Copy Current Week to Next Week (+7 Days)', 'copyCurrentWeekToNextWeek')
+    .addItem('📅 Copy Current Week to Next Week (+7 Days - Weekday & Weekend)', 'copyCurrentWeekToNextWeek')
     .addSeparator()
     .addItem('🎨 Fix & Apply Auto Colors (Current Sheet)', 'applyColorsToActiveSheet')
-    .addItem('🔄 Re-Sync Master GrayJay Slots Tab', 'syncMasterSlotsTab')
+    .addItem('📋 Fix Dropdown List (Removes Red Triangles)', 'fixDropdownValidationList')
+    .addItem('🧹 Scrub Active Sheet to [OPEN] Available', 'scrubActiveSheetSlots')
     .addSeparator()
+    .addItem('🔄 Re-Sync Master GrayJay Slots Tab', 'syncMasterSlotsTab')
     .addItem('ℹ️ Scheduler Help & Guide', 'showSchedulerHelp')
     .addToUi();
 }
 
 /**
- * Copies the currently selected weekly schedule tab forward by 7 days.
- * Preserves all team assignments, dropdown validations, and formatting.
- * Automatically updates date banners, day headers, tab title, and applies auto colors.
+ * Automatically duplicates BOTH the Weekday and Weekend sheets for the next week (+7 days).
+ * Preserves all team assignments, dropdown validations, and auto-colors.
  */
 function copyCurrentWeekToNextWeek() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -41,30 +42,76 @@ function copyCurrentWeekToNextWeek() {
     return;
   }
 
-  const isWeekendSheet = activeName.toLowerCase().includes('weekend');
-  const sheetTypeLabel = isWeekendSheet ? 'Weekend' : 'Weekly';
+  // Determine current week number
+  const weekMatch = activeName.match(/week[_\s]*(\d+)/i);
+  const currentWeekNum = weekMatch ? parseInt(weekMatch[1], 10) : 1;
+  const nextWeekNum = currentWeekNum + 1;
+
+  // Identify matching weekday and weekend source sheets
+  let weekdaySource = null;
+  let weekendSource = null;
+
+  const allSheets = ss.getSheets();
+  for (let s of allSheets) {
+    const name = s.getName().toLowerCase();
+    // Weekday match
+    if (name === `week_${currentWeekNum}` || name.startsWith(`week_${currentWeekNum}_`) || name === 'weekday_template') {
+      if (!name.includes('weekend')) {
+        if (!weekdaySource || name.includes(String(currentWeekNum))) weekdaySource = s;
+      }
+    }
+    // Weekend match
+    if (name === `weekend_${currentWeekNum}` || name.startsWith(`weekend_${currentWeekNum}_`) || name === 'weekend_template') {
+      if (!weekendSource || name.includes(String(currentWeekNum))) weekendSource = s;
+    }
+  }
+
+  // Fallbacks if not found by pattern
+  if (!weekdaySource && !activeName.toLowerCase().includes('weekend')) weekdaySource = activeSheet;
+  if (!weekendSource && activeName.toLowerCase().includes('weekend')) weekendSource = activeSheet;
+  if (!weekendSource) weekendSource = ss.getSheetByName('Weekend_Template');
+  if (!weekdaySource) weekdaySource = ss.getSheetByName('Weekday_Template');
 
   const ui = SpreadsheetApp.getUi();
-  const response = ui.alert(
-    `Rollover ${sheetTypeLabel} to Next Week`,
-    `This will duplicate "${activeName}" forward by 7 days.\n\n` +
-    `• All existing team assignments will be copied forward as-is.\n` +
-    `• Date headers will advance by 7 days automatically.\n` +
-    `• Status colors ([OPEN] green, [HOLD] yellow, (Game) lavender) will be applied automatically.\n\n` +
-    `Proceed?`,
-    ui.ButtonSet.YES_NO
-  );
+  const hasBoth = weekdaySource && weekendSource;
+  const confirmMsg = hasBoth
+    ? `This will roll over Week ${nextWeekNum} (+7 Days):\n\n` +
+      `• Duplicates Weekday: "${weekdaySource.getName()}" ➔ Week_${nextWeekNum}\n` +
+      `• Duplicates Weekend: "${weekendSource.getName()}" ➔ Weekend_${nextWeekNum}\n` +
+      `• Advances all dates by 7 days automatically\n` +
+      `• Keeps all team assignments & injects auto-colors\n\n` +
+      `Proceed?`
+    : `This will duplicate "${activeSheet.getName()}" forward by 7 days.\n\nProceed?`;
 
+  const response = ui.alert('Rollover to Next Week (+7 Days)', confirmMsg, ui.ButtonSet.YES_NO);
   if (response !== ui.Button.YES) return;
 
-  // 1. Duplicate sheet
-  const newSheet = activeSheet.copyTo(ss);
-  
-  // 2. Determine next week number
-  const weekMatch = activeName.match(/week[_\s]*(\d+)/i);
-  let nextWeekNum = weekMatch ? parseInt(weekMatch[1], 10) + 1 : 2;
+  let createdNames = [];
 
-  // 3. Scan and increment date cells (+7 days)
+  // 1. Rollover Weekday Sheet
+  if (weekdaySource) {
+    const newWeekday = rolloverSingleSheet(ss, weekdaySource, nextWeekNum, false);
+    createdNames.push(newWeekday.getName());
+  }
+
+  // 2. Rollover Weekend Sheet
+  if (weekendSource) {
+    const newWeekend = rolloverSingleSheet(ss, weekendSource, nextWeekNum, true);
+    createdNames.push(newWeekend.getName());
+  }
+
+  ss.toast(
+    `Created ${createdNames.join(' and ')} with dates (+7 days) and auto-colors!`,
+    'TAMHA Rollover Complete',
+    8
+  );
+}
+
+/**
+ * Helper to duplicate a single sheet, advance dates by 7 days, and apply auto-colors.
+ */
+function rolloverSingleSheet(ss, sourceSheet, weekNum, isWeekend) {
+  const newSheet = sourceSheet.copyTo(ss);
   const range = newSheet.getDataRange();
   const values = range.getValues();
   let firstFoundDate = null;
@@ -74,15 +121,12 @@ function copyCurrentWeekToNextWeek() {
     for (let c = 0; c < values[r].length; c++) {
       const val = values[r][c];
 
-      // If cell is a JavaScript Date object
       if (val instanceof Date) {
         const nextDate = new Date(val.getTime() + 7 * 24 * 60 * 60 * 1000);
         newSheet.getRange(r + 1, c + 1).setValue(nextDate);
         if (!firstFoundDate || nextDate < firstFoundDate) firstFoundDate = nextDate;
         if (!lastFoundDate || nextDate > lastFoundDate) lastFoundDate = nextDate;
-      }
-      // If cell is a text date like "Oct 5, 2026" or "2026-10-05"
-      else if (typeof val === 'string' && val.trim().length > 0) {
+      } else if (typeof val === 'string' && val.trim().length > 0) {
         const parsed = parseDateString(val);
         if (parsed) {
           const nextDate = new Date(parsed.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -94,20 +138,16 @@ function copyCurrentWeekToNextWeek() {
     }
   }
 
-  // 4. Generate clean tab name
-  const prefix = isWeekendSheet ? `Weekend_${nextWeekNum}` : `Week_${nextWeekNum}`;
+  const prefix = isWeekend ? `Weekend_${weekNum}` : `Week_${weekNum}`;
   let newTabName = prefix;
   if (firstFoundDate && lastFoundDate) {
     const m1 = getMonthShort(firstFoundDate);
     const d1 = String(firstFoundDate.getDate()).padStart(2, '0');
     const m2 = getMonthShort(lastFoundDate);
     const d2 = String(lastFoundDate.getDate()).padStart(2, '0');
-    newTabName = (m1 === m2)
-      ? `${prefix}_${m1}_${d1}_${d2}`
-      : `${prefix}_${m1}_${d1}_${m2}_${d2}`;
+    newTabName = (m1 === m2) ? `${prefix}_${m1}_${d1}_${d2}` : `${prefix}_${m1}_${d1}_${m2}_${d2}`;
   }
 
-  // Ensure unique sheet name
   let finalTabName = newTabName;
   let counter = 1;
   while (ss.getSheetByName(finalTabName)) {
@@ -116,22 +156,18 @@ function copyCurrentWeekToNextWeek() {
 
   newSheet.setName(finalTabName);
 
-  // Position new sheet right after active sheet
-  const activeIndex = activeSheet.getIndex();
+  // Position after source sheet
+  const sourceIndex = sourceSheet.getIndex();
   ss.setActiveSheet(newSheet);
-  ss.moveActiveSheet(activeIndex + 1);
+  ss.moveActiveSheet(sourceIndex + 1);
 
-  // Auto update header banner text if present in rows 1-3
-  updateHeaderBanner(newSheet, nextWeekNum, firstFoundDate, lastFoundDate, isWeekendSheet);
+  // Update banner title
+  updateHeaderBanner(newSheet, weekNum, firstFoundDate, lastFoundDate, isWeekend);
 
-  // 5. CRITICAL: Automatically apply all auto-colors to the new sheet
+  // Apply auto-colors
   applyTamhaConditionalFormatting(newSheet);
 
-  ss.toast(
-    `Created "${finalTabName}" with all practice slots and auto-colors copied!`,
-    'TAMHA Week Rollover Success',
-    8
-  );
+  return newSheet;
 }
 
 /**
@@ -144,8 +180,6 @@ function copyCurrentWeekToNextWeek() {
 function applyTamhaConditionalFormatting(sheet) {
   const maxRow = Math.max(sheet.getLastRow(), 50);
   const maxCol = Math.max(sheet.getLastColumn(), 14);
-  
-  // Apply across rows 4 to end, columns B (2) through N (14)
   const gridRange = sheet.getRange(4, 2, maxRow - 3, maxCol - 1);
 
   const ruleOpen = SpreadsheetApp.newConditionalFormatRule()
@@ -180,13 +214,9 @@ function applyTamhaConditionalFormatting(sheet) {
     .setRanges([gridRange])
     .build();
 
-  // Set the four rules on the sheet
   sheet.setConditionalFormatRules([ruleOpen, ruleHold, ruleGame, ruleDead]);
 }
 
-/**
- * 1-Click fix for current sheet: applies the auto-colors immediately.
- */
 function applyColorsToActiveSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getActiveSheet();
@@ -195,8 +225,85 @@ function applyColorsToActiveSheet() {
 }
 
 /**
- * Updates title banner with the new week number and date range.
+ * Appends missing status items to the Teams_and_Divisions validation list.
+ * Completely eliminates red warning triangles!
  */
+function fixDropdownValidationList() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const teamsSheet = ss.getSheetByName('Teams_and_Divisions');
+
+  if (!teamsSheet) {
+    SpreadsheetApp.getUi().alert('Sheet "Teams_and_Divisions" was not found.');
+    return;
+  }
+
+  const lastRow = teamsSheet.getLastRow();
+  const currentValues = teamsSheet.getRange(2, 2, Math.max(lastRow - 1, 1), 1).getValues().flat().map(v => String(v).trim());
+
+  const statusesToAdd = [
+    '[OPEN] Available',
+    '[DEAD] Released',
+    'JrA Games',
+    'Development / Skills',
+    'Officials / Refs'
+  ];
+
+  let addedCount = 0;
+  for (let status of statusesToAdd) {
+    if (!currentValues.includes(status)) {
+      teamsSheet.appendRow(['', status]);
+      addedCount++;
+    }
+  }
+
+  SpreadsheetApp.getUi().alert(
+    'Dropdown Validation Updated',
+    `Added ${addedCount} status items to "Teams_and_Divisions".\n\n` +
+    `Red warning triangles for [OPEN] Available, [DEAD], and JrA Games are now cleared!`,
+    SpreadsheetApp.getUi().ButtonSet.OK
+  );
+}
+
+/**
+ * Scrubs all mock/sample team assignments on the active sheet back to "[OPEN] Available".
+ * Keeps the rink layout, headers, and time slots intact!
+ */
+function scrubActiveSheetSlots() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getActiveSheet();
+
+  const ui = SpreadsheetApp.getUi();
+  const response = ui.alert(
+    'Scrub Sample Data',
+    `This will reset all team assignments on "${sheet.getName()}" to "[OPEN] Available".\n\n` +
+    `Time slots, rinks, and dropdowns will remain intact.\n\n` +
+    `Proceed?`,
+    ui.ButtonSet.YES_NO
+  );
+
+  if (response !== ui.Button.YES) return;
+
+  // Scan team columns (C, E, G, I, K)
+  const maxRow = sheet.getLastRow();
+  const teamCols = [3, 5, 7, 9, 11]; // Columns C, E, G, I, K
+
+  for (let r = 7; r <= maxRow; r++) {
+    for (let c of teamCols) {
+      const cell = sheet.getRange(r, c);
+      const val = cell.getValue();
+      if (val && typeof val === 'string' && val.trim() !== '') {
+        // Only replace if it's not a header row
+        if (!val.toLowerCase().includes('time') && !val.toLowerCase().includes('team')) {
+          cell.setValue('[OPEN] Available');
+        }
+      }
+    }
+  }
+
+  applyTamhaConditionalFormatting(sheet);
+  ss.toast('All slots reset to "[OPEN] Available"!', '🧹 Scrub Complete', 6);
+}
+
 function updateHeaderBanner(sheet, weekNum, startDate, endDate, isWeekend) {
   const range = sheet.getRange(1, 1, 3, Math.min(sheet.getLastColumn(), 10));
   const values = range.getValues();
@@ -217,9 +324,6 @@ function updateHeaderBanner(sheet, weekNum, startDate, endDate, isWeekend) {
   }
 }
 
-/**
- * Helper: Parses date strings like "Oct 5, 2026", "October 5, 2026", "2026-10-05".
- */
 function parseDateString(str) {
   const trimmed = str.trim();
   const m = trimmed.match(/(?:[A-Za-z]+,?\s+)?([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})/);
@@ -252,16 +356,12 @@ function getMonthIndex(str) {
   return months.indexOf(s);
 }
 
-/**
- * Re-syncs the master "Schedule_Slots_Data" tab across all active weekly sheets.
- * Ensures the web exporter (https://hockey.redmond.link/exporter.html) always stays live.
- */
 function syncMasterSlotsTab() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let exportSheet = ss.getSheetByName('Schedule_Slots_Data');
 
   if (!exportSheet) {
-    SpreadsheetApp.getUi().alert('Tab "Schedule_Slots_Data" was not found. Please ensure the master template is present.');
+    SpreadsheetApp.getUi().alert('Tab "Schedule_Slots_Data" was not found.');
     return;
   }
 
@@ -275,19 +375,16 @@ function syncMasterSlotsTab() {
   );
 }
 
-/**
- * Help dialog explaining the workflow for Craig.
- */
 function showSchedulerHelp() {
   const html = HtmlService.createHtmlOutput(`
     <div style="font-family: Arial, sans-serif; padding: 12px; line-height: 1.6;">
       <h3 style="color: #1F497D; margin-top: 0;">TAMHA Ice Scheduler Workflow</h3>
-      <p><strong>1. Week Rollover:</strong> Click <em>TAMHA Ice Tools &gt; 📅 Copy Current Week to Next Week (+7 Days)</em>. Duplicates the sheet with all teams assigned, advances dates, and preserves all auto-colors.</p>
-      <p><strong>2. Auto-Colors:</strong> If colors ever don't show, click <em>TAMHA Ice Tools &gt; 🎨 Fix &amp; Apply Auto Colors</em>.</p>
-      <p><strong>3. Review &amp; Swap:</strong> Simply review the new week, swap any tournament or exhibition slots, and mark dead ice as <code>[OPEN]</code>.</p>
-      <p><strong>4. Managers Exporter:</strong> Team managers can instantly export their practices into GrayJay via <a href="https://hockey.redmond.link/exporter.html" target="_blank">hockey.redmond.link/exporter.html</a>.</p>
+      <p><strong>1. Week Rollover:</strong> Click <em>TAMHA Ice Tools &gt; 📅 Copy Current Week to Next Week</em>. Automatically duplicates <strong>BOTH Weekday and Weekend</strong> tabs with all teams assigned, advances dates (+7 days), and applies auto-colors.</p>
+      <p><strong>2. Auto-Colors:</strong> Click <em>TAMHA Ice Tools &gt; 🎨 Fix &amp; Apply Auto Colors</em>.</p>
+      <p><strong>3. Clear Red Triangles:</strong> Click <em>TAMHA Ice Tools &gt; 📋 Fix Dropdown List</em>.</p>
+      <p><strong>4. Scrub to Blank Canvas:</strong> Click <em>TAMHA Ice Tools &gt; 🧹 Scrub Active Sheet to [OPEN] Available</em>.</p>
     </div>
-  `).setWidth(460).setHeight(320);
+  `).setWidth(480).setHeight(360);
 
   SpreadsheetApp.getUi().showModalDialog(html, 'TAMHA Scheduler Help');
 }
