@@ -16,13 +16,9 @@ function onOpen() {
   ui.createMenu('TAMHA Ice Tools')
     .addItem('📅 Copy Current Week to Next Week (+7 Days - Weekday & Weekend)', 'copyCurrentWeekToNextWeek')
     .addSeparator()
-    .addItem('🔄 Update Manager Tab Banner & Links', 'updateExporterTabBanner')
-    .addItem('📋 Add Dropdowns to Deuvilles & Debert (Weekend)', 'ensureAllWeekendDropdowns')
     .addItem('🎨 Fix & Apply Auto Colors (Current Sheet)', 'applyColorsToActiveSheet')
-    .addItem('📋 Fix Dropdown List (Removes Red Triangles)', 'fixDropdownValidationList')
     .addItem('🧹 Scrub Active Sheet to [OPEN] Available', 'scrubActiveSheetSlots')
     .addSeparator()
-    .addItem('🔄 Re-Sync Master GrayJay Slots Tab', 'syncMasterSlotsTab')
     .addItem('ℹ️ Scheduler Help & Guide', 'showSchedulerHelp')
     .addToUi();
 }
