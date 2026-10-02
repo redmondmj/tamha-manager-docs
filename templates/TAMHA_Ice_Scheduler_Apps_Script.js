@@ -198,14 +198,6 @@ function applyTamhaConditionalFormatting(sheet) {
     .setRanges([gridRange])
     .build();
 
-  const ruleGame = SpreadsheetApp.newConditionalFormatRule()
-    .whenTextContains("(Game)")
-    .setBackground("#EAD1DC")
-    .setFontColor("#4C1130")
-    .setBold(true)
-    .setRanges([gridRange])
-    .build();
-
   const ruleDead = SpreadsheetApp.newConditionalFormatRule()
     .whenTextContains("[DEAD]")
     .setBackground("#EFEFEF")
@@ -214,7 +206,7 @@ function applyTamhaConditionalFormatting(sheet) {
     .setRanges([gridRange])
     .build();
 
-  sheet.setConditionalFormatRules([ruleOpen, ruleHold, ruleGame, ruleDead]);
+  sheet.setConditionalFormatRules([ruleOpen, ruleHold, ruleDead]);
 }
 
 function applyColorsToActiveSheet() {
@@ -256,10 +248,30 @@ function fixDropdownValidationList() {
     }
   }
 
+  // Also clean up any "(Game)" suffixes from team cells on the active sheet
+  const activeSheet = ss.getActiveSheet();
+  const maxRow = activeSheet.getLastRow();
+  const teamCols = [3, 5, 7, 9, 11]; // Columns C, E, G, I, K
+  let cleanedCells = 0;
+  for (let r = 6; r <= maxRow; r++) {
+    for (let c of teamCols) {
+      const cell = activeSheet.getRange(r, c);
+      let val = cell.getValue();
+      if (typeof val === 'string' && val.toLowerCase().includes('(game)')) {
+        cell.setValue(val.replace(/\s*\(game\)/gi, '').trim());
+        cleanedCells++;
+      }
+    }
+  }
+
+  // Re-apply clean colors
+  applyTamhaConditionalFormatting(activeSheet);
+
   SpreadsheetApp.getUi().alert(
     'Dropdown Validation Updated',
-    `Added ${addedCount} status items to "Teams_and_Divisions".\n\n` +
-    `Red warning triangles for [OPEN] Available, [DEAD], and JrA Games are now cleared!`,
+    `1. Added ${addedCount} status items to "Teams_and_Divisions" directory.\n` +
+    `2. Cleaned ${cleanedCells} team cells back to pure canonical names (stripped "(Game)").\n\n` +
+    `All red warning triangles are now cleared!`,
     SpreadsheetApp.getUi().ButtonSet.OK
   );
 }
