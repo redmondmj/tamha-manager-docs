@@ -13,12 +13,12 @@ These guides are designed for all team managers (both Rep and House/C-League) ac
 
 ### Page Roster & Sequence
 
-| # | Page Title | File Source | Suggested Slug | Target Audience |
+| # | Page Title | File Source | Live GrayJay URL & Page ID | Target Audience |
 |---|---|---|---|---|
-| **1** | **Quick-Start Manager Checklist** | `grayjay-html-exports/01-Quick-Start.html` | `Quick-Start-Checklist` | All Managers (New & Returning) |
-| **2** | **Detailed Responsibilities Guide** | `grayjay-html-exports/02-Detailed-Guide.html` | `Detailed-Responsibilities-Guide` | All Managers |
-| **3** | **Weekly Tempo & Communications Guide**| `grayjay-html-exports/03-Tempo-Guide.html` | `Weekly-Tempo-Guide` | All Managers |
-| **4** | **Resources, Forms & Templates** | `grayjay-html-exports/04-Resources.html` | `Resources-and-Templates` | Managers, Treasurers, Safety Reps |
+| **1** | **Manager Quick-Start Checklist** | `grayjay-html-exports/01-Quick-Start.html` | [pages/12263/Manager-Quick-Start-Checklist/](https://trurominorhockey.ca/pages/12263/Manager-Quick-Start-Checklist/) | All Managers (New & Returning) |
+| **2** | **Manager Detailed Responsibilities Guide** | `grayjay-html-exports/02-Detailed-Guide.html` | [pages/12264/Manager-Detailed-Responsibilities-Guide/](https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/) | All Managers |
+| **3** | **Manager Weekly Tempo Guide** | `grayjay-html-exports/03-Tempo-Guide.html` | [pages/12265/Manager-Weekly-Tempo-Guide/](https://trurominorhockey.ca/pages/12265/Manager-Weekly-Tempo-Guide/) | All Managers |
+| **4** | **Manager Resources & Templates** | `grayjay-html-exports/04-Resources.html` | [pages/12266/Manager-Resources--Templates/](https://trurominorhockey.ca/pages/12266/Manager-Resources--Templates/) | Managers, Treasurers, Safety Reps |
 | **5** | **Template: Parent Meeting Agenda** | `grayjay-html-exports/05-Template-Parent-Meeting.html`| `Template-Parent-Meeting-Agenda` | Team Staff |
 | **6** | **Template: Sponsorship Letter** | `grayjay-html-exports/06-Template-Sponsorship.html` | `Template-Sponsorship-Letter` | Managers & Fundraising Reps |
 | **7** | **Template: Emergency Action Plan (EAP)**| `grayjay-html-exports/07-Template-EAP.html` | `Template-Emergency-Action-Plan` | Safety Persons & Bench Staff |

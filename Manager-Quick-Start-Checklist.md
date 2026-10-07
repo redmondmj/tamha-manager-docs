@@ -4,7 +4,7 @@ This is your bare-bones, chronological checklist for getting your team set up, c
 
 ### 📋 Phase 1: Immediate Tasks (Days 1-3 Post-Team Selection)
 - [ ] **GrayJay Account Setup:** Email `tamhaweb@trurominorhockey.ca` with your Name, Position, Date of Birth, and HCR # to get your manager access set up. ([See Roster & Game Management](./Manager-Detailed-Responsibilities-Guide.md#3-roster--game-management))
-- [ ] **Team Banking Registration:** Email `vpfinance@trurominorhockey.ca` for a bank letter to become a signer. **Do not collect parent funds until this is active.** Two signers are required. ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
+- [ ] **Team Banking Registration:** Submit signer details via the [TAMHA Bank Signer Intake Form](https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform) to request an official authorization letter from VP Finance. **Do not collect parent funds until this is active.** Two signers are required. ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
 - [ ] **Secure Game Jerseys & Team Socks:** Pick up and assign team jerseys and order/obtain game socks immediately—teams often play exhibition games right away. Check with the Head Coach regarding practice jersey requirements (team-supplied vs. player-supplied colors). ([See Team Culture & Apparel](./Manager-Detailed-Responsibilities-Guide.md#4-team-culture--nice-to-haves))
 
 ### 📋 Phase 2: Administrative Setup (Week 1)
