@@ -20,6 +20,8 @@ Drawing from successful manager communication patterns across TAMHA, this timeli
 4. **Action Items:** Are forms overdue? Is a jersey deposit needed? Are sponsors submitted? Put this in **bold** at the top.
 5. **Volunteer Requests:** If applicable (e.g., dressing room monitors, 50/50 sellers).
 
+> **Pro-Tip (Skipping GrayJay Bulk Emailer):** Send this weekly update directly from your official `@trurominorhockey.ca` Google Workspace account using **Gmail Templates** and a parent BCC group. This avoids GrayJay's mobile formatting glitches and spam folder filtering while giving you a clean two-way reply thread. See the full [Weekly Team Update Email Template](file:///c:/Users/redmo/OneDrive/Documents/GitRepos/tamha-manager-docs/04-Forms-and-Templates/Weekly-Email-Update-Template.md) for setup details.
+
 ### Wednesday/Thursday: Execution & Collection
 - **Banking / Forms:** This is usually when you will collect E-transfers, post-dated cheques, or outstanding forms at the rink during practice.
 - **Volunteer Confirmation:** Message the parents who volunteered for the upcoming weekend.

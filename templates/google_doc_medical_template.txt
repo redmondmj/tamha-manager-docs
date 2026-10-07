@@ -1,0 +1,42 @@
+Hockey Canada
+MEDICAL INFORMATION SHEET
+Truro Area Minor Hockey Association (TAMHA)
+
+Name: {{PLAYER_NAME}}
+Jersey #: {{JERSEY_NUM}}
+Date of birth (YYYY-MM-DD): {{DOB}}
+Address: {{ADDRESS}}
+Provincial Health Number (MSI): {{HEALTH_CARD}}
+
+Parent/Guardian #1: {{PARENT1_INFO}}
+Parent/Guardian #2: {{PARENT2_INFO}}
+
+Alternate Emergency Contact (if parents are unavailable):
+Contact: {{EMERGENCY_CONTACT}}
+
+Doctor's Name & Clinic Phone: {{DOCTOR}}
+Dentist's Name & Clinic Phone: {{DENTIST}}
+
+--------------------------------------------------------------------------------
+MEDICAL & SAFETY PROFILE
+--------------------------------------------------------------------------------
+Allergies & EpiPen Requirements:
+{{ALLERGIES}}
+
+Medical Conditions & Daily Medications:
+{{CONDITIONS}}
+
+Concussion History (past 12 months) or Recent Injuries:
+{{CONCUSSIONS}}
+
+--------------------------------------------------------------------------------
+AUTHORIZATION & SIGNATURE
+--------------------------------------------------------------------------------
+I understand that it is my responsibility to keep the team Safety Person advised of any change in the above information as soon as possible. In the event of a medical emergency and that no one can be contacted, team management will arrange to take my child to the hospital or a physician if deemed necessary. I hereby authorize the physician and nursing staff to undertake examination, investigation and necessary treatment of my child. I also authorize release of information to appropriate people (coach, physician) as deemed necessary.
+
+Date: {{DATE}}
+
+Signature of Player: ____________________________________________________
+
+Signature of Parent/Guardian: ___________________________________________
+Attestation on File: {{SIGNATURE}}

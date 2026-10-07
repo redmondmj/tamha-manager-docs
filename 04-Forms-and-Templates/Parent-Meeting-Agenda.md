@@ -14,7 +14,11 @@
 
 ## 3. Communication & Protocols
 *   **The 24-Hour Rule:** If you have an issue regarding a game or coaching decision, you must wait 24 hours before contacting the coaching staff or manager. This allows emotions to cool and leads to productive conversations.
-*   **Dressing Room Policy:** Reiteration of the **Two-Deep Method** (there must always be two screened adults in the dressing room when players are present). Discuss cell phone/camera bans in the dressing room.
+*   **Dressing Room Conduct & Supervision (Rule of Two):** Reiteration of the **Rule of Two / Two-Deep Method** (there must always be two screened adults present in the dressing room when players are present).
+    *   **No Unsupervised Drop-offs:** Parents must **not** drop players off early or leave them unsupervised at the rink. Arrival times must strictly follow team rules (e.g., 30–45 mins before games, 20–30 mins before practices) when screened team staff are on site. Players are not permitted in dressing rooms without staff supervision.
+    *   **Cell Phone Ban:** Reiterate strict ban on cell phones and recording devices in dressing rooms at all times.
+*   **Dressing Room Music & Team Speaker:** Outline the Head Coach's music policy. Designate who is responsible for bringing and managing the team Bluetooth speaker. Establish clear rules on **acceptable music** (clean/radio edits only, appropriate volume, and music turned off when coaches enter to speak).
+*   **Jerseys & Socks:** Outline distribution and deposit requirements for game jerseys ($150 Rep / $50 House) and matching team socks (needed immediately for upcoming exhibition games). Clarify expectations for **practice jerseys** (e.g., team supplied vs. players bringing light/dark jerseys).
 *   **Weekly Updates:** The manager will send an email every [Tuesday] with the upcoming weekend schedule.
 
 ## 4. Team Finances & Budget

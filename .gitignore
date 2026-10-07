@@ -6,6 +6,19 @@ email_insights.md
 /original-pdfs/
 2025-2026 u11a archive/
 *archive*
+*roster*.csv
+roster*.csv
+data/
+auth_*url.txt
+team_tracker_url.txt
+temp_*.pdf
+__pycache__/
+*.pyc
+
+# Real Team Trackers & Operational Sheets (Child PII)
+TAMHA_U13A_*.xlsx
+*Team_Tracker*.xlsx
+*Tournament_Master*.xlsx
 
 # OAuth & Authentication tokens
 credentials.json
@@ -20,6 +33,9 @@ sample_preview.png
 *Weston*.pdf
 *.png
 *test*.pdf
+
+# Allow documentation and branded assets
+!assets/**
 
 # Scratch & temporary test directories
 scratch/
