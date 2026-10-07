@@ -206,8 +206,8 @@ function generateLetterForRow(sheet, row, headers) {
 
   doc.saveAndClose();
 
-  // 3. Set Permissions (Viewer access for Blake & Anyone with link)
-  copyDoc.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  // 3. Document Privacy: Kept strictly private by default (No public link sharing)
+  // Joe or Bromlyn can share directly with Blake Giroux (BGiroux@mosaikcu.ca) as View-Only
   const docUrl = copyDoc.getUrl();
 
   // 4. Safely update spreadsheet row using dynamic column indices
