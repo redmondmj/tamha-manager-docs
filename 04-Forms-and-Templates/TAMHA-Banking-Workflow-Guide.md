@@ -65,19 +65,26 @@ Create a form inside TAMHA Workspace: **`TAMHA 2026–2027 Team Bank Account & S
 
 The Google Form links directly to a Master Sheet in Joe's private `TAMHA Finance` Drive:
 
-### Sheet Columns:
+### Sheet Tabs & Architecture:
+The Master Spreadsheet is organized into three connected tabs:
+1. **`Form Responses 1`**: Live destination streaming responses directly from the Google Form intake.
+2. **`Team Banking & Signers`**: Clean executive dashboard showing all teams, dual signers, account numbers, and direct authorization letter links.
+3. **`Mosaik Account Directory`**: Internal reference table matching all 28 official TAMHA teams to their private 9-digit Mosaik Credit Union account numbers. The automation engine bridges to this sheet to pull account numbers without exposing them to public responders.
+
+### Master Dashboard Columns:
 | Col | Header | Purpose / Formula |
 |---|---|---|
-| A | `Timestamp` | Auto-captured submission date |
-| B | `Team` | Team division & level |
-| C | `Head Coach` | Coach contact |
-| D | `Signer 1 (Primary)` | Name, Role, Phone, Email |
-| E | `Signer 2 (Secondary)` | Name, Role, Phone, Email |
-| F | `Signer 3 (Backup)` | Name, Role, Phone, Email |
-| G | `Mosaik Account #` | Permanent internal record for TAMHA |
-| H | `Status` | Dropdown: `[Pending Review | Letter Generated | Sent to Bank (Blake) | Card Signed / Active]` |
-| I | `Letter Drive Link` | Direct link to generated PDF letter in Google Drive |
-| J | `Oct 30 Budget Status` | Dropdown: `[Not Submitted | In Review | Approved]` |
+| A | `Timestamp` | Submission date / timestamp |
+| B | `Division & Team` | Team division & level (e.g., `U11 AA Bearcats`, `U13 A Bearcats`) |
+| C–F | `Signer 1 (Primary - Manager)` | Name, Role, Phone, Email |
+| G–J | `Signer 2 (Secondary - Treasurer)` | Name, Role, Phone, Email |
+| K–N | `Signer 3 (Coach / Backup)` | Name, Role, Phone, Email |
+| O | `Account Notes / Exceptions` | Rollover status or special notes |
+| P | `Mosaik Account #` | 9-digit credit union account number (auto-looked up from directory) |
+| Q | `Banking Status` | Status: `Ready / Share with Blake` |
+| R | `Authorization Letter (Blake / DocuSign)` | Direct Google Doc viewer link for Blake Giroux |
+| S | `Oct 30 Budget Status` | Status: `[Not Submitted | In Progress | Approved]` |
+| T | `Team Budget Link` | Link to preliminary team operating budget |
 
 ---
 
@@ -91,113 +98,17 @@ Placeholders inside the template:
 - `{{SIGNER_1_NAME}}`, `{{SIGNER_1_ROLE}}`, `{{SIGNER_1_PHONE}}`, `{{SIGNER_1_EMAIL}}`
 - `{{SIGNER_2_NAME}}`, `{{SIGNER_2_ROLE}}`, `{{SIGNER_2_PHONE}}`, `{{SIGNER_2_EMAIL}}`
 - `{{SIGNER_3_NAME}}`, `{{SIGNER_3_ROLE}}`, `{{SIGNER_3_PHONE}}`, `{{SIGNER_3_EMAIL}}`
-- `{{VP_FINANCE_NAME}}` (Joe Zappia)
-
-### Letter Content Body:
-```text
-TRURO AREA MINOR HOCKEY ASSOCIATION (TAMHA)
-P.O. Box 181, Truro, NS B2N 5C1
-vpfinance@trurominorhockey.ca
-
-[DATE]
-
-To: Mosaik Credit Union (Truro Branch)
-Attn: Commercial / Community Accounts (Blake)
-
-RE: Signing Officer Authorization — Truro Bearcats [TEAM_NAME] (Account: [ACCOUNT_NUMBER])
-
-Please accept this letter as official authorization on behalf of the Truro Area Minor Hockey Association (TAMHA) Executive to update the designated signing officers for the above-referenced team account for the 2026–2027 hockey season.
-
-Effective immediately, the following individuals are authorized as signing officers with full operational privileges (including dual-authorization online banking, deposits, withdrawals, and cheque issuance):
-
-1. Primary Signer:
-   Name: [SIGNER_1_NAME]
-   Position: [SIGNER_1_ROLE]
-   Phone: [SIGNER_1_PHONE]
-   Email: [SIGNER_1_EMAIL]
-
-2. Secondary Signer:
-   Name: [SIGNER_2_NAME]
-   Position: [SIGNER_2_ROLE]
-   Phone: [SIGNER_2_PHONE]
-   Email: [SIGNER_2_EMAIL]
-
-3. Additional Signer:
-   Name: [SIGNER_3_NAME]
-   Position: [SIGNER_3_ROLE]
-   Phone: [SIGNER_3_PHONE]
-   Email: [SIGNER_3_EMAIL]
-
-All transactions require two (2) authorized signatures. Please remove any prior season signing officers not listed above.
-
-Sincerely,
-
-Joe Zappia
-Vice President of Finance
-Truro Area Minor Hockey Association (TAMHA)
-vpfinance@trurominorhockey.ca
-```
 
 ---
 
-## 5. Automated Google Apps Script (1-Click Generation)
+## 5. Automated Google Apps Script (V2 — Dynamic Header & Directory Integration)
 
-In the Master Google Sheet, click **Extensions > Apps Script** and paste:
+The production Apps Script is saved in the repository at [`templates/TAMHA_Bank_Letter_Apps_Script.js`](file:///c:/Users/redmo/OneDrive/Documents/GitRepos/tamha-manager-docs/templates/TAMHA_Bank_Letter_Apps_Script.js).
 
-```javascript
-function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('TAMHA Banking')
-    .addItem('Generate Bank Letter for Selected Row', 'generateSelectedBankLetter')
-    .addToUi();
-}
-
-const TEMPLATE_DOC_ID = 'YOUR_GOOGLE_DOC_TEMPLATE_ID';
-const OUTPUT_FOLDER_ID = 'YOUR_DRIVE_FOLDER_ID_FOR_BANK_LETTERS';
-
-function generateSelectedBankLetter() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const row = sheet.getActiveCell().getRow();
-  if (row <= 1) {
-    SpreadsheetApp.getUi().alert('Please select a team data row.');
-    return;
-  }
-
-  const team = sheet.getRange(row, 2).getValue();
-  const s1Name = sheet.getRange(row, 4).getValue();
-  const s2Name = sheet.getRange(row, 5).getValue();
-  const s3Name = sheet.getRange(row, 6).getValue();
-  const acct = sheet.getRange(row, 7).getValue() || 'On File';
-
-  // 1. Copy Template
-  const templateFile = DriveApp.getFileById(TEMPLATE_DOC_ID);
-  const folder = DriveApp.getFolderById(OUTPUT_FOLDER_ID);
-  const copyDoc = templateFile.makeCopy('Bank_Letter_' + team + '_2026-2027', folder);
-  const doc = DocumentApp.openById(copyDoc.getId());
-  const body = doc.getBody();
-
-  // 2. Replace Tokens
-  body.replaceText('{{DATE}}', Utilities.formatDate(new Date(), 'America/Halifax', 'MMMM d, yyyy'));
-  body.replaceText('{{TEAM_NAME}}', team);
-  body.replaceText('{{ACCOUNT_NUMBER}}', acct);
-  body.replaceText('{{SIGNER_1_NAME}}', s1Name);
-  body.replaceText('{{SIGNER_2_NAME}}', s2Name);
-  body.replaceText('{{SIGNER_3_NAME}}', s3Name || 'N/A');
-
-  doc.saveAndClose();
-
-  // 3. Convert to PDF
-  const pdf = copyDoc.getAs('application/pdf');
-  const pdfFile = folder.createFile(pdf).setName('TAMHA_Bank_Letter_' + team + '_2026-2027.pdf');
-  copyDoc.setTrashed(true); // clean up intermediate doc
-
-  // 4. Update Sheet with link and status
-  sheet.getRange(row, 8).setValue('Letter Generated');
-  sheet.getRange(row, 9).setValue(pdfFile.getUrl());
-
-  SpreadsheetApp.getUi().alert('Letter generated successfully! Saved in Drive:\n' + pdfFile.getUrl());
-}
-```
+Key architectural upgrades in V2:
+1. **Dynamic Header Resolution:** Searches row 1 for header names instead of using static column indices, preventing any column offset issues if columns are added or shifted.
+2. **Mosaik Account Directory Lookup:** Automatically queries the `Mosaik Account Directory` tab to inject the official 9-digit account number into `{{ACCOUNT_NUMBER}}`.
+3. **Works Across Both Sheets:** Functions seamlessly on either `Team Banking & Signers` or `Form Responses 1`.
 
 ---
 
