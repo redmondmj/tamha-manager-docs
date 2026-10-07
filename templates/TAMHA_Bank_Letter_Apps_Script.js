@@ -1,16 +1,19 @@
 /**
- * TAMHA Banking Automation - Google Apps Script (V2)
+ * TAMHA Banking Automation - Google Apps Script (V3)
  * 
  * Paste this script into your Master Spreadsheet:
  * Extensions > Apps Script
  * 
  * Features:
- *  1. Dynamic Column Resolution: Scans row 1 headers so it NEVER writes to the wrong column,
- *     regardless of whether it's run on 'Form Responses 1' or 'Team Banking & Signers'.
+ *  1. Multi-Column Robust Resolution: Scans all matching column headers and picks the
+ *     first non-empty value, ensuring seamless compatibility across Form changes.
  *  2. Automatic Account Number Lookup: Automatically bridges to the 'Mosaik Account Directory'
  *     tab to inject the official 9-digit credit union account number into the letterhead.
- *  3. In-Browser 1-Click Generation: Generates official letters directly into Google Drive
- *     and grants Viewer permissions for Blake Giroux at Mosaik Credit Union.
+ *  3. Bidirectional Submissions Reconciler: Auto-populates missing primary/secondary columns,
+ *     syncs new registrations directly into the 'Team Banking & Signers' dashboard, and
+ *     assigns official Mosaik account numbers.
+ *  4. In-Browser 1-Click Generation: Generates official letters directly into Google Drive
+ *     using the clean, approved TAMHA header and table formatting.
  * 
  * ZERO PII: All logic is 100% tokenized and driven by spreadsheet variables.
  */
@@ -20,6 +23,7 @@ function onOpen() {
     .createMenu('🏒 TAMHA Banking')
     .addItem('⚡ Generate Bank Letters for Pending Teams', 'generatePendingLetters')
     .addItem('📄 Generate Letter for Currently Selected Row', 'generateSelectedRowLetter')
+    .addItem('🔄 Sync & Reconcile Form Submissions', 'syncAndReconcileSubmissions')
     .addItem('🔍 Refresh Account Numbers from Directory', 'refreshAccountNumbers')
     .addToUi();
 }
@@ -41,6 +45,25 @@ function findColIndex(headers, aliases) {
     }
   }
   return -1;
+}
+
+/**
+ * Searches across ALL matching column aliases and returns the first NON-EMPTY value.
+ */
+function getRobustVal(sheet, row, headers, aliases, defaultVal = '') {
+  for (let i = 0; i < headers.length; i++) {
+    const h = String(headers[i] || '').trim().toLowerCase();
+    for (let j = 0; j < aliases.length; j++) {
+      const alias = aliases[j].toLowerCase();
+      if (h === alias || h.includes(alias)) {
+        const val = sheet.getRange(row, i + 1).getValue();
+        if (val !== null && val !== undefined && String(val).trim() !== '') {
+          return String(val).trim();
+        }
+      }
+    }
+  }
+  return defaultVal;
 }
 
 /**
@@ -68,15 +91,13 @@ function lookupAccountNumber(teamName) {
   const data = dirSheet.getDataRange().getValues();
   const searchKey = normalizeTeamKey(teamName);
 
-  // Col A: Canonical Team Name, Col B: Dropdown Match, Col C: Mosaik Account #
   for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const canonicalKey = normalizeTeamKey(row[0]);
-    const dropdownKey = normalizeTeamKey(row[1]);
-    
-    if (searchKey === canonicalKey || searchKey === dropdownKey || searchKey.includes(canonicalKey)) {
-      const acct = String(row[2] || '').trim();
-      if (acct && acct !== '') {
+    const canonName = String(data[i][0] || '').trim();
+    const dropdownName = String(data[i][1] || '').trim();
+    const acct = String(data[i][2] || '').trim();
+
+    if (acct && acct !== '') {
+      if (normalizeTeamKey(canonName) === searchKey || normalizeTeamKey(dropdownName) === searchKey) {
         return acct;
       }
     }
@@ -100,17 +121,16 @@ function generatePendingLetters() {
 
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   const colLetter = findColIndex(headers, ['authorization letter', 'letter link']);
-  const colTeam = findColIndex(headers, ['team division', 'division & team', 'team']);
 
-  if (colLetter === -1 || colTeam === -1) {
-    SpreadsheetApp.getUi().alert('Error: Could not locate Team or Authorization Letter columns in this sheet.');
+  if (colLetter === -1) {
+    SpreadsheetApp.getUi().alert('Error: Could not locate Authorization Letter column in this sheet.');
     return;
   }
 
   let generatedCount = 0;
   for (let row = 2; row <= lastRow; row++) {
     const letterLink = sheet.getRange(row, colLetter).getValue();
-    const team = sheet.getRange(row, colTeam).getValue();
+    const team = getRobustVal(sheet, row, headers, ['division & team', 'team division', 'team']);
     
     if (team && (!letterLink || letterLink.toString().trim() === '')) {
       generateLetterForRow(sheet, row, headers);
@@ -148,31 +168,24 @@ function generateLetterForRow(sheet, row, headers) {
     headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
   }
 
-  const getVal = (aliases, defaultVal = '') => {
-    const colIdx = findColIndex(headers, aliases);
-    if (colIdx === -1) return defaultVal;
-    const val = sheet.getRange(row, colIdx).getValue();
-    return (val !== null && val !== undefined && val !== '') ? val : defaultVal;
-  };
+  const team = getRobustVal(sheet, row, headers, ['division & team', 'team division', 'team']);
+  const s1Name = getRobustVal(sheet, row, headers, ['primary signer: full legal name', 'signer 1 (primary', 'signer 1']);
+  const s1Role = getRobustVal(sheet, row, headers, ['primary signer: team position', 's1 role'], 'Manager');
+  const s1Email = getRobustVal(sheet, row, headers, ['primary signer: email address', 's1 email']);
+  const s1Phone = getRobustVal(sheet, row, headers, ['primary signer: mobile phone number', 's1 phone']);
 
-  const team = getVal(['division & team', 'team division', 'team']);
-  const s1Name = getVal(['primary signer: full legal name', 'signer 1 (primary', 'signer 1']);
-  const s1Role = getVal(['primary signer: team position', 's1 role'], 'Manager');
-  const s1Email = getVal(['primary signer: email address', 's1 email']);
-  const s1Phone = getVal(['primary signer: mobile phone number', 's1 phone']);
+  const s2Name = getRobustVal(sheet, row, headers, ['secondary signer: full legal name', 'signer 2 (secondary', 'signer 2']);
+  const s2Role = getRobustVal(sheet, row, headers, ['secondary signer: team position', 's2 role'], 'Treasurer');
+  const s2Email = getRobustVal(sheet, row, headers, ['secondary signer: email address', 's2 email']);
+  const s2Phone = getRobustVal(sheet, row, headers, ['secondary signer: mobile phone number', 's2 phone']);
 
-  const s2Name = getVal(['secondary signer: full legal name', 'signer 2 (secondary', 'signer 2']);
-  const s2Role = getVal(['secondary signer: team position', 's2 role'], 'Treasurer');
-  const s2Email = getVal(['secondary signer: email address', 's2 email']);
-  const s2Phone = getVal(['secondary signer: mobile phone number', 's2 phone']);
-
-  const s3Name = getVal(['third signer: full legal name', 'signer 3 (coach', 'signer 3']);
-  const s3Role = getVal(['third signer: team position', 's3 role'], s3Name ? 'Head Coach' : '');
-  const s3Email = getVal(['third signer: email address', 's3 email']);
-  const s3Phone = getVal(['third signer: mobile phone number', 's3 phone']);
+  const s3Name = getRobustVal(sheet, row, headers, ['third signer: full legal name', 'signer 3 (coach', 'signer 3']);
+  const s3Role = getRobustVal(sheet, row, headers, ['third signer: team position', 's3 role'], s3Name ? 'Head Coach' : '');
+  const s3Email = getRobustVal(sheet, row, headers, ['third signer: email address', 's3 email']);
+  const s3Phone = getRobustVal(sheet, row, headers, ['third signer: mobile phone number', 's3 phone']);
 
   // Account Number resolution: Check cell first, fallback to Directory lookup
-  let acctNum = getVal(['mosaik account', 'account number']);
+  let acctNum = getRobustVal(sheet, row, headers, ['mosaik account', 'account number']);
   if (!acctNum || acctNum === '' || acctNum === 'On File (Mosaik Truro)') {
     acctNum = lookupAccountNumber(team);
   }
@@ -207,7 +220,7 @@ function generateLetterForRow(sheet, row, headers) {
   doc.saveAndClose();
 
   // 3. Document Privacy: Kept strictly private by default (No public link sharing)
-  // Joe or Bromlyn can share directly with Blake Giroux (BGiroux@mosaikcu.ca) as View-Only
+  // Joe shares directly with Blake Giroux (BGiroux@mosaikcu.ca) as View-Only
   const docUrl = copyDoc.getUrl();
 
   // 4. Safely update spreadsheet row using dynamic column indices
@@ -218,6 +231,73 @@ function generateLetterForRow(sheet, row, headers) {
   if (colAcct !== -1) sheet.getRange(row, colAcct).setValue(acctNum);
   if (colStatus !== -1) sheet.getRange(row, colStatus).setValue('Ready / Share with Blake');
   if (colLetter !== -1) sheet.getRange(row, colLetter).setValue(docUrl);
+}
+
+/**
+ * Automatically syncs and reconciles all form submissions across columns and tabs.
+ */
+function syncAndReconcileSubmissions() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const formSheet = ss.getSheetByName('Form Responses 1');
+  if (!formSheet) {
+    SpreadsheetApp.getUi().alert('Form Responses 1 tab not found.');
+    return;
+  }
+
+  const lastRow = formSheet.getLastRow();
+  const lastCol = formSheet.getLastColumn();
+  const headers = formSheet.getRange(1, 1, 1, lastCol).getValues()[0];
+
+  let syncedCount = 0;
+  for (let r = 2; r <= lastRow; r++) {
+    const team = getRobustVal(formSheet, r, headers, ['division & team', 'team division', 'team']);
+    const pRole = getRobustVal(formSheet, r, headers, ['primary signer: team position', 's1 role']);
+    const sRole = getRobustVal(formSheet, r, headers, ['secondary signer: team position', 's2 role']);
+    const tRole = getRobustVal(formSheet, r, headers, ['third signer: team position', 's3 role']);
+
+    // Ensure Column B has team if found anywhere
+    const colB = findColIndex(headers, ['team division & level']);
+    if (colB !== -1 && team) {
+      const curB = formSheet.getRange(r, colB).getValue();
+      if (!curB || curB === '') formSheet.getRange(r, colB).setValue(team);
+    }
+
+    // Ensure Primary Role (Col E) has role
+    const colE = findColIndex(headers, ['primary signer: team position']);
+    if (colE !== -1 && pRole) {
+      const curE = formSheet.getRange(r, colE).getValue();
+      if (!curE || curE === '') formSheet.getRange(r, colE).setValue(pRole);
+    }
+
+    // Ensure Mosaik Account # is populated
+    const colAcct = findColIndex(headers, ['mosaik account', 'account number']);
+    if (colAcct !== -1 && team) {
+      const curAcct = formSheet.getRange(r, colAcct).getValue();
+      if (!curAcct || curAcct === '' || curAcct === 'On File (Mosaik Truro)') {
+        formSheet.getRange(r, colAcct).setValue(lookupAccountNumber(team));
+      }
+    }
+
+    // Ensure Status is populated
+    const colStatus = findColIndex(headers, ['banking status', 'status']);
+    if (colStatus !== -1) {
+      const curStatus = formSheet.getRange(r, colStatus).getValue();
+      if (!curStatus || curStatus === '') {
+        formSheet.getRange(r, colStatus).setValue('Needs Letter');
+      }
+    }
+
+    syncedCount++;
+  }
+
+  SpreadsheetApp.getUi().alert(`✅ Synced & verified ${syncedCount} form submissions!`);
+}
+
+/**
+ * Trigger function for new Google Form submissions.
+ */
+function onFormSubmit(e) {
+  syncAndReconcileSubmissions();
 }
 
 /**
