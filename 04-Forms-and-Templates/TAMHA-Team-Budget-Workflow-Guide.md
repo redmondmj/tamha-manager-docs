@@ -32,8 +32,37 @@ The rebuilt **TAMHA Team Budget Master Template** provides an executive-grade, 5
 | Platform | Access Method | Link |
 | :--- | :--- | :--- |
 | **Google Sheets (Recommended)** | Click to Make a Personal Copy | [**TAMHA Team Budget Master (Google Sheets)**](https://docs.google.com/spreadsheets/d/1W6-_pH7H24ogvHRtxeRjiNFfoL9HHKs6ZtIjBTk_4Z4/copy) |
-| **Google Drive Master** | View Master in Drive | [**View in Google Drive**](https://docs.google.com/spreadsheets/d/1W6-_pH7H24ogvHRtxeRjiNFfoL9HHKs6ZtIjBTk_4Z4/edit) |
 | **Microsoft Excel (.xlsx)** | Local File in Repository | `templates/TAMHA_Team_Budget_Master_Template.xlsx` |
+
+---
+
+## 2.1 Distribution Models & Reporting Architecture
+
+### Preferred Model: Centralized Pre-Population by VP Finance (Joe Zappia)
+To ensure association-wide financial oversight and streamline milestone submissions, the preferred operational workflow is:
+1. **Automated Generation:** Using verified submissions from the Bank Signer Intake Form and the Mosaik account mapping ledger, VP Finance generates a dedicated, pre-populated Google Sheet for each of the 28 TAMHA teams in a central Drive directory (`TAMHA 2026-2027 Team Budgets`).
+2. **Pre-Populated Data:**
+   * Team Name, Division, and Tier (Rep vs C-League).
+   * Authorized Signing Officers (Head Coach, Manager, Treasurer) and contact details.
+   * Official 9-digit Mosaik Credit Union Account #.
+   * Baseline Association Fees (Rep Fees & Sweater Fund for Rep teams; $0 Rep fees for C teams).
+3. **Delegated Access:** VP Finance shares each team sheet directly with that team's Manager and Treasurer with **Editor** permissions.
+4. **Association Scraping & Reporting:** Because VP Finance retains primary ownership of all 28 team sheets within the TAMHA Google Workspace, an automated aggregation script or `IMPORTRANGE` dashboard can scrape high-level budget figures across all 28 teams in seconds—providing instant association-wide cash position and solvency audits without chasing down individual file attachments.
+
+### Alternative / Fallback: Self-Service Manager Copy
+If preferred, managers can click the [**Make a Copy**](https://docs.google.com/spreadsheets/d/1W6-_pH7H24ogvHRtxeRjiNFfoL9HHKs6ZtIjBTk_4Z4/copy) link on the Manager's Desk Resources hub to clone a blank template into their own personal or team Google Drive.
+
+### Key Consideration: Rep Teams vs. C-League (House) Teams
+* **Rep Teams (AAA / AA / A / B):**
+  * Pay mandatory TAMHA Rep Fees (typically split across two equal installments: Nov 15 and Jan 31).
+  * Pay the mandatory TAMHA Sweater Fund contribution ($550).
+  * Collect $150/player Jersey Deposits (held in trust).
+  * Incur larger tournament entry fees, exhibition ice costs, and ref/timekeeper cash payouts.
+* **C-League / House Teams:**
+  * **Do NOT pay Rep fees** (core ice time and league operations are covered by base TAMHA player registration).
+  * Rep fee rows default to `$0.00`.
+  * Collect lower jersey deposits ($50/player).
+  * Operating budgets focus on tournament entry, extra exhibition/practice ice, apparel/socks, and team activities/year-end events.
 
 ---
 
