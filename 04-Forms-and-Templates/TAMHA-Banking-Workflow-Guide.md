@@ -24,7 +24,7 @@ flowchart LR
 ### Live Demo Assets (Deployed under `u13amgr@trurominorhockey.ca`):
 * **Live Form (Responder View):** [TAMHA 2026–2027 Team Bank Account Signer Intake](https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform)
 * **Form (Editor View):** [Edit Intake Form](https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/edit)
-* **Master Tracking Sheet:** [[DEMO] TAMHA 2026-2027 Team Banking & Finance Master Dashboard](https://docs.google.com/spreadsheets/d/1Icy9K5DV_9ymCm3vKqc6CdLgsfv0NTS5M_dTTdKvR0A/edit)
+* **Master Tracking Sheet:** [TAMHA 2026-2027 Team Banking & Finance Master Dashboard](https://docs.google.com/spreadsheets/d/1Icy9K5DV_9ymCm3vKqc6CdLgsfv0NTS5M_dTTdKvR0A/edit)
 * **Master Letterhead Template (Zero PII):** [TEMPLATE - TAMHA Mosaik Credit Union Authorization Letter](https://docs.google.com/document/d/17l_LiSP0Uz9ZaF5gHg-_urMNO70JtfPMr0KMkrXjmDQ/edit)
 * **Sample Filled Letter Doc:** [[DEMO] TAMHA Mosaik Credit Union Authorization Letter - U13A Bearcats](https://docs.google.com/document/d/1OdsNRFR2dsYnnm46adaPyq6z1OBNSZw4RZq2VDJxRmg/edit)
 * *Note: Direct Writer permissions granted to `vpfinance@trurominorhockey.ca`.*
