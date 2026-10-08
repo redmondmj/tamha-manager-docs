@@ -1,272 +1,219 @@
-<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; max-width: 900px; margin: 0 auto; padding: 20px;">
+<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; width: 100%; max-width: 1000px; margin: 0 auto; padding: 10px 0; box-sizing: border-box;">
     
-    <style>
-        .checklist-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95em;
-            margin-bottom: 24px;
-        }
-        .checklist-table thead tr {
-            background-color: #EEEEEE;
-            border-bottom: 2px solid #C8102E;
-        }
-        .checklist-table th {
-            text-align: left;
-            padding: 10px 12px;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .checklist-table th.th-action {
-            text-align: center;
-        }
-        .checklist-table td {
-            padding: 12px;
-            vertical-align: top;
-            border-bottom: 1px solid #E2E8F0;
-        }
-        .checklist-table tbody tr:nth-child(even) {
-            background-color: #F8FAFC;
-        }
-        .col-name {
-            width: 25%;
-            font-weight: bold;
-            color: #1A202C;
-        }
-        .col-desc {
-            width: 60%;
-            color: #4A5568;
-        }
-        .col-action {
-            width: 15%;
-            text-align: center;
-        }
-        .action-link {
-            display: inline-block;
-            color: #1155cc;
-            font-weight: 600;
-            text-decoration: underline;
-            white-space: nowrap;
-        }
-
-        /* Mobile Card View (< 650px) */
-        @media (max-width: 650px) {
-            .checklist-table,
-            .checklist-table thead,
-            .checklist-table tbody,
-            .checklist-table th,
-            .checklist-table td,
-            .checklist-table tr {
-                display: block;
-                width: 100% !important;
-            }
-            .checklist-table thead {
-                display: none;
-            }
-            .checklist-table tbody tr {
-                background: #FFFFFF !important;
-                border: 1px solid #E2E8F0;
-                border-left: 4px solid #C8102E;
-                border-radius: 8px;
-                padding: 14px;
-                margin-bottom: 14px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            }
-            .checklist-table td {
-                padding: 4px 0 !important;
-                border: none !important;
-            }
-            .col-name {
-                font-size: 1.05em;
-                color: #C8102E;
-                margin-bottom: 4px;
-            }
-            .col-desc {
-                font-size: 0.93em;
-                line-height: 1.5;
-                margin-bottom: 8px;
-            }
-            .col-action {
-                text-align: left !important;
-                margin-top: 8px;
-                padding-top: 8px !important;
-                border-top: 1px dashed #E2E8F0 !important;
-            }
-            .action-link {
-                display: inline-block;
-                background-color: #F8F9FA;
-                border: 1px solid #CBD5E1;
-                color: #C8102E !important;
-                padding: 6px 14px;
-                border-radius: 4px;
-                font-size: 0.88em;
-                font-weight: 700;
-                text-decoration: none;
-            }
-        }
-    </style>
-
     <!-- SUITE MINI-TAB NAVIGATION -->
-    <div style="background-color: #1A1A1A; border-radius: 6px; padding: 10px 14px; margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center;">
-        <span style="color: #FFFFFF; font-weight: bold; font-size: 0.95em; letter-spacing: 0.5px;">TAMHA <span style="color: #C8102E;">Manager's Desk</span></span>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <a href="https://trurominorhockey.ca/pages/12263/Manager-Quick-Start-Checklist/" style="background-color: #C8102E; color: #FFFFFF; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold;">📋 Quick-Start</a>
-            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/" style="background-color: #2D2D2D; color: #EEEEEE; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold;">📖 Detailed Guide</a>
-            <a href="https://trurominorhockey.ca/pages/12265/Manager-Weekly-Tempo-Guide/" style="background-color: #2D2D2D; color: #EEEEEE; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold;">⏱️ Weekly Tempo</a>
-            <a href="https://trurominorhockey.ca/pages/12266/Manager-Resources--Templates/" style="background-color: #2D2D2D; color: #EEEEEE; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold;">📁 Resources</a>
+    <div style="background-color: #1A1A1A; border-radius: 6px; padding: 12px; margin-bottom: 25px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #333333; flex-wrap: wrap; gap: 6px;">
+            <span style="color: #FFFFFF; font-weight: bold; font-size: 0.95em; letter-spacing: 0.5px;">TAMHA <span style="color: #C8102E;">Manager's Desk</span></span>
+            <span style="color: #AAAAAA; font-size: 0.8em; font-weight: normal;">Team Operations Hub</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; width: 100%; box-sizing: border-box;">
+            <a href="https://trurominorhockey.ca/pages/12263/Manager-Quick-Start-Checklist/" style="flex: 1 1 140px; text-align: center; background-color: #C8102E; color: #FFFFFF; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold; box-sizing: border-box; white-space: nowrap;">1. Quick-Start</a>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/" style="flex: 1 1 140px; text-align: center; background-color: #2D2D2D; color: #EEEEEE; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold; box-sizing: border-box; white-space: nowrap;">2. Detailed Guide</a>
+            <a href="https://trurominorhockey.ca/pages/12265/Manager-Weekly-Tempo-Guide/" style="flex: 1 1 140px; text-align: center; background-color: #2D2D2D; color: #EEEEEE; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold; box-sizing: border-box; white-space: nowrap;">3. Weekly Tempo</a>
+            <a href="https://trurominorhockey.ca/pages/12266/Manager-Resources--Templates/" style="flex: 1 1 140px; text-align: center; background-color: #2D2D2D; color: #EEEEEE; padding: 8px 10px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold; box-sizing: border-box; white-space: nowrap;">4. Resources</a>
         </div>
     </div>
 
     <!-- HEADER -->
-    <h1 style="color: #C8102E; border-bottom: 3px solid #000000; padding-bottom: 10px; margin-top: 0;">Quick-Glance Checklist: Essential Manager Requirements</h1>
+    <h1 style="color: #C8102E; border-bottom: 3px solid #000000; padding-bottom: 10px; margin-top: 0; font-size: 1.7em; line-height: 1.25; word-wrap: break-word;">Quick-Glance Checklist: Essential Manager Requirements</h1>
 
-    <p style="font-size: 1.1em; margin-bottom: 30px;">This is your bare-bones, chronological checklist for getting your team set up, compliant, and on the ice. For full details on any of these tasks, follow the links to the Detailed Guide.</p>
+    <p style="font-size: 1.05em; margin-bottom: 25px; color: #4A5568;">This is your bare-bones, chronological checklist for getting your team set up, compliant, and on the ice. For full details on any of these tasks, follow the links to the Detailed Guide.</p>
 
     <!-- Phase 1 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 1: Immediate Tasks (Days 1-3 Post-Team Selection)</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">GrayJay Account Setup</td>
-                <td class="col-desc">Email <a href="mailto:tamhaweb@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">tamhaweb@trurominorhockey.ca</a> with your Name, Position, Date of Birth, and HCR # to get your manager access set up.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Team Banking Registration</td>
-                <td class="col-desc">Submit signer details via the <a href="https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">TAMHA Bank Signer Intake Form</a> to request an official authorization letter from VP Finance. <strong>Do not collect parent funds until this is active.</strong> Two signers are required.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Secure Game Jerseys &amp; Socks</td>
-                <td class="col-desc">Pick up and assign team game jerseys and secure matching team socks right away (exhibition games often start immediately). Check with Head Coach regarding practice jersey requirements (team vs. player-supplied colors).</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 style="color: #000000; margin-top: 30px; margin-bottom: 12px; background-color: #F8F9FA; padding: 10px 14px; border-left: 5px solid #C8102E; font-size: 1.25em; line-height: 1.3;">Phase 1: Immediate Tasks (Days 1–3 Post-Team Selection)</h2>
+    
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">HCR Staff Profile &amp; Waiver Sign-Off</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            All bench staff must log into <a href="https://register.hockeycanada.ca" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">register.hockeycanada.ca</a> to confirm account info and sign mandatory annual waivers (often the #1 hold-up for official team roster approvals). <em>Any new staff without an HCR profile must register under TAMHA as a new coach/volunteer first to generate an HCR profile and begin required clinics.</em>
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">GrayJay Account Setup</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Email <a href="mailto:tamhaweb@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">tamhaweb@trurominorhockey.ca</a> with your Name, Position, Date of Birth, and HCR # to get your manager access set up.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Team Banking Registration</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Submit signer details via the <a href="https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">TAMHA Bank Signer Intake Form</a> to request an official authorization letter from VP Finance. <strong>Do not collect parent funds until this is active.</strong> Two signers are required.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Secure Game Jerseys &amp; Socks</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Pick up and assign team game jerseys and secure matching team socks right away (exhibition games often start immediately). Check with Head Coach regarding practice jersey requirements (team vs. player-supplied colors).
+        </div>
+    </div>
 
     <!-- Phase 2 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 2: Administrative Setup (Week 1)</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Collect Player Medical Forms</td>
-                <td class="col-desc">Secure signed Medical Forms and keep copies in the bench binder at all times.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Identify Target Tournaments</td>
-                <td class="col-desc">Identify target tournaments, register immediately, and submit early payments to secure spots.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Jersey Deposits &amp; Sign-outs</td>
-                <td class="col-desc">Collect $150/player (Rep) or $50/player (House). <em>Must be refunded at year-end upon safe return.</em></td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Host Parent Meeting</td>
-                <td class="col-desc">Pitch the budget, detail the <strong>24-Hour Rule</strong>, enforce the <strong>Rule of Two</strong> (rink/dressing room conduct; no dropping kids off early/unsupervised), align on coach music preferences (speaker &amp; acceptable playlists), and assign volunteer roles.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Collect Forms</td>
-                <td class="col-desc">Secure signed Codes of Conduct, Social Media Policies, Bench Code of Conduct, Fair Play Policy, and Jersey Agreements.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 style="color: #000000; margin-top: 30px; margin-bottom: 12px; background-color: #F8F9FA; padding: 10px 14px; border-left: 5px solid #C8102E; font-size: 1.25em; line-height: 1.3;">Phase 2: Administrative Setup (Week 1)</h2>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Collect Player Medical Forms</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Secure signed Medical Forms and keep copies in the bench binder at all times.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Identify Target Tournaments</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Identify target tournaments, register immediately, and submit early payments to secure spots.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Jersey Deposits &amp; Sign-outs</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Collect $150/player (Rep) or $50/player (House). <em>Must be refunded at year-end upon safe return.</em>
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Host Parent Meeting</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Pitch the budget, detail the <strong>24-Hour Rule</strong>, enforce the <strong>Rule of Two</strong> (rink/dressing room conduct; no dropping kids off early/unsupervised), align on coach music preferences (speaker &amp; acceptable playlists), and assign volunteer roles.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Collect Forms</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Secure signed Codes of Conduct, Social Media Policies, Bench Code of Conduct, Fair Play Policy, and Jersey Agreements.
+        </div>
+    </div>
 
     <!-- Phase 3 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 3: Early Season Action Items (Weeks 2-4)</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Verify Certifications/CRCs</td>
-                <td class="col-desc">Email <a href="mailto:info@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">info@trurominorhockey.ca</a> to ensure all bench staff have Respect in Sport, Criminal Record Checks, and required HNS courses.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Solicit Sponsorships</td>
-                <td class="col-desc">Distribute letters to target community sponsors to help subsidize budgets.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Collect Rep Fees</td>
-                <td class="col-desc">Collect team Rep Fees (if applicable).</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Collect Jersey Fund Contribution</td>
-                <td class="col-desc">Collect the mandatory Jersey Fund contribution per team.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 style="color: #000000; margin-top: 30px; margin-bottom: 12px; background-color: #F8F9FA; padding: 10px 14px; border-left: 5px solid #C8102E; font-size: 1.25em; line-height: 1.3;">Phase 3: Early Season Action Items (Weeks 2–4)</h2>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Verify Certifications / CRCs</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Email <a href="mailto:info@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">info@trurominorhockey.ca</a> to ensure all bench staff have Respect in Sport, Criminal Record Checks, and required HNS courses.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Solicit Sponsorships</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-4" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Distribute letters to target community sponsors to help subsidize budgets.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Collect Rep Fees</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Collect team Rep Fees (if applicable).
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Collect Jersey Fund Contribution</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-2" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Collect the mandatory Jersey Fund contribution per team ($550).
+        </div>
+    </div>
 
     <!-- Phase 4 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 4: Ongoing / Weekly Rhythm</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Roster Sign-Offs</td>
-                <td class="col-desc">Sign off on the game roster in GrayJay Leagues <em>before</em> puck drop.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Affiliate Tracking</td>
-                <td class="col-desc">Ensure both Head Coaches confirm when an affiliate is called up, email <a href="mailto:tamhaweb@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">tamhaweb@trurominorhockey.ca</a> with player details, track their total game count (max 10).</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Travel Permits (Spordle)</td>
-                <td class="col-desc">Submit permits for <strong>ALL</strong> non-regular season games (Exhibition and Tournaments) well in advance.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Injury Reports</td>
-                <td class="col-desc">If a player requires medical attention, complete and submit a Hockey Nova Scotia Injury Report.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Weekly Updates</td>
-                <td class="col-desc">Send a weekly email/GrayJay Team chat with the upcoming schedule, arrival times, and action items.</td>
-                <td class="col-action"><a href="https://trurominorhockey.ca/pages/12265/Manager-Weekly-Tempo-Guide/" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <h2 style="color: #000000; margin-top: 30px; margin-bottom: 12px; background-color: #F8F9FA; padding: 10px 14px; border-left: 5px solid #C8102E; font-size: 1.25em; line-height: 1.3;">Phase 4: Ongoing / Weekly Rhythm</h2>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Roster Sign-Offs</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Sign off on the game roster in GrayJay Leagues <em>before</em> puck drop.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Affiliate Tracking</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Ensure both Head Coaches confirm when an affiliate is called up, email <a href="mailto:tamhaweb@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">tamhaweb@trurominorhockey.ca</a> with player details, track their total game count (max 10).
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Travel Permits (Spordle)</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-3" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Submit permits for <strong>ALL</strong> non-regular season games (Exhibition and Tournaments) well in advance.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Injury Reports</span>
+            <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/#section-1" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            If a player requires medical attention, complete and submit a Hockey Nova Scotia Injury Report.
+        </div>
+    </div>
+
+    <div style="background-color: #FFFFFF; border: 1px solid #E2E8F0; border-left: 4px solid #C8102E; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; box-sizing: border-box; width: 100%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-weight: bold; color: #1A202C; font-size: 1.0em;">Weekly Updates</span>
+            <a href="https://trurominorhockey.ca/pages/12265/Manager-Weekly-Tempo-Guide/" style="display: inline-block; background-color: #F8F9FA; border: 1px solid #CBD5E1; color: #C8102E; padding: 4px 12px; border-radius: 4px; font-size: 0.82em; font-weight: bold; text-decoration: none; white-space: nowrap;">Read Guide &rarr;</a>
+        </div>
+        <div style="color: #4A5568; font-size: 0.93em; line-height: 1.5; word-break: break-word;">
+            Send a weekly email/GrayJay Team chat with the upcoming schedule, arrival times, and action items.
+        </div>
+    </div>
 
     <!-- Navigation -->
-    <div style="margin-top: 50px; padding-top: 20px; border-top: 2px solid #EEEEEE; display: flex; justify-content: space-between; align-items: center;">
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #EEEEEE; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         <span style="color: #888888; font-size: 0.9em;">Page 1 of 4: Quick-Start Checklist</span>
-        <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/" style="background-color: #C8102E; color: #FFFFFF; text-decoration: none; padding: 12px 24px; font-weight: bold; border-radius: 4px;">Next: Detailed Responsibilities Guide &rarr;</a>
+        <a href="https://trurominorhockey.ca/pages/12264/Manager-Detailed-Responsibilities-Guide/" style="background-color: #C8102E; color: #FFFFFF; text-decoration: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; font-size: 0.9em; white-space: nowrap;">Next: Detailed Responsibilities Guide &rarr;</a>
     </div>
 </div>

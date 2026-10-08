@@ -32,6 +32,7 @@ Set up a Dedicated Shared Folder within the official TAMHA Google Workspace:
 │   (Access: Anyone with the link can VIEW)
 │
 ├── 📁 01 - Mandatory Compliance & Medical Forms
+│   ├── 📝 SOP - HCR 3.0 Profile Setup & Mandatory Waiver Sign-Off (Google Doc)
 │   ├── 📄 Player Medical Information Form (Official Hockey Canada PDF)
 │   ├── 📄 Parent & Guardian Code of Conduct (PDF)
 │   ├── 📄 Bench Staff Code of Conduct (PDF)

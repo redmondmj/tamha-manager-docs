@@ -33,7 +33,6 @@
 *We need parents to step up! Please consider taking on a role today to help the season run smoothly.*
 *   **Treasurer:** (To assist the Manager with the bank account - requires two signers).
 *   **Fundraising Coordinator:** (To organize bottle drives, 50/50 blocks).
-*   **Timekeepers/Scorekeepers:** (Required for home exhibition games).
 *   **Dressing Room Monitors:** (To fulfill the Two-Deep requirements).
 
 ## 7. Action Items Checklist
