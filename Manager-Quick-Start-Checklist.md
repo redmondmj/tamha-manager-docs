@@ -18,8 +18,7 @@ This is your bare-bones, chronological checklist for getting your team set up, c
 ### Phase 3: Early Season Action Items (Weeks 2-4)
 - [ ] **Verify Certifications/CRCs:** Email `info@trurominorhockey.ca` to ensure all bench staff have Respect in Sport, Criminal Record Checks, and required HNS courses. ([See Safety & Compliance](./Manager-Detailed-Responsibilities-Guide.md#1-safety--compliance))
 - [ ] **Solicit Sponsorships:** Distribute letters to target community sponsors to help subsidize budgets. ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
-- [ ] **Collect Rep Fees:** Collect team Rep Fees (if applicable). ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
-- [ ] **Collect Jersey Fund Contribution:** Collect the mandatory Jersey Fund contribution per team. ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
+- [ ] **Collect Rep Fees:** Collect team Rep Fees ($9,500 standard / $11,500 AAA, split Nov 15 & Jan 31; includes mandatory jersey fund). ([See Financial Management](./Manager-Detailed-Responsibilities-Guide.md#2-financial-management))
 
 ### Phase 4: Ongoing / Weekly Rhythm
 - [ ] **Roster Sign-Offs:** Sign off on the game roster in GrayJay Leagues (or via the Teams App link) *before* puck drop. ([See Roster & Game Management](./Manager-Detailed-Responsibilities-Guide.md#3-roster--game-management))
