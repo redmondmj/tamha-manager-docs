@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMHA Weekly Dispatch Generator — U13A & U15C</title>
+    <style>
+        :root {
+            --tamha-navy: #1F497D;
+            --tamha-gold: #E5A823;
+            --tamha-dark: #112233;
+            --tamha-bg: #F4F7FB;
+            --tamha-card: #FFFFFF;
+            --tamha-border: #DDE3EA;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--tamha-bg);
+            color: #333;
+            padding: 24px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1040px;
+            width: 100%;
+        }
+
+        .header-card {
+            background: linear-gradient(135deg, var(--tamha-navy) 0%, #102B4E 100%);
+            color: #FFFFFF;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(31, 73, 125, 0.15);
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 13px;
+            color: #CCDCEE;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--tamha-card);
+            border: 1px solid var(--tamha-border);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--tamha-navy);
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--tamha-border);
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4A5568;
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--tamha-border);
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 65px;
+        }
+
+        .btn {
+            background: var(--tamha-navy);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background: #15345B;
+        }
+
+        .btn-gold {
+            background: var(--tamha-gold);
+            color: #112233;
+        }
+
+        .btn-gold:hover {
+            background: #D49B20;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 11px;
+        }
+
+        .sync-badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: #EBF8FF;
+            color: #2B6CB0;
+            font-weight: 600;
+        }
+
+        #emailPreview {
+            background: #FFFFFF;
+            border: 1px solid var(--tamha-border);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #2D3748;
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        .schedule-slot-item {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-card">
+        <div class="header-title">
+            <h1>TAMHA Weekly Dispatch Generator</h1>
+            <p>Multi-Team Schedule Feed (U13A & U15C Campbell) + On-Brand Email Layout</p>
+        </div>
+        <div>
+            <button class="btn btn-gold" onclick="copyEmailToClipboard()">📋 Copy Formatted Email</button>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Controls Column -->
+        <div class="card">
+            <h2>
+                <span>⚙️ Email Controls</span>
+                <span id="syncBadge" class="sync-badge">Connecting...</span>
+            </h2>
+
+            <label for="teamSelect">🏒 Active Team Feed:</label>
+            <select id="teamSelect" onchange="onTeamChange()">
+                <option value="U13A" selected>U13A Bearcats (Weston)</option>
+                <option value="U15C Campbell">U15C - 1 Campbell (William)</option>
+                <option value="ALL">Show All Teams</option>
+            </select>
+
+            <label for="weekTitle">Subject Line:</label>
+            <input type="text" id="weekTitle" value="[U13A Bearcats] Weekly Update — Oct 13 - Oct 19">
+
+            <label for="actionItems">🚨 Action Items & Deadlines:</label>
+            <textarea id="actionItems">• Jersey deposit cheques due Thursday at practice ($150 post-dated to May 15, 2027)
+• Please update player RSVP attendance in GrayJay for weekend events</textarea>
+
+            <label>📅 Ice Schedule (Auto-Pulled from Master Feed):</label>
+            <div id="scheduleSlotsContainer" style="margin-top: 6px; margin-bottom: 10px;">
+                <div style="font-size: 12px; color: #718096;">Loading team slots...</div>
+            </div>
+
+            <div style="margin-bottom: 12px; display: flex; gap: 8px;">
+                <button class="btn btn-sm" onclick="addCustomEvent()">➕ Add Away Game / Matchup</button>
+                <button class="btn btn-sm" onclick="fetchLiveSchedule()" style="background:#718096;">🔄 Refresh Feed</button>
+            </div>
+
+            <label for="newsItems">📢 Team News & Announcements:</label>
+            <textarea id="newsItems">• Moncton Challenge Cup hotel blocks confirmed.
+• 50/50 Halloween tickets are underway (returns due Oct 31).</textarea>
+
+            <label for="sponsorToggle" style="margin-top: 14px;">
+                <input type="checkbox" id="sponsorToggle" checked onchange="updatePreview()"> Include Tiered Sponsor Showcase Footer
+            </label>
+        </div>
+
+        <!-- Preview Column -->
+        <div class="card">
+            <h2>
+                <span>👁️ Live Email Preview (Dark/Light Safe)</span>
+                <button class="btn btn-sm btn-gold" onclick="copyEmailToClipboard()">Copy to Clipboard</button>
+            </h2>
+            <div id="emailPreview">
+                <!-- Live preview renders here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1K_Dxq9oqbwKcFjOIAmX-XjR44wYYuVgwKeAu_6nEg2o/gviz/tq?tqx=out:csv&sheet=Schedule_Slots_Data';
+    let rawCsvData = '';
+    let scheduleEvents = [];
+
+    async function fetchLiveSchedule() {
+        const badge = document.getElementById('syncBadge');
+        badge.innerText = 'Connecting...';
+        try {
+            const resp = await fetch(SHEET_URL);
+            rawCsvData = await resp.text();
+            badge.innerText = '✅ Live Feed Connected';
+            badge.style.background = '#C6F6D5';
+            badge.style.color = '#22543D';
+            filterSchedule();
+        } catch (e) {
+            console.error(e);
+            badge.innerText = '⚠️ Using Defaults';
+            badge.style.background = '#FED7D7';
+            badge.style.color = '#742A2A';
+            useDefaultEvents();
+            renderScheduleList();
+            updatePreview();
+        }
+    }
+
+    function onTeamChange() {
+        const team = document.getElementById('teamSelect').value;
+        const weekInput = document.getElementById('weekTitle');
+        if (team === 'U15C Campbell') {
+            weekInput.value = "[U15C Campbell] Weekly Update — Oct 13 - Oct 19";
+        } else {
+            weekInput.value = "[U13A Bearcats] Weekly Update — Oct 13 - Oct 19";
+        }
+        filterSchedule();
+    }
+
+    function filterSchedule() {
+        if (!rawCsvData) {
+            useDefaultEvents();
+            renderScheduleList();
+            updatePreview();
+            return;
+        }
+
+        const team = document.getElementById('teamSelect').value;
+        const lines = rawCsvData.split('\n');
+        scheduleEvents = [];
+
+        for (let line of lines) {
+            const cols = line.split(',').map(s => s.replace(/^"|"$/g, '').trim());
+            const rowText = cols.join(' ').toUpperCase();
+
+            let matches = false;
+            if (team === 'U13A') {
+                matches = rowText.includes('U13A') && !rowText.includes('U13AA') && !rowText.includes('U13AAA');
+            } else if (team === 'U15C Campbell') {
+                matches = rowText.includes('U15') && rowText.includes('CAMPBELL');
+            } else {
+                matches = true;
+            }
+
+            if (matches && cols[1] && cols[3]) {
+                const isGame = rowText.includes('GAME');
+                scheduleEvents.push({
+                    date: cols[1] || 'Date',
+                    day: cols[2] || '',
+                    time: `${cols[3]} – ${cols[4]}`,
+                    venue: cols[6] || 'Rink',
+                    title: isGame ? 'GAME' : 'PRACTICE',
+                    arrival: isGame ? '45 mins prior' : '30 mins prior',
+                    jersey: isGame ? 'Home White' : 'Practice Jersey'
+                });
+            }
+        }
+
+        if (scheduleEvents.length === 0) {
+            useDefaultEvents();
+        }
+
+        renderScheduleList();
+        updatePreview();
+    }
+
+    function useDefaultEvents() {
+        const team = document.getElementById('teamSelect').value;
+        if (team === 'U15C Campbell') {
+            scheduleEvents = [
+                { date: '2026-10-15', day: 'Thursday', time: '8:30 PM – 9:20 PM', venue: 'RECC', title: 'PRACTICE', arrival: '8:00 PM (30m prior)', jersey: 'Practice jersey' },
+                { date: '2026-10-18', day: 'Sunday', time: '5:00 PM – 6:20 PM', venue: 'Stadium', title: 'GAME vs Pictou', arrival: '4:15 PM (45m prior)', jersey: 'Home White' }
+            ];
+        } else {
+            scheduleEvents = [
+                { date: '2026-10-15', day: 'Thursday', time: '6:00 PM – 7:20 PM', venue: 'RECC', title: 'PRACTICE', arrival: '5:30 PM (30m prior)', jersey: 'Practice jersey' },
+                { date: '2026-10-17', day: 'Saturday', time: '11:30 AM – 12:50 PM', venue: 'Stadium', title: 'GAME vs Pictou', arrival: '10:45 AM (45m prior)', jersey: 'Home White' }
+            ];
+        }
+    }
+
+    function renderScheduleList() {
+        const cont = document.getElementById('scheduleSlotsContainer');
+        cont.innerHTML = '';
+        scheduleEvents.forEach((ev, idx) => {
+            const div = document.createElement('div');
+            div.className = 'schedule-slot-item';
+            div.innerHTML = `
+                <div>
+                    <strong>${ev.day} ${ev.date}</strong> — ${ev.title} @ ${ev.venue} (${ev.time})
+                </div>
+                <div>
+                    <button class="btn btn-sm" style="background:#E53E3E; padding: 2px 6px;" onclick="removeEvent(${idx})">✕</button>
+                </div>
+            `;
+            cont.appendChild(div);
+        });
+    }
+
+    function addCustomEvent() {
+        const title = prompt("Event title (e.g. AWAY GAME vs Antigonish):", "AWAY GAME vs Antigonish");
+        if (!title) return;
+        const dayDate = prompt("Day & Date (e.g. Sunday, Oct 18):", "Sunday, Oct 18");
+        const time = prompt("Time (e.g. 2:00 PM – 3:20 PM):", "2:00 PM – 3:20 PM");
+        const venue = prompt("Arena (e.g. Antigonish Arena):", "Antigonish Arena");
+        scheduleEvents.push({
+            date: dayDate,
+            day: '',
+            time: time,
+            venue: venue,
+            title: title,
+            arrival: '1:15 PM (45m prior)',
+            jersey: 'Away Black'
+        });
+        renderScheduleList();
+        updatePreview();
+    }
+
+    function removeEvent(idx) {
+        scheduleEvents.splice(idx, 1);
+        renderScheduleList();
+        updatePreview();
+    }
+
+    function updatePreview() {
+        const team = document.getElementById('teamSelect').value;
+        const teamDisplayName = (team === 'U15C Campbell') ? 'U15C - 1 Campbell' : 'U13A Bearcats';
+        const mgrEmail = (team === 'U15C Campbell') ? 'redmondmj@gmail.com' : 'u13amgr@trurominorhockey.ca';
+        const actionItems = document.getElementById('actionItems').value;
+        const newsItems = document.getElementById('newsItems').value;
+        const showSponsors = document.getElementById('sponsorToggle').checked;
+
+        let scheduleHtml = '';
+        scheduleEvents.forEach(ev => {
+            scheduleHtml += `
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 10px;">
+                  <tr>
+                    <td style="padding: 12px 14px;">
+                      <div style="font-size: 13px; font-weight: 700; color: #102B4E; margin-bottom: 4px;">
+                        ${ev.day} ${ev.date} — ${ev.title}
+                      </div>
+                      <div style="font-size: 12px; color: #4A5568; line-height: 1.5;">
+                        • <strong>Time:</strong> ${ev.time}<br>
+                        • <strong>Arena:</strong> ${ev.venue}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+            `;
+        });
+
+        const sponsorHtml = showSponsors ? `
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-top: none; border-radius: 0 0 12px 12px; padding: 22px 16px; text-align: center; margin-top: 15px;">
+              <tr>
+                <td align="center">
+                  <div style="font-size: 11px; font-weight: 800; color: #1F497D; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
+                    Proudly Supported by Our 2026–2027 Team Sponsors
+                  </div>
+                  <div style="font-size: 11px; color: #718096; margin-bottom: 16px;">
+                    Please support the local businesses that make competitive minor hockey possible!
+                  </div>
+
+                  <!-- TITLE SPONSOR -->
+                  <div style="margin-bottom: 16px;">
+                    <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #B45309; background-color: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+                      🏆 Official Title Sponsor
+                    </div>
+                    <div>
+                      <a href="mailto:${mgrEmail}?subject=Title%20Sponsorship%20Inquiry%20($1,000)" style="text-decoration: none; display: block;">
+                        <div style="border: 2px dashed #D97706; background-color: #FFFBEB; border-radius: 8px; padding: 16px 12px; text-align: center; max-width: 320px; margin: 0 auto;">
+                          <div style="font-size: 13px; font-weight: 700; color: #B45309;">🏆 Title Sponsor Spot Available ($1,000)</div>
+                          <div style="font-size: 11px; color: #92400E; margin-top: 4px;">Click here to feature your business & support our players ↗</div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 20px;" />
+
+                  <!-- PREMIUM SPONSORS -->
+                  <div style="margin-bottom: 16px;">
+                    <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #1E3A8A; background-color: #DBEAFE; border: 1px solid #BFDBFE; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+                      ⭐ Premium Sponsors
+                    </div>
+                    <div>
+                      <div style="display: inline-block; width: 44%; max-width: 170px; margin: 4px 2%;">
+                        <a href="mailto:${mgrEmail}?subject=Premium%20Sponsorship%20Inquiry%20($500)" style="text-decoration: none; display: block;">
+                          <div style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
+                            <div style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
+                            <div style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Your Ad Here ↗</div>
+                          </div>
+                        </a>
+                      </div>
+                      <div style="display: inline-block; width: 44%; max-width: 170px; margin: 4px 2%;">
+                        <a href="mailto:${mgrEmail}?subject=Premium%20Sponsorship%20Inquiry%20($500)" style="text-decoration: none; display: block;">
+                          <div style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
+                            <div style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
+                            <div style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Your Ad Here ↗</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 20px;" />
+
+                  <!-- TEAM SPONSORS -->
+                  <div>
+                    <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #475569; background-color: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+                      🏒 Team Sponsors
+                    </div>
+                      <div style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                        <a href="https://reformedstudio.com" target="_blank" style="text-decoration: none;">
+                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png" alt="Reformed Studio & SPIN Haus" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                        </a>
+                      </div>
+                      <div style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                        <a href="https://steelstallionsinc.com" target="_blank" style="text-decoration: none;">
+                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png" alt="Steel Stallions" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                        </a>
+                      </div>
+                      <div style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                        <a href="mailto:${mgrEmail}?subject=Team%20Sponsorship%20Inquiry%20($250)" style="text-decoration: none; display: block;">
+                          <div style="border: 2px dashed #94A3B8; background-color: #F8FAFC; border-radius: 6px; padding: 10px 4px; text-align: center;">
+                            <div style="font-size: 10px; font-weight: 700; color: #475569;">🏒 Sponsor ($250)</div>
+                            <div style="font-size: 9px; color: #64748B; margin-top: 2px;">Your Ad Here ↗</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="font-size: 11px; color: #94A3B8; margin-top: 16px; padding-top: 10px; border-top: 1px solid #E2E8F0;">
+                    Interested in sponsoring our team? Contact Amy or Matt Redmond at <a href="mailto:${mgrEmail}" style="color: #1F497D; font-weight: 600; text-decoration: none;">${mgrEmail}</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+        ` : '';
+
+        const fullEmail = `
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #F4F7FB; padding: 12px 6px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+              <tr>
+                <td>
+                  <!-- HEADER -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: linear-gradient(135deg, #102B4E 0%, #1F497D 100%); background-color: #1F497D; border-radius: 12px 12px 0 0; padding: 22px 16px; text-align: center; border-bottom: 4px solid #E5A823;">
+                    <tr>
+                      <td align="center">
+                        <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/truro_bearcats_crest.png" alt="Truro Bearcats" width="80" style="width: 80px; max-width: 80px; height: auto; display: block; margin: 0 auto 8px auto;" />
+                        <div style="font-size: 11px; font-weight: 800; color: #E5A823; letter-spacing: 2px; text-transform: uppercase;">Truro Area Minor Hockey Association</div>
+                        <div style="font-size: 20px; font-weight: 800; color: #FFFFFF; text-transform: uppercase; margin: 2px 0;">${teamDisplayName}</div>
+                        <div style="font-size: 12px; font-weight: 600; color: #CCDCEE;">Weekly Team Update & Schedule</div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <!-- BODY -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFFFFF; padding: 22px 18px; border-left: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; color: #2D3748; font-size: 13px; line-height: 1.6;">
+                    <tr>
+                      <td>
+                        <p style="margin-top: 0; font-size: 14px;">Hi Families,</p>
+                        <p style="color: #4A5568;">Hope everyone is having a great week! Here is our team schedule and updates for the week ahead.</p>
+
+                        <!-- ACTION ITEMS -->
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFF5F5; border-left: 4px solid #E53E3E; border-radius: 6px; margin: 16px 0;">
+                          <tr>
+                            <td style="padding: 12px 14px;">
+                              <div style="font-size: 11px; font-weight: 800; color: #9B2C2C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">🚨 Action Items & Deadlines</div>
+                              <ul style="margin: 0; padding-left: 16px; font-size: 12px; color: #742A2A;">
+                                ${actionItems.split('\n').filter(s=>s.trim()).map(s => `<li>${s.replace(/^[•\-\*]\s*/, '')}</li>`).join('')}
+                              </ul>
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- SCHEDULE -->
+                        <div style="font-size: 12px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px 0; border-bottom: 2px solid #E2E8F0; padding-bottom: 4px;">
+                          📅 This Week's Ice Schedule
+                        </div>
+
+                        <!-- JERSEY REMINDER -->
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F1F5F9; border-left: 4px solid #1F497D; border-radius: 6px; margin-bottom: 12px;">
+                          <tr>
+                            <td style="padding: 10px 14px; font-size: 12px; color: #1E293B;">
+                              👕 <strong>Jersey Reminder:</strong> Please ensure players bring <strong>BOTH jerseys (Home White & Away Black)</strong> to all games, as team assignments can fluctuate.
+                            </td>
+                          </tr>
+                        </table>
+
+                        ${scheduleHtml}
+
+                        <!-- NEWS -->
+                        <div style="font-size: 12px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px 0; border-bottom: 2px solid #E2E8F0; padding-bottom: 4px;">
+                          📢 Team News & Announcements
+                        </div>
+                        <ul style="margin: 0 0 16px 0; padding-left: 16px; font-size: 12px; color: #4A5568;">
+                          ${newsItems.split('\n').filter(s=>s.trim()).map(s => `<li>${s.replace(/^[•\-\*]\s*/, '')}</li>`).join('')}
+                        </ul>
+
+                        <!-- APP REMINDER -->
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EBF8FF; border-left: 4px solid #3182CE; border-radius: 6px; margin-bottom: 16px;">
+                          <tr>
+                            <td style="padding: 10px 14px; font-size: 12px; color: #2B6CB0;">
+                              📱 <strong>GrayJay Teams App:</strong> Please keep attendance RSVPs up to date for all events so coaching staff can plan in advance.
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- SIGNATURE -->
+                        <p style="margin: 14px 0 2px 0;">See you at the rink!</p>
+                        <p style="margin: 0; font-weight: 700; color: #102B4E;">Matt Redmond</p>
+                        <p style="margin: 0; font-size: 11px; color: #718096;">Team Manager, ${teamDisplayName}<br>📧 <a href="mailto:${mgrEmail}">${mgrEmail}</a></p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  ${sponsorHtml}
+                </td>
+              </tr>
+            </table>
+        `;
+
+        document.getElementById('emailPreview').innerHTML = fullEmail;
+    }
+
+    function copyEmailToClipboard() {
+        const preview = document.getElementById('emailPreview');
+        const listener = function(e) {
+            e.clipboardData.setData("text/html", preview.innerHTML);
+            e.clipboardData.setData("text/plain", preview.innerText);
+            e.preventDefault();
+        };
+        document.addEventListener("copy", listener);
+        document.execCommand("copy");
+        document.removeEventListener("copy", listener);
+        alert("✅ Formatted email with Bearcats crest and tiered sponsors copied! Paste directly into your Gmail draft.");
+    }
+
+    window.onload = () => {
+        fetchLiveSchedule();
+        document.getElementById('weekTitle').addEventListener('input', updatePreview);
+        document.getElementById('actionItems').addEventListener('input', updatePreview);
+        document.getElementById('newsItems').addEventListener('input', updatePreview);
+    };
+</script>
+
+</body>
+</html>
