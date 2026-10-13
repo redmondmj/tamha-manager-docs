@@ -14,13 +14,43 @@
   }
   /* Dark mode overrides where supported */
   @media (prefers-color-scheme: dark) {
-    .email-bg { background-color: #121820 !important; }
-    .email-card { background-color: #1E2633 !important; border-color: #2D3748 !important; color: #F7FAFC !important; }
+    .email-bg { background-color: #0B1120 !important; }
+    .email-card { background-color: #162032 !important; border-color: #1E293B !important; color: #F8FAFC !important; }
     .email-text-main { color: #E2E8F0 !important; }
-    .email-text-muted { color: #A0AEC0 !important; }
-    .slot-card { background-color: #263143 !important; border-color: #3B4A60 !important; }
-    .sponsor-card { background-color: #1A222E !important; border-color: #2D3748 !important; }
+    .email-text-muted { color: #CBD5E1 !important; }
+    .section-heading { color: #FBBF24 !important; border-bottom-color: #334155 !important; }
+    .slot-card { background-color: #0F172A !important; border-color: #334155 !important; }
+    .slot-card-title { color: #60A5FA !important; }
+    .action-box { background-color: #2D1515 !important; border-left-color: #EF4444 !important; }
+    .action-heading { color: #FCA5A5 !important; }
+    .action-list { color: #FECACA !important; }
+    .action-list li { color: #FECACA !important; }
+    .app-box { background-color: #0B192C !important; border-left-color: #38BDF8 !important; }
+    .app-text { color: #BAE6FD !important; }
+    .sig-name { color: #FFFFFF !important; }
+    .sig-details { color: #94A3B8 !important; }
+    .sig-email { color: #60A5FA !important; }
+    .sponsor-card { background-color: #0B1120 !important; border-color: #1E293B !important; }
+    .sponsor-heading { color: #FBBF24 !important; }
+    .sponsor-subtext { color: #94A3B8 !important; }
+    .sponsor-badge-title { background-color: #451A03 !important; border-color: #B45309 !important; color: #FDE68A !important; }
+    .sponsor-badge-premium { background-color: #172554 !important; border-color: #1D4ED8 !important; color: #93C5FD !important; }
+    .sponsor-badge-team { background-color: #1E293B !important; border-color: #475569 !important; color: #E2E8F0 !important; }
+    .divider { border-top-color: #334155 !important; }
+    .sponsor-footer-note { color: #64748B !important; border-top-color: #334155 !important; }
+    .sponsor-footer-link { color: #60A5FA !important; }
+    .title-sponsor-box { background-color: #2E1F0C !important; border-color: #D97706 !important; }
+    .title-sponsor-heading { color: #FBBF24 !important; }
+    .title-sponsor-sub { color: #FDE68A !important; }
+    .premium-sponsor-box { background-color: #172554 !important; border-color: #3B82F6 !important; }
+    .premium-sponsor-heading { color: #93C5FD !important; }
+    .premium-sponsor-sub { color: #BFDBFE !important; }
+    .team-sponsor-box { background-color: #1E293B !important; border-color: #475569 !important; }
+    .team-sponsor-heading { color: #CBD5E1 !important; }
+    .team-sponsor-sub { color: #94A3B8 !important; }
   }
+  [data-ogsc] .email-bg, [data-ogsb] .email-bg { background-color: #0B1120 !important; }
+  [data-ogsc] .email-card, [data-ogsb] .email-card { background-color: #162032 !important; color: #F8FAFC !important; border-color: #1E293B !important; }
 </style>
 </head>
 <body style="margin: 0; padding: 0; background-color: #F4F7FB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
@@ -71,13 +101,13 @@
             </p>
 
             <!-- 1. ACTION ITEMS & DEADLINES (CRIMSON CALLOUT) -->
-            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFF5F5; border-left: 4px solid #E53E3E; border-radius: 6px; margin-bottom: 24px;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="action-box" style="background-color: #FFF5F5; border-left: 4px solid #E53E3E; border-radius: 6px; margin-bottom: 24px;">
               <tr>
                 <td style="padding: 16px 18px;">
-                  <div style="font-size: 12px; font-weight: 800; color: #9B2C2C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+                  <div class="action-heading" style="font-size: 12px; font-weight: 800; color: #9B2C2C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
                     🚨 Action Items & Deadlines
                   </div>
-                  <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #742A2A; line-height: 1.5;">
+                  <ul class="action-list" style="margin: 0; padding-left: 18px; font-size: 13px; color: #742A2A; line-height: 1.5;">
                     <li style="margin-bottom: 6px;"><strong>Jersey Deposits:</strong> Cheques due at Thursday's practice ($150 post-dated to May 15, 2027 payable to TAMHA).</li>
                     <li style="margin-bottom: 6px;"><strong>GrayJay RSVP:</strong> Please mark your player's attendance in the GrayJay Teams app for this weekend's events by Wednesday evening.</li>
                     <li><strong>Halloween 50/50:</strong> Ticket books are active — returns and remittances due Oct 31.</li>
@@ -87,7 +117,7 @@
             </table>
 
             <!-- 2. WEEKLY ICE SCHEDULE (NAVY CALLOUT) -->
-            <div style="font-size: 13px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-bottom: 2px solid #E2E8F0; padding-bottom: 6px;">
+            <div class="section-heading" style="font-size: 13px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-bottom: 2px solid #E2E8F0; padding-bottom: 6px;">
               📅 This Week's Ice Schedule
             </div>
 
@@ -96,7 +126,7 @@
               <tr>
                 <td style="padding: 14px 16px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <span style="font-size: 14px; font-weight: 700; color: #102B4E;">Thursday, Oct 15 — PRACTICE</span>
+                    <span class="slot-card-title" style="font-size: 14px; font-weight: 700; color: #102B4E;">Thursday, Oct 15 — PRACTICE</span>
                   </div>
                   <div class="email-text-muted" style="font-size: 13px; color: #4A5568; line-height: 1.5;">
                     • <strong>Time:</strong> 6:00 PM – 7:20 PM<br>
@@ -113,7 +143,7 @@
               <tr>
                 <td style="padding: 14px 16px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <span style="font-size: 14px; font-weight: 700; color: #102B4E;">Saturday, Oct 17 — HOME GAME vs Pictou Crushers</span>
+                    <span class="slot-card-title" style="font-size: 14px; font-weight: 700; color: #102B4E;">Saturday, Oct 17 — HOME GAME vs Pictou Crushers</span>
                   </div>
                   <div class="email-text-muted" style="font-size: 13px; color: #4A5568; line-height: 1.5;">
                     • <strong>Time:</strong> 11:30 AM – 12:50 PM<br>
@@ -130,7 +160,7 @@
               <tr>
                 <td style="padding: 14px 16px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <span style="font-size: 14px; font-weight: 700; color: #102B4E;">Sunday, Oct 18 — AWAY GAME @ Antigonish Bulldogs</span>
+                    <span class="slot-card-title" style="font-size: 14px; font-weight: 700; color: #102B4E;">Sunday, Oct 18 — AWAY GAME @ Antigonish Bulldogs</span>
                   </div>
                   <div class="email-text-muted" style="font-size: 13px; color: #4A5568; line-height: 1.5;">
                     • <strong>Time:</strong> 2:00 PM – 3:20 PM<br>
@@ -143,7 +173,7 @@
             </table>
 
             <!-- 3. TEAM NEWS & ANNOUNCEMENTS -->
-            <div style="font-size: 13px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-bottom: 2px solid #E2E8F0; padding-bottom: 6px;">
+            <div class="section-heading" style="font-size: 13px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-bottom: 2px solid #E2E8F0; padding-bottom: 6px;">
               📢 Team News & Announcements
             </div>
             <ul class="email-text-main" style="margin: 0 0 24px 0; padding-left: 18px; font-size: 13px; color: #4A5568; line-height: 1.6;">
@@ -153,9 +183,9 @@
             </ul>
 
             <!-- 4. GRAYJAY REMINDER -->
-            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EBF8FF; border-left: 4px solid #3182CE; border-radius: 6px; margin-bottom: 24px;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="app-box" style="background-color: #EBF8FF; border-left: 4px solid #3182CE; border-radius: 6px; margin-bottom: 24px;">
               <tr>
-                <td style="padding: 14px 16px; font-size: 13px; color: #2B6CB0; line-height: 1.5;">
+                <td class="app-text" style="padding: 14px 16px; font-size: 13px; color: #2B6CB0; line-height: 1.5;">
                   📱 <strong>GrayJay Teams App:</strong> Please keep attendance RSVPs up to date for all events so Coach Tom can plan practice drills and bench lines in advance.
                 </td>
               </tr>
@@ -165,13 +195,13 @@
             <p class="email-text-main" style="margin-top: 10px; margin-bottom: 4px; font-size: 14px;">
               See you at the rink!
             </p>
-            <p class="email-text-main" style="margin: 0; font-size: 14px; font-weight: 700; color: #102B4E;">
+            <p class="sig-name" style="margin: 0; font-size: 14px; font-weight: 700; color: #102B4E;">
               Matt Redmond
             </p>
-            <p class="email-text-muted" style="margin: 2px 0 0 0; font-size: 12px; color: #718096;">
+            <p class="sig-details" style="margin: 2px 0 0 0; font-size: 12px; color: #718096;">
               Team Manager, Truro Bearcats U13A<br>
               Truro Area Minor Hockey Association (TAMHA)<br>
-              📧 <a href="mailto:u13amgr@trurominorhockey.ca" style="color: #1F497D; text-decoration: none; font-weight: 600;">u13amgr@trurominorhockey.ca</a>
+              📧 <a class="sig-email" href="mailto:u13amgr@trurominorhockey.ca" style="color: #1F497D; text-decoration: none; font-weight: 600;">u13amgr@trurominorhockey.ca</a>
             </p>
 
           </td>
@@ -183,84 +213,84 @@
         <tr>
           <td class="sponsor-card" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-top: none; border-radius: 0 0 12px 12px; padding: 24px 20px; text-align: center;">
             
-            <div style="font-size: 11px; font-weight: 800; color: #1F497D; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
+            <div class="sponsor-heading" style="font-size: 11px; font-weight: 800; color: #1F497D; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
               Proudly Supported by Our 2026–2027 Team Sponsors
             </div>
-            <div style="font-size: 11px; color: #718096; margin-bottom: 18px;">
+            <div class="sponsor-subtext" style="font-size: 11px; color: #718096; margin-bottom: 18px;">
               Please support the local businesses that make competitive minor hockey possible!
             </div>
 
             <!-- TIER 1: TITLE SPONSOR ($1,000) — LARGE LOGO -->
             <div style="margin-bottom: 18px;">
-              <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #B45309; background-color: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+              <div class="sponsor-badge-title" style="display: inline-block; font-size: 9px; font-weight: 800; color: #B45309; background-color: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
                 🏆 Official Title Sponsor
               </div>
               <div>
                 <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                  <div style="border: 2px dashed #D97706; background-color: #FFFBEB; border-radius: 8px; padding: 16px 12px; text-align: center; max-width: 320px; margin: 0 auto;">
-                    <div style="font-size: 13px; font-weight: 700; color: #B45309;">🏆 Title Sponsor Spot Available ($1,000)</div>
-                    <div style="font-size: 11px; color: #92400E; margin-top: 4px;">Click here to claim this spot via our Sponsorship Form ↗</div>
+                  <div class="title-sponsor-box" style="border: 2px dashed #D97706; background-color: #FFFBEB; border-radius: 8px; padding: 16px 12px; text-align: center; max-width: 320px; margin: 0 auto;">
+                    <div class="title-sponsor-heading" style="font-size: 13px; font-weight: 700; color: #B45309;">🏆 Title Sponsor Spot Available ($1,000)</div>
+                    <div class="title-sponsor-sub" style="font-size: 11px; color: #92400E; margin-top: 4px;">Click here to claim this spot via our Sponsorship Form ↗</div>
                   </div>
                 </a>
               </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 16px 30px;" />
+            <hr class="divider" style="border: 0; border-top: 1px solid #E2E8F0; margin: 16px 30px;" />
 
             <!-- TIER 2: PREMIUM SPONSORS ($500) — MEDIUM LOGOS -->
             <div style="margin-bottom: 18px;">
-              <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #1E3A8A; background-color: #DBEAFE; border: 1px solid #BFDBFE; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">
+              <div class="sponsor-badge-premium" style="display: inline-block; font-size: 9px; font-weight: 800; color: #1E3A8A; background-color: #DBEAFE; border: 1px solid #BFDBFE; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">
                 ⭐ Premium Sponsors
               </div>
               <div style="text-align: center;">
-                <div style="display: inline-block; width: 44%; max-width: 185px; margin: 4px 2%; vertical-align: middle;">
+                <div class="premium-sponsor-col" style="display: inline-block; width: 44%; max-width: 185px; margin: 4px 2%; vertical-align: middle;">
                   <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                    <div style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
-                      <div style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
-                      <div style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
+                    <div class="premium-sponsor-box" style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
+                      <div class="premium-sponsor-heading" style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
+                      <div class="premium-sponsor-sub" style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
                     </div>
                   </a>
                 </div>
-                <div style="display: inline-block; width: 44%; max-width: 185px; margin: 4px 2%; vertical-align: middle;">
+                <div class="premium-sponsor-col" style="display: inline-block; width: 44%; max-width: 185px; margin: 4px 2%; vertical-align: middle;">
                   <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                    <div style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
-                      <div style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
-                      <div style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
+                    <div class="premium-sponsor-box" style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
+                      <div class="premium-sponsor-heading" style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
+                      <div class="premium-sponsor-sub" style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
                     </div>
                   </a>
                 </div>
               </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 16px 30px;" />
+            <hr class="divider" style="border: 0; border-top: 1px solid #E2E8F0; margin: 16px 30px;" />
 
             <!-- TIER 3: TEAM SPONSORS ($250+) — COMPACT LOGOS -->
             <div style="margin-bottom: 14px;">
-              <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #475569; background-color: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">
+              <div class="sponsor-badge-team" style="display: inline-block; font-size: 9px; font-weight: 800; color: #475569; background-color: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">
                 🏒 Team Sponsors
               </div>
               <div style="text-align: center;">
-                <div style="display: inline-block; width: 28%; max-width: 115px; margin: 3px 1.5%; vertical-align: middle;">
+                <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 115px; margin: 3px 1.5%; vertical-align: middle;">
                   <a href="https://reformedstudio.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                    <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png" alt="Reformed Studio & SPIN Haus" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                    <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png" alt="Reformed Studio & SPIN Haus" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                   </a>
                 </div>
-                <div style="display: inline-block; width: 28%; max-width: 115px; margin: 3px 1.5%; vertical-align: middle;">
+                <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 115px; margin: 3px 1.5%; vertical-align: middle;">
                   <a href="https://steelstallionsinc.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                    <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png" alt="Steel Stallions" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                    <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png" alt="Steel Stallions" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                   </a>
                 </div>
-                <div style="display: inline-block; width: 28%; max-width: 115px; margin: 3px 1.5%; vertical-align: middle;">
+                <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 115px; margin: 3px 1.5%; vertical-align: middle;">
                   <a href="https://www.anchoredpsych.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                    <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png" alt="Anchored Psychological Services" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                    <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png" alt="Anchored Psychological Services" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                   </a>
                 </div>
               </div>
             </div>
 
             <!-- SPONSORSHIP CALL TO ACTION -->
-            <div style="font-size: 11px; color: #94A3B8; margin-top: 16px; padding-top: 12px; border-top: 1px solid #E2E8F0;">
-              Interested in sponsoring our team? Submit details via our <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="color: #1F497D; font-weight: 600; text-decoration: underline;">Online Sponsorship Form</a> or contact Amy or Matt Redmond at <a href="mailto:u13amgr@trurominorhockey.ca" style="color: #1F497D; font-weight: 600; text-decoration: none;">u13amgr@trurominorhockey.ca</a>
+            <div class="sponsor-footer-note" style="font-size: 11px; color: #94A3B8; margin-top: 16px; padding-top: 12px; border-top: 1px solid #E2E8F0;">
+              Interested in sponsoring our team? Submit details via our <a class="sponsor-footer-link" href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="color: #1F497D; font-weight: 600; text-decoration: underline;">Online Sponsorship Form</a> or contact Amy or Matt Redmond at <a class="sponsor-footer-link" href="mailto:u13amgr@trurominorhockey.ca" style="color: #1F497D; font-weight: 600; text-decoration: none;">u13amgr@trurominorhockey.ca</a>
             </div>
 
           </td>

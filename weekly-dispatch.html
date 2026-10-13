@@ -404,13 +404,13 @@
         let scheduleHtml = '';
         scheduleEvents.forEach(ev => {
             scheduleHtml += `
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 10px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="schedule-item-card" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 10px;">
                   <tr>
                     <td style="padding: 12px 14px;">
-                      <div style="font-size: 13px; font-weight: 700; color: #102B4E; margin-bottom: 4px;">
+                      <div class="schedule-title-link" style="font-size: 13px; font-weight: 700; color: #102B4E; margin-bottom: 4px;">
                         ${ev.day} ${ev.date} — ${ev.title}
                       </div>
-                      <div style="font-size: 12px; color: #4A5568; line-height: 1.5;">
+                      <div class="schedule-meta" style="font-size: 12px; color: #4A5568; line-height: 1.5;">
                         • <strong>Time:</strong> ${ev.time}<br>
                         • <strong>Arena:</strong> ${ev.venue}
                       </div>
@@ -421,85 +421,86 @@
         });
 
         const sponsorHtml = showSponsors ? `
-            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-top: none; border-radius: 0 0 12px 12px; padding: 22px 16px; text-align: center; margin-top: 15px;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="sponsor-card" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-top: none; border-radius: 0 0 12px 12px; padding: 22px 16px; text-align: center; margin-top: 15px;">
               <tr>
                 <td align="center">
-                  <div style="font-size: 11px; font-weight: 800; color: #1F497D; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
+                  <div class="sponsor-heading" style="font-size: 11px; font-weight: 800; color: #1F497D; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
                     Proudly Supported by Our 2026–2027 Team Sponsors
                   </div>
-                  <div style="font-size: 11px; color: #718096; margin-bottom: 16px;">
+                  <div class="sponsor-subtext" style="font-size: 11px; color: #718096; margin-bottom: 16px;">
                     Please support the local businesses that make competitive minor hockey possible!
                   </div>
 
                   <!-- TITLE SPONSOR -->
                   <div style="margin-bottom: 16px;">
-                    <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #B45309; background-color: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+                    <div class="sponsor-badge-title" style="display: inline-block; font-size: 9px; font-weight: 800; color: #B45309; background-color: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
                       🏆 Official Title Sponsor
                     </div>
                     <div>
                       <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                        <div style="border: 2px dashed #D97706; background-color: #FFFBEB; border-radius: 8px; padding: 16px 12px; text-align: center; max-width: 320px; margin: 0 auto;">
-                          <div style="font-size: 13px; font-weight: 700; color: #B45309;">🏆 Title Sponsor Spot Available ($1,000)</div>
-                          <div style="font-size: 11px; color: #92400E; margin-top: 4px;">Click here to claim this spot via our Sponsorship Form ↗</div>
+                        <div class="title-sponsor-box" style="border: 2px dashed #D97706; background-color: #FFFBEB; border-radius: 8px; padding: 16px 12px; text-align: center; max-width: 320px; margin: 0 auto;">
+                          <div class="title-sponsor-heading" style="font-size: 13px; font-weight: 700; color: #B45309;">🏆 Title Sponsor Spot Available ($1,000)</div>
+                          <div class="title-sponsor-sub" style="font-size: 11px; color: #92400E; margin-top: 4px;">Click here to claim this spot via our Sponsorship Form ↗</div>
                         </div>
                       </a>
                     </div>
                   </div>
 
-                  <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 20px;" />
+                  <hr class="divider" style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 20px;" />
 
                   <!-- PREMIUM SPONSORS -->
                   <div style="margin-bottom: 16px;">
-                    <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #1E3A8A; background-color: #DBEAFE; border: 1px solid #BFDBFE; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+                    <div class="sponsor-badge-premium" style="display: inline-block; font-size: 9px; font-weight: 800; color: #1E3A8A; background-color: #DBEAFE; border: 1px solid #BFDBFE; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
                       ⭐ Premium Sponsors
                     </div>
                     <div>
-                      <div style="display: inline-block; width: 44%; max-width: 170px; margin: 4px 2%;">
+                      <div class="premium-sponsor-col" style="display: inline-block; width: 44%; max-width: 170px; margin: 4px 2%;">
                         <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                          <div style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
-                            <div style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
-                            <div style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
+                          <div class="premium-sponsor-box" style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
+                            <div class="premium-sponsor-heading" style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
+                            <div class="premium-sponsor-sub" style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
                           </div>
                         </a>
                       </div>
-                      <div style="display: inline-block; width: 44%; max-width: 170px; margin: 4px 2%;">
+                      <div class="premium-sponsor-col" style="display: inline-block; width: 44%; max-width: 170px; margin: 4px 2%;">
                         <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
-                          <div style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
-                            <div style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
-                            <div style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
+                          <div class="premium-sponsor-box" style="border: 2px dashed #3B82F6; background-color: #EFF6FF; border-radius: 6px; padding: 12px 6px; text-align: center;">
+                            <div class="premium-sponsor-heading" style="font-size: 11px; font-weight: 700; color: #1D4ED8;">⭐ Sponsor Spot ($500)</div>
+                            <div class="premium-sponsor-sub" style="font-size: 10px; color: #1E40AF; margin-top: 3px;">Claim via Online Form ↗</div>
                           </div>
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 20px;" />
+                  <hr class="divider" style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 20px;" />
 
                   <!-- TEAM SPONSORS -->
                   <div>
-                    <div style="display: inline-block; font-size: 9px; font-weight: 800; color: #475569; background-color: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+                    <div class="sponsor-badge-team" style="display: inline-block; font-size: 9px; font-weight: 800; color: #475569; background-color: #F1F5F9; border: 1px solid #CBD5E1; border-radius: 10px; padding: 2px 8px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
                       🏒 Team Sponsors
                     </div>
-                      <div style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                    <div>
+                      <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
                         <a href="https://reformedstudio.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png" alt="Reformed Studio & SPIN Haus" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png" alt="Reformed Studio & SPIN Haus" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                         </a>
                       </div>
-                      <div style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                      <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
                         <a href="https://steelstallionsinc.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png" alt="Steel Stallions" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png" alt="Steel Stallions" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                         </a>
                       </div>
-                      <div style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                      <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
                         <a href="https://www.anchoredpsych.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png" alt="Anchored Psychological Services" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto;" />
+                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png" alt="Anchored Psychological Services" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  <div style="font-size: 11px; color: #94A3B8; margin-top: 16px; padding-top: 10px; border-top: 1px solid #E2E8F0;">
-                    Interested in sponsoring our team? Submit details via our <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="color: #1F497D; font-weight: 600; text-decoration: underline;">Online Sponsorship Form</a> or contact Amy or Matt Redmond at <a href="mailto:${mgrEmail}" style="color: #1F497D; font-weight: 600; text-decoration: none;">${mgrEmail}</a>
+                  <div class="sponsor-footer-note" style="font-size: 11px; color: #94A3B8; margin-top: 16px; padding-top: 10px; border-top: 1px solid #E2E8F0;">
+                    Interested in sponsoring our team? Submit details via our <a class="sponsor-footer-link" href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="color: #1F497D; font-weight: 600; text-decoration: underline;">Online Sponsorship Form</a> or contact Amy or Matt Redmond at <a class="sponsor-footer-link" href="mailto:${mgrEmail}" style="color: #1F497D; font-weight: 600; text-decoration: none;">${mgrEmail}</a>
                   </div>
                 </td>
               </tr>
@@ -507,11 +508,56 @@
         ` : '';
 
         const fullEmail = `
-            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #F4F7FB; padding: 12px 6px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+            <style>
+              @media (prefers-color-scheme: dark) {
+                .email-bg { background-color: #0B1120 !important; }
+                .body-card { background-color: #162032 !important; color: #F8FAFC !important; border-color: #1E293B !important; }
+                .email-greeting { color: #FFFFFF !important; }
+                .email-intro { color: #CBD5E1 !important; }
+                .section-heading { color: #FBBF24 !important; border-bottom-color: #334155 !important; }
+                .schedule-item-card { background-color: #0F172A !important; border-color: #334155 !important; }
+                .schedule-title-link { color: #60A5FA !important; }
+                .schedule-meta { color: #CBD5E1 !important; }
+                .arena-link { color: #93C5FD !important; }
+                .news-list { color: #CBD5E1 !important; }
+                .news-list li { color: #CBD5E1 !important; }
+                .action-box { background-color: #2D1515 !important; border-left-color: #EF4444 !important; }
+                .action-heading { color: #FCA5A5 !important; }
+                .action-list { color: #FECACA !important; }
+                .action-list li { color: #FECACA !important; }
+                .jersey-box { background-color: #0F172A !important; border-left-color: #F59E0B !important; }
+                .jersey-text { color: #E2E8F0 !important; }
+                .app-box { background-color: #0B192C !important; border-left-color: #38BDF8 !important; }
+                .app-text { color: #BAE6FD !important; }
+                .sig-greeting { color: #E2E8F0 !important; }
+                .sig-name { color: #FFFFFF !important; }
+                .sig-details { color: #94A3B8 !important; }
+                .sig-email { color: #60A5FA !important; }
+                .sponsor-card { background-color: #0B1120 !important; border-color: #1E293B !important; }
+                .sponsor-heading { color: #FBBF24 !important; }
+                .sponsor-subtext { color: #94A3B8 !important; }
+                .sponsor-badge-title { background-color: #451A03 !important; border-color: #B45309 !important; color: #FDE68A !important; }
+                .sponsor-badge-premium { background-color: #172554 !important; border-color: #1D4ED8 !important; color: #93C5FD !important; }
+                .sponsor-badge-team { background-color: #1E293B !important; border-color: #475569 !important; color: #E2E8F0 !important; }
+                .divider { border-top-color: #334155 !important; }
+                .sponsor-footer-note { color: #64748B !important; border-top-color: #334155 !important; }
+                .sponsor-footer-link { color: #60A5FA !important; }
+                .title-sponsor-box { background-color: #2E1F0C !important; border-color: #D97706 !important; }
+                .title-sponsor-heading { color: #FBBF24 !important; }
+                .title-sponsor-sub { color: #FDE68A !important; }
+                .premium-sponsor-box { background-color: #172554 !important; border-color: #3B82F6 !important; }
+                .premium-sponsor-heading { color: #93C5FD !important; }
+                .premium-sponsor-sub { color: #BFDBFE !important; }
+                .team-sponsor-box { background-color: #1E293B !important; border-color: #475569 !important; }
+                .team-sponsor-heading { color: #CBD5E1 !important; }
+                .team-sponsor-sub { color: #94A3B8 !important; }
+              }
+            </style>
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-bg" style="max-width: 600px; margin: 0 auto; background-color: #F4F7FB; padding: 12px 6px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
               <tr>
                 <td>
                   <!-- HEADER -->
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background: linear-gradient(135deg, #102B4E 0%, #1F497D 100%); background-color: #1F497D; border-radius: 12px 12px 0 0; padding: 22px 16px; text-align: center; border-bottom: 4px solid #E5A823;">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="header-card" style="background: linear-gradient(135deg, #102B4E 0%, #1F497D 100%); background-color: #1F497D; border-radius: 12px 12px 0 0; padding: 22px 16px; text-align: center; border-bottom: 4px solid #E5A823;">
                     <tr>
                       <td align="center">
                         <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/truro_bearcats_crest.png" alt="Truro Bearcats" width="80" style="width: 80px; max-width: 80px; height: auto; display: block; margin: 0 auto 8px auto;" />
@@ -523,18 +569,18 @@
                   </table>
 
                   <!-- BODY -->
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFFFFF; padding: 22px 18px; border-left: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; color: #2D3748; font-size: 13px; line-height: 1.6;">
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="body-card" style="background-color: #FFFFFF; padding: 22px 18px; border-left: 1px solid #E2E8F0; border-right: 1px solid #E2E8F0; color: #2D3748; font-size: 13px; line-height: 1.6;">
                     <tr>
                       <td>
-                        <p style="margin-top: 0; font-size: 14px;">Hi Families,</p>
-                        <p style="color: #4A5568;">Hope everyone is having a great week! Here is our team schedule and updates for the week ahead.</p>
+                        <p class="email-greeting" style="margin-top: 0; font-size: 14px; font-weight: 600;">Hi Families,</p>
+                        <p class="email-intro" style="color: #4A5568;">Hope everyone is having a great week! Here is our team schedule and updates for the week ahead.</p>
 
                         <!-- ACTION ITEMS -->
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #FFF5F5; border-left: 4px solid #E53E3E; border-radius: 6px; margin: 16px 0;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="action-box" style="background-color: #FFF5F5; border-left: 4px solid #E53E3E; border-radius: 6px; margin: 16px 0;">
                           <tr>
                             <td style="padding: 12px 14px;">
-                              <div style="font-size: 11px; font-weight: 800; color: #9B2C2C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">🚨 Action Items & Deadlines</div>
-                              <ul style="margin: 0; padding-left: 16px; font-size: 12px; color: #742A2A;">
+                              <div class="action-heading" style="font-size: 11px; font-weight: 800; color: #9B2C2C; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">🚨 Action Items & Deadlines</div>
+                              <ul class="action-list" style="margin: 0; padding-left: 16px; font-size: 12px; color: #742A2A;">
                                 ${actionItems.split('\n').filter(s=>s.trim()).map(s => `<li>${s.replace(/^[•\-\*]\s*/, '')}</li>`).join('')}
                               </ul>
                             </td>
@@ -542,14 +588,14 @@
                         </table>
 
                         <!-- SCHEDULE -->
-                        <div style="font-size: 12px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px 0; border-bottom: 2px solid #E2E8F0; padding-bottom: 4px;">
+                        <div class="section-heading" style="font-size: 12px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px 0; border-bottom: 2px solid #E2E8F0; padding-bottom: 4px;">
                           📅 This Week's Ice Schedule
                         </div>
 
                         <!-- JERSEY REMINDER -->
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F1F5F9; border-left: 4px solid #1F497D; border-radius: 6px; margin-bottom: 12px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="jersey-box" style="background-color: #F1F5F9; border-left: 4px solid #1F497D; border-radius: 6px; margin-bottom: 12px;">
                           <tr>
-                            <td style="padding: 10px 14px; font-size: 12px; color: #1E293B;">
+                            <td class="jersey-text" style="padding: 10px 14px; font-size: 12px; color: #1E293B;">
                               👕 <strong>Jersey Reminder:</strong> Please ensure players bring <strong>BOTH jerseys (Home White & Away Black)</strong> to all games, as team assignments can fluctuate.
                             </td>
                           </tr>
@@ -558,26 +604,26 @@
                         ${scheduleHtml}
 
                         <!-- NEWS -->
-                        <div style="font-size: 12px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px 0; border-bottom: 2px solid #E2E8F0; padding-bottom: 4px;">
+                        <div class="section-heading" style="font-size: 12px; font-weight: 800; color: #1F497D; text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px 0; border-bottom: 2px solid #E2E8F0; padding-bottom: 4px;">
                           📢 Team News & Announcements
                         </div>
-                        <ul style="margin: 0 0 16px 0; padding-left: 16px; font-size: 12px; color: #4A5568;">
+                        <ul class="news-list" style="margin: 0 0 16px 0; padding-left: 16px; font-size: 12px; color: #4A5568;">
                           ${newsItems.split('\n').filter(s=>s.trim()).map(s => `<li>${s.replace(/^[•\-\*]\s*/, '')}</li>`).join('')}
                         </ul>
 
                         <!-- APP REMINDER -->
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EBF8FF; border-left: 4px solid #3182CE; border-radius: 6px; margin-bottom: 16px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="app-box" style="background-color: #EBF8FF; border-left: 4px solid #3182CE; border-radius: 6px; margin-bottom: 16px;">
                           <tr>
-                            <td style="padding: 10px 14px; font-size: 12px; color: #2B6CB0;">
+                            <td class="app-text" style="padding: 10px 14px; font-size: 12px; color: #2B6CB0;">
                               📱 <strong>GrayJay Teams App:</strong> Please keep attendance RSVPs up to date for all events so coaching staff can plan in advance.
                             </td>
                           </tr>
                         </table>
 
                         <!-- SIGNATURE -->
-                        <p style="margin: 14px 0 2px 0;">See you at the rink!</p>
-                        <p style="margin: 0; font-weight: 700; color: #102B4E;">Matt Redmond</p>
-                        <p style="margin: 0; font-size: 11px; color: #718096;">Team Manager, ${teamDisplayName}<br>📧 <a href="mailto:${mgrEmail}">${mgrEmail}</a></p>
+                        <p class="sig-greeting" style="margin: 14px 0 2px 0;">See you at the rink!</p>
+                        <p class="sig-name" style="margin: 0; font-weight: 700; color: #102B4E;">Matt Redmond</p>
+                        <p class="sig-details" style="margin: 0; font-size: 11px; color: #718096;">Team Manager, ${teamDisplayName}<br>📧 <a class="sig-email" href="mailto:${mgrEmail}">${mgrEmail}</a></p>
                       </td>
                     </tr>
                   </table>
