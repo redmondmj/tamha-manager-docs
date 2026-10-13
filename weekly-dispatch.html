@@ -441,6 +441,11 @@
                         name: "Anchored Psychological Services",
                         logo: "https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png",
                         url: "https://www.anchoredpsych.com"
+                    },
+                    {
+                        name: "Hub Well Drilling",
+                        logo: "https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/hub_well_drilling.png",
+                        url: "https://www.hubwelldrilling.ca"
                     }
                 ]
             },
@@ -456,9 +461,12 @@
 
         let teamSponsorCards = '';
         if (activeTeamSponsors.team_sponsors && activeTeamSponsors.team_sponsors.length > 0) {
+            const count = activeTeamSponsors.team_sponsors.length;
+            const colWidth = (count >= 4) ? '22%' : '28%';
+            const colMargin = (count >= 4) ? '3px 1%' : '3px 1.5%';
             activeTeamSponsors.team_sponsors.forEach(sp => {
                 teamSponsorCards += `
-                    <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                    <div class="team-sponsor-col" style="display: inline-block; width: ${colWidth}; max-width: 110px; margin: ${colMargin}; vertical-align: middle;">
                         <a href="${sp.url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
                             <img src="${sp.logo}" alt="${sp.name}" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
                         </a>
