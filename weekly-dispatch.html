@@ -420,12 +420,71 @@
             `;
         });
 
+        const SPONSORS_BY_TEAM = {
+            'U13A': {
+                title_sponsor: null,
+                premium_sponsors: [],
+                team_sponsors: [
+                    {
+                        name: "Reformed Studio & SPIN Haus",
+                        logo: "https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png",
+                        url: "https://reformedstudio.com"
+                    },
+                    {
+                        name: "Steel Stallions",
+                        logo: "https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png",
+                        url: "https://steelstallionsinc.com"
+                    },
+                    {
+                        name: "Anchored Psychological Services",
+                        logo: "https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png",
+                        url: "https://www.anchoredpsych.com"
+                    }
+                ]
+            },
+            'U15C Campbell': {
+                title_sponsor: null,
+                premium_sponsors: [],
+                team_sponsors: []
+            }
+        };
+
+        const activeTeamSponsors = SPONSORS_BY_TEAM[team] || SPONSORS_BY_TEAM['U13A'];
+        const sponsorContact = (team === 'U15C Campbell') ? 'Matt Redmond' : 'Amy or Matt Redmond';
+
+        let teamSponsorCards = '';
+        if (activeTeamSponsors.team_sponsors && activeTeamSponsors.team_sponsors.length > 0) {
+            activeTeamSponsors.team_sponsors.forEach(sp => {
+                teamSponsorCards += `
+                    <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                        <a href="${sp.url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                            <img src="${sp.logo}" alt="${sp.name}" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
+                        </a>
+                    </div>
+                `;
+            });
+        }
+        // Fill remaining slots up to 3 with placeholders
+        const existingCount = (activeTeamSponsors.team_sponsors || []).length;
+        for (let i = existingCount; i < 3; i++) {
+            teamSponsorCards += `
+                <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
+                    <a href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
+                        <div class="team-sponsor-box" style="border: 2px dashed #94A3B8; background-color: #F8FAFC; border-radius: 6px; padding: 10px 4px; text-align: center;">
+                            <div class="team-sponsor-heading" style="font-size: 10px; font-weight: 700; color: #475569;">🏒 Sponsor ($250)</div>
+                            <div class="team-sponsor-sub" style="font-size: 9px; color: #64748B; margin-top: 2px;">Claim via Online Form ↗</div>
+                        </div>
+                    </a>
+                </div>
+            `;
+        }
+
         const sponsorHtml = showSponsors ? `
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="sponsor-card" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-top: none; border-radius: 0 0 12px 12px; padding: 22px 16px; text-align: center; margin-top: 15px;">
               <tr>
                 <td align="center">
                   <div class="sponsor-heading" style="font-size: 11px; font-weight: 800; color: #1F497D; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;">
-                    Proudly Supported by Our 2026–2027 Team Sponsors
+                    Proudly Supported by Our 2026–2027 ${teamDisplayName} Sponsors
                   </div>
                   <div class="sponsor-subtext" style="font-size: 11px; color: #718096; margin-bottom: 16px;">
                     Please support the local businesses that make competitive minor hockey possible!
@@ -481,26 +540,12 @@
                       🏒 Team Sponsors
                     </div>
                     <div>
-                      <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
-                        <a href="https://reformedstudio.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/reformed_studio.png" alt="Reformed Studio & SPIN Haus" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
-                        </a>
-                      </div>
-                      <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
-                        <a href="https://steelstallionsinc.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/steel_stallions.png" alt="Steel Stallions" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
-                        </a>
-                      </div>
-                      <div class="team-sponsor-col" style="display: inline-block; width: 28%; max-width: 110px; margin: 3px 1%; vertical-align: middle;">
-                        <a href="https://www.anchoredpsych.com" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                          <img src="https://raw.githubusercontent.com/redmondmj/tamha-manager-docs/master/assets/sponsors/anchored_psych.png" alt="Anchored Psychological Services" style="width: 100%; border: 1px solid #E2E8F0; border-radius: 4px; display: block; margin: 0 auto; background-color: #FFFFFF;" />
-                        </a>
-                      </div>
+                      ${teamSponsorCards}
                     </div>
                   </div>
 
                   <div class="sponsor-footer-note" style="font-size: 11px; color: #94A3B8; margin-top: 16px; padding-top: 10px; border-top: 1px solid #E2E8F0;">
-                    Interested in sponsoring our team? Submit details via our <a class="sponsor-footer-link" href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="color: #1F497D; font-weight: 600; text-decoration: underline;">Online Sponsorship Form</a> or contact Amy or Matt Redmond at <a class="sponsor-footer-link" href="mailto:${mgrEmail}" style="color: #1F497D; font-weight: 600; text-decoration: none;">${mgrEmail}</a>
+                    Interested in sponsoring ${teamDisplayName}? Submit details via our <a class="sponsor-footer-link" href="https://docs.google.com/forms/d/1uQZJGuRV034DeS8VRfVB77kHOmcvBcCjC0giCtKp4Ow/viewform" target="_blank" rel="noopener noreferrer" style="color: #1F497D; font-weight: 600; text-decoration: underline;">Online Sponsorship Form</a> or contact ${sponsorContact} at <a class="sponsor-footer-link" href="mailto:${mgrEmail}" style="color: #1F497D; font-weight: 600; text-decoration: none;">${mgrEmail}</a>
                   </div>
                 </td>
               </tr>
