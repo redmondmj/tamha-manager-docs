@@ -41,6 +41,7 @@ Set up a Dedicated Shared Folder within the official TAMHA Google Workspace:
 │
 ├── 📁 02 - Financial & Budgeting Templates
 │   ├── 📊 TAMHA Official Team Budget Template (Google Sheet with formulas)
+│   ├── 📝 Template - Official Team Sponsorship Receipt (Google Doc)
 │   ├── 📄 Sample Rep Team Budget (PDF Reference)
 │   └── 📄 Sample House (C-League) Team Budget (PDF Reference)
 │

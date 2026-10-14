@@ -31,35 +31,44 @@ The rebuilt **TAMHA Team Budget Master Template** provides an executive-grade, 5
 
 | Platform | Access Method | Link |
 | :--- | :--- | :--- |
-| **Google Sheets (Recommended)** | Click to Make a Personal Copy | [**TAMHA Team Budget Master (Google Sheets)**](https://docs.google.com/spreadsheets/d/1W6-_pH7H24ogvHRtxeRjiNFfoL9HHKs6ZtIjBTk_4Z4/copy) |
+| **Official Team Budget (Recommended)** | Direct Access via Google Drive | [**Google Drive > "Shared with me"**](https://drive.google.com/drive/shared-with-me) |
+| **Blank Sandbox / Testing Template** | Click to Make a Personal Copy | [**TAMHA Team Budget Master (Google Sheets)**](https://docs.google.com/spreadsheets/d/1KPUmxh5bPXz2MkcBBl9CNhSWmJJvmjvUxIQpa2Ck61A/copy) |
 | **Microsoft Excel (.xlsx)** | Local File in Repository | `templates/TAMHA_Team_Budget_Master_Template.xlsx` |
+
+> [!TIP]
+> **Already Started a Spreadsheet? Don't Panic!**  
+> For the 2026–2027 season, if you have already started drafting your team budget in Excel or another format, please don't re-type it from scratch. We will be happy to merge your existing numbers into the official format for you! Simply email what you have to TAMHA Finance (`vpfinance@trurominorhockey.ca`) or your manager coordinator.
 
 ---
 
-## 2.1 Distribution Models & Reporting Architecture
+## 2.1 Distribution Model & Reporting Architecture
 
-### Preferred Model: Centralized Pre-Population by VP Finance (Joe Zappia)
-To ensure association-wide financial oversight and streamline milestone submissions, the preferred operational workflow is:
+### Adopted Association Model: Centralized Pre-Population & Direct Drive Sharing
+To ensure association-wide financial oversight and eliminate administrative friction for team volunteers, TAMHA uses the **Centralized Pre-Population Model**:
 1. **Automated Generation:** Using verified submissions from the Bank Signer Intake Form and the Mosaik account mapping ledger, VP Finance generates a dedicated, pre-populated Google Sheet for each of the 28 TAMHA teams in a central Drive directory (`TAMHA 2026-2027 Team Budgets`).
 2. **Pre-Populated Data:**
    * Team Name, Division, and Tier (Rep vs C-League).
    * Authorized Signing Officers (Head Coach, Manager, Treasurer) and contact details.
    * Official 9-digit Mosaik Credit Union Account #.
-   * Baseline Association Fees (Rep Fees & Sweater Fund for Rep teams; $0 Rep fees for C teams).
-3. **Delegated Access:** VP Finance shares each team sheet directly with that team's Manager and Treasurer with **Editor** permissions.
+   * Baseline Association Fees ($9,500 for Rep including sweater fund; $11,500 for AAA; $0 for C teams).
+3. **Delegated Access via "Shared with me":** VP Finance shares each team sheet directly with that team's Manager and Treasurer with **Editor** permissions. Volunteers simply log into Google Drive and find their sheet immediately under [**"Shared with me"**](https://drive.google.com/drive/shared-with-me)—eliminating "Request Access" permission errors.
 4. **Association Scraping & Reporting:** Because VP Finance retains primary ownership of all 28 team sheets within the TAMHA Google Workspace, an automated aggregation script or `IMPORTRANGE` dashboard can scrape high-level budget figures across all 28 teams in seconds—providing instant association-wide cash position and solvency audits without chasing down individual file attachments.
 
 ### Alternative / Fallback: Self-Service Manager Copy
-If preferred, managers can click the [**Make a Copy**](https://docs.google.com/spreadsheets/d/1W6-_pH7H24ogvHRtxeRjiNFfoL9HHKs6ZtIjBTk_4Z4/copy) link on the Manager's Desk Resources hub to clone a blank template into their own personal or team Google Drive.
+If preferred, managers can click the [**Make a Copy**](https://docs.google.com/spreadsheets/d/1KPUmxh5bPXz2MkcBBl9CNhSWmJJvmjvUxIQpa2Ck61A/copy) link on the Manager's Desk Resources hub to clone a blank template into their own personal or team Google Drive.
 
 ### Key Consideration: Rep Teams vs. C-League (House) Teams
 * **Rep Teams (AA / A / B):**
-  * Pay mandatory TAMHA Rep Fees of **$9,500 total** for the 2026–2027 season, split into two equal installments ($4,750 on Nov 15 and $4,750 on Jan 31).
-  * **Jersey / Sweater Fund Included:** The $9,500 Rep fee **now includes the mandatory jersey/sweater fund** (previously an additional $550 charge). On the Expenses tab, this row is listed at `$0.00` with an explanatory note to avoid double-charging families.
+  * Pay mandatory TAMHA Rep Fees of **$9,500 total** for the 2026–2027 season, split into two equal installments ($4,750 on Nov 30 and $4,750 on Jan 31).
+  * **Comprehensive Inclusions (No Sticker Shock):** To prevent double-charging families, the $9,500 Rep fee comprehensively bundles:
+    1. **Mandatory Jersey/Sweater Fund:** (previously billed separately as an additional $550 charge).
+    2. **HNS & Conference League Scheduling Fees:** Association-wide league and affiliation fees are fully covered.
+    3. **Official Team Game Socks:** Two (2) pairs per player (Home Crimson & Away White) supplied directly at equipment pickup.
+    *On the Expenses tab, these rows are listed at `$0.00` with explanatory notes.*
   * Collect $150/player Jersey Deposits (held in trust).
   * Incur tournament entry fees, exhibition ice costs, and ref/timekeeper cash payouts.
 * **AAA Rep Teams:**
-  * Pay **$11,500 total** ($5,750 per installment: Nov 15 and Jan 31) to account for additional scheduled ice allocations.
+  * Pay **$11,500 total** ($5,750 per installment: Nov 30 and Jan 31) to account for additional scheduled ice allocations.
 * **C-League / House Teams:**
   * **Do NOT pay Rep fees** ($0.00 default; core ice time and league operations are covered by base TAMHA player registration).
   * Collect lower jersey deposits ($50/player).
@@ -111,14 +120,15 @@ flowchart LR
 
 ### Sheet 3: `Expenses`
 *   **1.0 Association Fees:**
-    *   TAMHA Rep Fees: $9,500 total ($4,750 on Nov 15; $4,750 on Jan 31) for AA, A, B; $11,500 total ($5,750 on Nov 15; $5,750 on Jan 31) for AAA; $0.00 for C-League.
+    *   TAMHA Rep Fees: $9,500 total ($4,750 on Nov 30; $4,750 on Jan 31) for AA, A, B; $11,500 total ($5,750 on Nov 30; $5,750 on Jan 31) for AAA; $0.00 for C-League.
     *   Mandatory Sweater Fund: Included in the $9,500 Rep Fee total (listed at $0.00 on the ledger; no separate payment required).
-    *   League Scheduling & Playoff Assessments: Populated by manager/treasurer if applicable to their specific league.
+    *   HNS & League Scheduling Fees: Included in the $9,500 Rep Fee total (listed at $0.00 on the ledger; covered by association).
+    *   Regional Playoff Assessment Fees: Included in Rep Fee / covered by association (listed at $0.00).
 *   **2.0 Tournaments:** Record entry fees for all approved tournaments (typically 3–4 events per season).
 *   **3.0 Extra Ice & Game Officials:** Track exhibition and additional practice ice hours, plus referee and timekeeper cash payouts.
-*   **4.0 Team Apparel & Items:** Practice jerseys, sponsor banner printing, player name bars, game socks, first aid kits, and pucks.
+*   **4.0 Team Apparel & Items:** Practice jerseys (Forward & Defence colours for intra-squad drills), sponsor banner printing, player name bars, first aid kits, and pucks. *Note: Official game socks (2 pairs/player) are included in the Rep fee and listed at $0.00.*
 *   **5.0 Team Activities:** Holiday party, year-end banquet, player snacks, and coaching staff appreciation gifts.
-*   **6.0 Operating & Banking:** Monthly Mosaik account fees ($15/mo), cheques, and contingency buffer.
+*   **6.0 Operating & Banking:** Mosaik Credit Union annual account fee ($15 flat fee; no monthly fees or bank supply charges), optional administrative supplies, and emergency contingency buffer.
 *   **7.0 Jersey Deposit Refunds:** 100% refund of jersey deposits upon return of jerseys in April.
 
 ### Sheet 4: `Bank Rec` *(Optional Team Management Tool)*
@@ -145,10 +155,14 @@ flowchart LR
 
 ---
 
-## 5. Important Compliance Directives from VP Finance
+## 5. Important Compliance Directives from VP Finance & TAMHA Policy Framework
 
 1.  **Dual Authorization:** All cheques and online outbound payments require two (2) authorized signatures. Never issue a pre-signed blank cheque.
-2.  **No Personal Bank Accounts:** All team transactions must flow exclusively through the official Mosaik Credit Union team account.
-3.  **Receipts for Donors:** Every business sponsor must receive an official TAMHA Team Sponsorship Receipt. Note: These are commercial expense receipts, **not** registered charitable tax deduction receipts.
-4.  **Zero Deficit Policy:** Teams are not permitted to run a deficit. If fundraising falls short, a parent cash call must be initiated with parent majority approval.
-5.  **Surplus Distribution:** Any year-end surplus remaining after all expenses and jersey refunds must be returned equally to parents up to the total amount of parent cash contributions made during the season. Excess fundraising cannot be paid out as personal cash to families.
+2.  **No Personal Bank Accounts:** All team transactions must flow exclusively through the official Mosaik Credit Union team account. Personal bank accounts are strictly prohibited.
+3.  **Sponsorships vs. Fundraising vs. Parent Contributions:**
+    *   **Corporate Sponsorships:** Contributions from local businesses in exchange for advertising/promotional value (banners, sponsor bars). Every business sponsor must receive an official TAMHA Team Sponsorship Receipt. Note: These are commercial advertising expense receipts, **not** registered charitable tax deduction receipts.
+    *   **Team Fundraising Initiatives:** Public ticket draws, 50/50 raffles, and bottle drives belong to the team and association as a whole. Under Hockey Nova Scotia and TAMHA regulations, **fundraising money cannot be distributed to parents as cash profits or bonuses**.
+    *   **Parent Fee Contributions:** Rep fee installments and operational cash calls paid by families out-of-pocket. Any parent fee assessment must be presented to the parent group and approved by at least a **>75% majority vote** at the initial parent meeting.
+4.  **Zero Deficit Policy:** Teams are strictly prohibited from projecting or operating at a deficit. Projected revenues must equal or exceed projected expenses at all milestone reporting stages.
+5.  **Surplus Distribution Policy:** Any year-end operating surplus remaining after all expenses and jersey refunds must be returned equally to parents **only up to the total amount of direct parent cash contributions paid during the season**. Excess fundraising cannot be paid out as cash to families and must be reinvested into team player development/activities or remitted to TAMHA.
+6.  **Jersey Deposits Held in Trust:** Mandatory $150 Rep / $50 House deposits must be held in trust (uncashed cheques dated May 15, 2027 or segregated funds). They are liabilities, must never be spent on team operations, and must be refunded 100% upon return of game jerseys in April.

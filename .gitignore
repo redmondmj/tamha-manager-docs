@@ -54,3 +54,8 @@ templates/Truro Minor Hockey Association - Practice Import Template (1).xlsx
 
 
 .firebase/
+
+scripts/
+grayjay-html-exports/live_*.html
+jersey-handout.html
+generate_weekly_update.bat

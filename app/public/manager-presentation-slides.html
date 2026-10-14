@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAMHA 2026-2027 Manager Onboarding & Finance Presentation</title>
+<style>
+  :root {
+    --crimson: #C8102E;
+    --crimson-dark: #900C1E;
+    --crimson-light: #FDF1F2;
+    --navy: #0F172A;
+    --card-bg: #1E293B;
+    --border: #334155;
+    --text: #F8FAFC;
+    --text-muted: #94A3B8;
+    --gold: #F59E0B;
+    --green: #10B981;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--navy);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Top Navigation Bar */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-badge {
+    background: var(--crimson);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .brand-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-btn {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-btn:hover { background: #475569; }
+  .nav-btn.primary { background: var(--crimson); }
+  .nav-btn.primary:hover { background: var(--crimson-dark); }
+
+  .slide-counter {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    min-width: 90px;
+    text-align: center;
+  }
+
+  /* Slides Stage */
+  main {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 40px;
+  }
+
+  .slide {
+    position: absolute;
+    width: 100%;
+    max-width: 1280px;
+    height: calc(100vh - 120px);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .slide.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Slide Typography */
+  .slide-tag {
+    color: var(--crimson);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .slide-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .slide-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  /* Split Layout */
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .content-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .qr-card {
+    background: #FFFFFF;
+    color: #1A1A1A;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    border: 4px solid var(--crimson);
+  }
+
+  .qr-card img {
+    width: 240px;
+    height: 240px;
+    margin-bottom: 14px;
+  }
+
+  .qr-card h4 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+  }
+
+  .qr-card p {
+    font-size: 13px;
+    color: #4A5568;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+
+  .qr-card a.link-btn {
+    display: inline-block;
+    background: var(--crimson);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .qr-card a.link-btn:hover {
+    background: var(--crimson-dark);
+  }
+
+  /* Feature Lists */
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .feature-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .feature-num {
+    background: var(--crimson);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .feature-text strong {
+    display: block;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-bottom: 3px;
+  }
+
+  .feature-text span {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Callout Box */
+  .callout {
+    background: rgba(200, 16, 46, 0.12);
+    border-left: 4px solid var(--crimson);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 18px;
+  }
+
+  .callout strong {
+    color: #F87171;
+    font-size: 14px;
+  }
+
+  .callout p {
+    font-size: 13px;
+    color: #CBD5E1;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* Title Slide Styling */
+  .title-slide {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title-hero {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--crimson);
+    border-radius: 16px;
+    padding: 60px 50px;
+    max-width: 900px;
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6);
+  }
+
+  .meta-pills {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .pill {
+    background: #334155;
+    color: #E2E8F0;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* 3-Column QR Hub */
+  .qr-hub-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .hub-card {
+    background: #FFFFFF;
+    color: #1A1A1A;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-top: 6px solid var(--crimson);
+  }
+
+  .hub-card img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 12px;
+  }
+
+  .hub-card h4 {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .hub-card p {
+    font-size: 12px;
+    color: #4A5568;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    min-height: 34px;
+  }
+
+  .hub-card a.hub-btn {
+    background: var(--navy);
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 4px;
+    width: 100%;
+    transition: background 0.2s;
+  }
+
+  .hub-card a.hub-btn:hover {
+    background: var(--crimson);
+  }
+
+  /* Footer timeline pills */
+  .timeline-bar {
+    display: flex;
+    justify-content: space-between;
+    background: #1E293B;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 20px;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+  }
+
+  .timeline-date {
+    color: var(--gold);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .timeline-desc {
+    color: #CBD5E1;
+    font-weight: 600;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="brand-badge">TAMHA 2026–2027</span>
+    <span class="brand-title">Team Managers' Operations &amp; Finance</span>
+  </div>
+  <div class="controls">
+    <button class="nav-btn" onclick="prevSlide()">&larr; Previous</button>
+    <span class="slide-counter" id="slideCounter">Slide 1 of 5</span>
+    <button class="nav-btn primary" onclick="nextSlide()">Next &rarr;</button>
+    <button class="nav-btn" onclick="toggleFullScreen()" title="Full Screen (F)">&#x26F6; Full Screen</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide title-slide active" id="slide-1">
+    <div class="title-hero">
+      <div class="slide-tag">Truro Area Minor Hockey Association</div>
+      <h1 class="slide-title" style="font-size: 46px; margin-bottom: 16px;">Team Managers' Operations &amp; Finance Guide</h1>
+      <p class="slide-subtitle" style="font-size: 20px; max-width: 720px; margin: 0 auto;">
+        A turnkey operating system: official online Manager's Desk, paperless Mosaik banking, and pre-populated Google Drive budgets.
+      </p>
+      <div class="meta-pills">
+        <span class="pill">&#x1F4CB; trurominorhockey.ca/pages/12263/</span>
+        <span class="pill">&#x1F4CA; 28 Teams Provisioned</span>
+        <span class="pill">&#x1F3D2; Ready for Puck Drop</span>
+      </div>
+      <div style="margin-top: 35px; color: #64748B; font-size: 13px;">
+        Use <strong>&larr;</strong> and <strong>&rarr;</strong> arrow keys to navigate &bull; Press <strong>F</strong> for full screen
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: The Manager's Desk -->
+  <div class="slide" id="slide-2">
+    <div class="slide-tag">Central Operations Hub</div>
+    <h2 class="slide-title">The TAMHA Manager's Desk</h2>
+    <p class="slide-subtitle">Four integrated guides permanently published on trurominorhockey.ca to replace scattered emails and broken links.</p>
+
+    <div class="split-layout">
+      <div class="content-card">
+        <ul class="feature-list">
+          <li class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>Quick-Start Checklist (Days 1–3)</strong>
+              <span>Chronological tasks post-selection: coach confirmation, HCR waivers, bank registration, jersey &amp; sock pickup.</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>Detailed Responsibilities Guide</strong>
+              <span>In-depth reference manual for compliance, bank signers, 6-step exhibition games, travel permits, and parent meeting.</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>Weekly Tempo Guide</strong>
+              <span>Predictable Sunday-to-Saturday communication rhythm so parents never have to ask "when is practice?"</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>Resources &amp; Templates Hub</strong>
+              <span>1-click copies of official sponsorship letters, parent meeting agendas, and team operating budgets.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="callout">
+          <strong>&#x1F4F1; Bookmark Now:</strong>
+          <p>Open your camera and scan the QR code to bookmark the Manager's Desk directly on your phone or tablet.</p>
+        </div>
+      </div>
+
+      <div class="qr-card">
+        <img src="data:image/png;base64,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" alt="Manager's Desk QR Code">
+        <h4>Scan to Open Manager's Desk</h4>
+        <p>Direct link to Page 12263 on Truro Minor Hockey website.</p>
+        <a href="https://trurominorhockey.ca/pages/12263/Manager-Quick-Start-Checklist/" target="_blank" class="link-btn">Open Manager's Desk &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Team Banking SOP -->
+  <div class="slide" id="slide-3">
+    <div class="slide-tag">Financial Compliance</div>
+    <h2 class="slide-title">Team Banking: Mosaik Credit Union</h2>
+    <p class="slide-subtitle">100% digital, paperless account authorization &mdash; no in-person branch visits required.</p>
+
+    <div class="split-layout">
+      <div class="content-card">
+        <ul class="feature-list">
+          <li class="feature-item">
+            <div class="feature-num">1</div>
+            <div class="feature-text">
+              <strong>Step 1: Submit Signer Intake Form</strong>
+              <span>Manager or Treasurer enters legal names, roles, cell phones, and emails for two signing officers.</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">2</div>
+            <div class="feature-text">
+              <strong>Step 2: Corporate Authorization Letter</strong>
+              <span>VP Finance (Joe Zappia) generates and delivers the official letter directly to Mosaik commercial services. <em>(Managers do not handle letters!)</em></span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">3</div>
+            <div class="feature-text">
+              <strong>Step 3: DocuSign Digital Signature Cards</strong>
+              <span>Mosaik emails the signature package via DocuSign directly to both signers to review and e-sign from their phones.</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">4</div>
+            <div class="feature-text">
+              <strong>Step 4: PAC Codes &amp; Dual-Authorization</strong>
+              <span>Mosaik emails account details &amp; Personal Access Codes. Dual-authorization is strictly enforced on all e-transfers.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="callout" style="background: rgba(16, 185, 129, 0.12); border-left-color: var(--green);">
+          <strong style="color: #34D399;">&#x2705; Do Not Collect Parent Funds Yet:</strong>
+          <p>Wait until your Mosaik account credentials are live before collecting parent fee e-transfers. Never co-mingle team funds into personal bank accounts.</p>
+        </div>
+      </div>
+
+      <div class="qr-card">
+        <img src="data:image/png;base64,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" alt="Bank Signer Intake Form QR Code">
+        <h4>Scan for Bank Signer Form</h4>
+        <p>Submit your designated signing officers to trigger Mosaik account setup.</p>
+        <a href="https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform" target="_blank" class="link-btn">Open Signer Form &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Team Budgets & Google Drive -->
+  <div class="slide" id="slide-4">
+    <div class="slide-tag">Google Drive Integration</div>
+    <h2 class="slide-title">Team Operating Budgets (Pre-Populated)</h2>
+    <p class="slide-subtitle">Your team budget is already generated and waiting for you in Google Drive &mdash; zero blank spreadsheet setup.</p>
+
+    <div class="split-layout">
+      <div class="content-card">
+        <ul class="feature-list">
+          <li class="feature-item">
+            <div class="feature-num">&#x1F4C1;</div>
+            <div class="feature-text">
+              <strong>Where to Find Your Budget:</strong>
+              <span>Log into your Google account and open <strong>Google Drive &gt; "Shared with me"</strong> &mdash; your team's official spreadsheet is already active with Editor access for your Manager and Treasurer!</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">&#x2699;</div>
+            <div class="feature-text">
+              <strong>Pre-Populated &amp; Formulas Linked:</strong>
+              <span>Pre-configured with division details, roster counter, and Rep fee schedule ($9,500 Rep / $11,500 AAA / $0 House).</span>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-num">&#x1F4A1;</div>
+            <div class="feature-text">
+              <strong>Explaining Rep Fees (No Sticker Shock!):</strong>
+              <span>Proactively explain to parents that the Rep fee bundles the $550 jersey fund, HNS league fees, and 2 pairs of game socks per player! Split 50/50: Nov 30 &amp; Jan 31.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="callout" style="background: rgba(245, 158, 11, 0.12); border-left-color: var(--gold);">
+          <strong style="color: #FBBF24;">&#x2728; Already started an Excel sheet? Don't panic!</strong>
+          <p>Please don't re-type it! Simply email what you have to TAMHA Finance (<strong>vpfinance@trurominorhockey.ca</strong>) or Matt Redmond and we will merge your numbers into the official format for you in 5 minutes.</p>
+        </div>
+      </div>
+
+      <div class="qr-card">
+        <img src="data:image/png;base64,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" alt="Google Drive Shared with Me QR Code">
+        <h4>Scan for "Shared with me"</h4>
+        <p>Opens your Google Drive directly to "Shared with me" where your team's budget sheet is waiting.</p>
+        <a href="https://drive.google.com/drive/shared-with-me" target="_blank" class="link-btn">Open Google Drive &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: 3-QR Hub & Season Milestones -->
+  <div class="slide" id="slide-5">
+    <div class="slide-tag">Quick Reference &amp; Next Steps</div>
+    <h2 class="slide-title">Bookmark These 3 Links Tonight</h2>
+    <p class="slide-subtitle">Everything you need to successfully launch and manage your team this season.</p>
+
+    <div class="qr-hub-grid">
+      <div class="hub-card">
+        <img src="data:image/png;base64,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" alt="Manager's Desk">
+        <h4>1. Manager's Desk</h4>
+        <p>Checklist, tempo guide, travel permits, and operational SOPs.</p>
+        <a href="https://trurominorhockey.ca/pages/12263/Manager-Quick-Start-Checklist/" target="_blank" class="hub-btn">Open Manager's Desk &rarr;</a>
+      </div>
+
+      <div class="hub-card">
+        <img src="data:image/png;base64,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" alt="Signer Form">
+        <h4>2. Bank Signer Form</h4>
+        <p>Register signing officers for Mosaik Credit Union DocuSign setup.</p>
+        <a href="https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform" target="_blank" class="hub-btn">Open Signer Form &rarr;</a>
+      </div>
+
+      <div class="hub-card">
+        <img src="data:image/png;base64,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" alt="Team Budgets Shared with Me">
+        <h4>3. Team Budgets ("Shared with me")</h4>
+        <p>Opens your Google Drive directly to find your team's pre-populated budget.</p>
+        <a href="https://drive.google.com/drive/shared-with-me" target="_blank" class="hub-btn">Open "Shared with me" &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Timeline Bar -->
+    <div class="timeline-bar">
+      <div class="timeline-item">
+        <span class="timeline-date">Week 1</span>
+        <span class="timeline-desc">Bank Signers Submitted</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Oct 30</span>
+        <span class="timeline-desc">Preliminary Budget (75% vote)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Nov 30</span>
+        <span class="timeline-desc">Rep Fee Installment 1 (50%)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Dec 31</span>
+        <span class="timeline-desc">Mid-Season Parent Statement</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Jan 15</span>
+        <span class="timeline-desc">Interim Budget to VP Finance</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Jan 31</span>
+        <span class="timeline-desc">Rep Fee Installment 2 (50%)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-date">Mar 31</span>
+        <span class="timeline-desc">Final Reconciled Budget</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 5;
+
+  function showSlide(num) {
+    if (num < 1) num = 1;
+    if (num > totalSlides) num = totalSlides;
+    currentSlide = num;
+
+    document.querySelectorAll('.slide').forEach((slide, idx) => {
+      slide.classList.remove('active');
+      if (idx + 1 === currentSlide) {
+        slide.classList.add('active');
+      }
+    });
+
+    document.getElementById('slideCounter').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+  }
+
+  function nextSlide() {
+    if (currentSlide < totalSlides) {
+      showSlide(currentSlide + 1);
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlide > 1) {
+      showSlide(currentSlide - 1);
+    }
+  }
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => {});
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+
+  // Keyboard Navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      prevSlide();
+    } else if (e.key === 'f' || e.key === 'F') {
+      toggleFullScreen();
+    } else if (e.key === 'Home') {
+      showSlide(1);
+    } else if (e.key === 'End') {
+      showSlide(totalSlides);
+    }
+  });
+</script>
+
+</body>
+</html>

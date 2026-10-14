@@ -141,7 +141,7 @@ From the 2025–2026 U11A financial statements and operations records:
 * **Team Bank Account**:
   * Held at **Mosaik Credit Union**.
   * Two signing officers required (e.g., Manager + Treasurer or Head Coach).
-  * Email `vpfinance@trurominorhockey.ca` with names, roles, phone numbers, and emails to receive the bank authorization letter.
+  * Complete the TAMHA Bank Signer Intake Form. VP Finance (`vpfinance@trurominorhockey.ca`) generates and submits the authorization letter directly to Mosaik Credit Union on your behalf.
 * **Mandatory Budget Filing Dates**:
   * *Preliminary Budget*: October 30 / November 15 (Board & Parents)
   * *Mid-Season Statement*: December 31 (Parents)
