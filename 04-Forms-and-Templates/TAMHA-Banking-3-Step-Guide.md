@@ -65,7 +65,7 @@ You can share the authorization letter directly via Google Drive (preferred), or
 
 ![Step 3 - Share Directly with Blake](assets/how_to_guide/step3_share_blake.png)
 
-5. **Done!** Blake instantly receives access to the official letter and initiates remote DocuSign signing for the team staff.
+5. **Done!** Blake instantly receives access to the official letter and initiates remote DocuSign signing for the team staff. *(Note: All designated signers must complete their DocuSign signature cards before Mosaik releases account numbers or online banking credentials—one missing signature holds up the entire team).*
 
 ### Option B: Download & Email as PDF
 If Blake or Mosaik Credit Union prefers an email attachment:
