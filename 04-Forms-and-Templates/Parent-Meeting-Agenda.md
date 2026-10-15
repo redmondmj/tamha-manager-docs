@@ -39,6 +39,7 @@
 *   [ ] Collect Player Medical Forms (due Oct 22).
 *   [ ] Collect Signed Code of Conduct forms (Parent & Player) and Social Media Policy (due Oct 22).
 *   [ ] Collect Jersey Deposit ($150 Rep / $50 House cheque post-dated to May 15, 2027 payable to TAMHA, if applicable).
+*   [ ] Remind incoming transfer families (moved to Truro from another association) to submit the [Parent Declaration Form](https://trurominorhockey.ca/uploads/truromha/source/0/Parents/Transfers%20to%20TAMHA/Parent%20Declaration%20Form.pdf) to `info@trurominorhockey.ca`.
 
 ## 8. Q&A
 *   Open floor for parent questions.
