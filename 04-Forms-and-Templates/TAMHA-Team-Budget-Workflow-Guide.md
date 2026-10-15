@@ -32,7 +32,6 @@ The rebuilt **TAMHA Team Budget Master Template** provides an executive-grade, 5
 | Platform | Access Method | Link |
 | :--- | :--- | :--- |
 | **Official Team Budget (Recommended)** | Direct Access via Google Drive | [**Google Drive > "Shared with me"**](https://drive.google.com/drive/shared-with-me) |
-| **Blank Sandbox / Testing Template** | Click to Make a Personal Copy | [**TAMHA Team Budget Master (Google Sheets)**](https://docs.google.com/spreadsheets/d/1KPUmxh5bPXz2MkcBBl9CNhSWmJJvmjvUxIQpa2Ck61A/copy) |
 | **Microsoft Excel (.xlsx)** | Local File in Repository | `templates/TAMHA_Team_Budget_Master_Template.xlsx` |
 
 > [!TIP]
@@ -53,9 +52,6 @@ To ensure association-wide financial oversight and eliminate administrative fric
    * Baseline Association Fees ($9,500 for Rep including sweater fund; $11,500 for AAA; $0 for C teams).
 3. **Delegated Access via "Shared with me":** VP Finance shares each team sheet directly with that team's Manager and Treasurer with **Editor** permissions. Volunteers simply log into Google Drive and find their sheet immediately under [**"Shared with me"**](https://drive.google.com/drive/shared-with-me)—eliminating "Request Access" permission errors.
 4. **Association Scraping & Reporting:** Because VP Finance retains primary ownership of all 28 team sheets within the TAMHA Google Workspace, an automated aggregation script or `IMPORTRANGE` dashboard can scrape high-level budget figures across all 28 teams in seconds—providing instant association-wide cash position and solvency audits without chasing down individual file attachments.
-
-### Alternative / Fallback: Self-Service Manager Copy
-If preferred, managers can click the [**Make a Copy**](https://docs.google.com/spreadsheets/d/1KPUmxh5bPXz2MkcBBl9CNhSWmJJvmjvUxIQpa2Ck61A/copy) link on the Manager's Desk Resources hub to clone a blank template into their own personal or team Google Drive.
 
 ### Key Consideration: Rep Teams vs. C-League (House) Teams
 * **Rep Teams (AA / A / B):**
