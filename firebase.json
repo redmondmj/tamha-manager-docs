@@ -6,6 +6,11 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "cleanUrls": true
+    "cleanUrls": true,
+    "rewrites": [
+      { "source": "/", "destination": "/auditor.html" },
+      { "source": "/checklist", "destination": "/index.html" },
+      { "source": "/manager-docs", "destination": "/index.html" }
+    ]
   }
 }

@@ -1,375 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick-Start Checklist | TAMHA Manager's Desk</title>
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333333;
-            background-color: #FAFAFA;
-            margin: 0;
-            padding: 10px;
-        }
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            background: #FFFFFF;
-            border-radius: 8px;
-            padding: 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .site-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            background: #1A1A1A;
-            color: #FFFFFF;
-            padding: 12px 18px;
-            border-radius: 6px;
-            margin-bottom: 24px;
-            border-bottom: 3px solid #C8102E;
-            gap: 12px;
-        }
-        .site-title {
-            font-size: 1.15em;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: #FFFFFF;
-            text-decoration: none;
-        }
-        .site-title span { color: #C8102E; }
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .nav-link {
-            padding: 6px 12px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.88em;
-            font-weight: 600;
-            transition: background 0.15s;
-        }
-        .nav-link.active {
-            background-color: #C8102E;
-            color: #FFFFFF;
-        }
-        .nav-link:not(.active) {
-            background-color: #2D2D2D;
-            color: #EEEEEE;
-        }
-        .nav-link:not(.active):hover {
-            background-color: #3D3D3D;
-            color: #FFFFFF;
-        }
-
-        /* Desktop Table Styling */
-        .checklist-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95em;
-            margin-bottom: 24px;
-        }
-        .checklist-table thead tr {
-            background-color: #EEEEEE;
-            border-bottom: 2px solid #C8102E;
-        }
-        .checklist-table th {
-            text-align: left;
-            padding: 10px 12px;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .checklist-table th.th-action {
-            text-align: center;
-        }
-        .checklist-table td {
-            padding: 12px;
-            vertical-align: top;
-            border-bottom: 1px solid #E2E8F0;
-        }
-        .checklist-table tbody tr:nth-child(even) {
-            background-color: #F8FAFC;
-        }
-        .col-name {
-            width: 25%;
-            font-weight: bold;
-            color: #1A202C;
-        }
-        .col-desc {
-            width: 60%;
-            color: #4A5568;
-        }
-        .col-action {
-            width: 15%;
-            text-align: center;
-        }
-        .action-link {
-            display: inline-block;
-            color: #1155cc;
-            font-weight: 600;
-            text-decoration: underline;
-            white-space: nowrap;
-        }
-
-        /* Mobile Responsive Card Transformation (< 650px) */
-        @media (max-width: 650px) {
-            .container {
-                padding: 14px;
-            }
-            .checklist-table,
-            .checklist-table thead,
-            .checklist-table tbody,
-            .checklist-table th,
-            .checklist-table td,
-            .checklist-table tr {
-                display: block;
-                width: 100% !important;
-            }
-            .checklist-table thead {
-                display: none; /* Hide tabular column headers on mobile */
-            }
-            .checklist-table tbody tr {
-                background: #FFFFFF !important;
-                border: 1px solid #E2E8F0;
-                border-left: 4px solid #C8102E;
-                border-radius: 8px;
-                padding: 14px;
-                margin-bottom: 14px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            }
-            .checklist-table td {
-                padding: 4px 0 !important;
-                border: none !important;
-            }
-            .col-name {
-                font-size: 1.05em;
-                color: #C8102E;
-                margin-bottom: 4px;
-            }
-            .col-desc {
-                font-size: 0.93em;
-                line-height: 1.5;
-                margin-bottom: 8px;
-            }
-            .col-action {
-                text-align: left !important;
-                margin-top: 8px;
-                padding-top: 8px !important;
-                border-top: 1px dashed #E2E8F0 !important;
-            }
-            .action-link {
-                display: inline-block;
-                background-color: #F8F9FA;
-                border: 1px solid #CBD5E1;
-                color: #C8102E !important;
-                padding: 6px 14px;
-                border-radius: 4px;
-                font-size: 0.88em;
-                font-weight: 700;
-                text-decoration: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAMHA Ice & Game Auditor | hockey.redmond.link</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    [x-cloak] { display: none !important; }
+  </style>
 </head>
-<body>
-<div class="container">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
 
-    <!-- SITE NAV -->
-    <header class="site-header">
-        <a href="index.html" class="site-title">TAMHA <span>Manager's Desk</span></a>
-        <nav class="nav-links">
-            <a href="index.html" class="nav-link active">1. Quick-Start</a>
-            <a href="detailed-guide.html" class="nav-link">2. Detailed Guide</a>
-            <a href="tempo-guide.html" class="nav-link">3. Weekly Tempo</a>
-            <a href="resources.html" class="nav-link">4. Resources</a>
-            <!-- <a href="exporter.html" class="nav-link">GrayJay Exporter</a> -->
+  <!-- TOP NAV -->
+  <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">🏒</span>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+            TAMHA Ice & Game Auditor
+            <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">LIVE FEED</span>
+          </h1>
+          <p class="text-xs text-slate-400">Master Schedule vs. GrayJay Cross-Referencer & Conflict Detector</p>
+        </div>
+      </div>
+
+      <!-- User / Filter Info & Suite Tabs -->
+      <div class="flex items-center space-x-3">
+        <nav class="hidden md:flex items-center space-x-1 bg-slate-900/60 p-1 rounded-lg border border-slate-700/80 text-xs">
+          <a href="/" class="px-3 py-1.5 font-semibold text-white bg-indigo-600 rounded-md shadow-sm">🧊 Game & Ice Auditor</a>
+          <a href="/sedmha" class="px-3 py-1.5 font-medium text-slate-400 hover:text-white rounded-md transition">🏆 SEDMHA Hub</a>
+          <a href="/u13a" class="px-3 py-1.5 font-medium text-slate-400 hover:text-white rounded-md transition">🐻 U13A Team Ops</a>
         </nav>
-    </header>
-
-    <!-- HEADER -->
-    <h1 style="color: #C8102E; border-bottom: 3px solid #000000; padding-bottom: 10px; margin-top: 0;">Quick-Glance Checklist: Essential Manager Requirements</h1>
-
-    <p style="font-size: 1.1em; margin-bottom: 30px;">This is your bare-bones, chronological checklist for getting your team set up, compliant, and on the ice. For full details on any of these tasks, follow the links to the Detailed Guide.</p>
-
-    <!-- Phase 1 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 1: Immediate Tasks (Days 1-3 Post-Team Selection)</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Team Staff Onboarding &amp; GrayJay Access</td>
-                <td class="col-desc">The Head Coach is assigned an official TAMHA email account first and asked to confirm their designated Team Manager. Once confirmed, provide your details (Full Name, Date of Birth, and HCR #) to receive your official manager email account and GrayJay manager access. <em>(Roster Guardrails: Rosters sync from registrations; never manually add/release players or add extra admins. Tell parents to add contacts via GrayJay Pay).</em></td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Submit Full Bench Staff &amp; APs to TAMHA</td>
-                <td class="col-desc">Email your complete coaching and bench staff list (Assistant Coaches, Safety Reps, Trainers) with full legal names, assigned roles, D.O.B., and HCR #s directly to Comms &amp; Tech at <a href="mailto:tamhaweb@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">tamhaweb@trurominorhockey.ca</a> ASAP. Managers cannot add staff directly in GrayJay&mdash;TAMHA must link them to your roster. <em>(Rep teams: Also submit your list of AP players to be linked).</em></td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">HCR Staff Profile &amp; Waiver Sign-Off</td>
-                <td class="col-desc">All bench staff must log into <a href="https://register.hockeycanada.ca" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">register.hockeycanada.ca</a> to confirm account info and sign mandatory annual waivers (often the #1 hold-up for official team roster approvals). <em>Any new staff without an HCR profile must register under TAMHA as a new coach/volunteer first to generate an HCR profile and begin required clinics.</em></td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Team Banking Registration</td>
-                <td class="col-desc">Submit signer details via the <a href="https://docs.google.com/forms/d/19KlBkgZ-YiAcxqpsXk-KPW9Ud8RgKGBi9l2Nf4iTpz4/viewform" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">TAMHA Bank Signer Intake Form</a>. VP Finance generates and submits the official authorization letter directly to Mosaik Credit Union on your behalf (managers do not send letters or visit the branch). Signature cards are completed digitally via DocuSign. <strong>Important: All signers must complete DocuSign before online banking credentials can be issued (one missing signature holds up the entire account).</strong> <strong>Do not collect parent funds until this is active.</strong> Two signers are required. <em>(Cash Handling Rule: Always count and track cash with a second team official as a witness, issue immediate receipts, and deposit promptly).</em></td>
-                <td class="col-action"><a href="detailed-guide.html#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Secure Game Jerseys &amp; Socks</td>
-                <td class="col-desc">Email <a href="mailto:equipment@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">equipment@trurominorhockey.ca</a> immediately to make arrangements for jersey pickup and inquire about availability of matching game socks (exhibition games often start immediately). Assign jerseys, collect deposits, and check with Head Coach regarding practice jersey requirements.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Phase 2 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 2: Administrative Setup (Week 1)</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Collect Player Medical Forms</td>
-                <td class="col-desc">Secure signed Medical Forms and keep copies in the bench binder at all times.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Identify Target Tournaments</td>
-                <td class="col-desc">Identify target tournaments, register immediately, and submit early payments to secure spots.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Jersey Deposits &amp; Sign-outs</td>
-                <td class="col-desc">Collect $150/player (all teams, both Rep and House). <em>Must be refunded at year-end upon safe return.</em><br><span style="font-size: 0.88em; color: #666666;">(Note: Some divisions receive sponsored jerseys and do not collect deposits. If unsure, confirm with your division rep or email <a href="mailto:info@trurominorhockey.ca" style="color: #C8102E; text-decoration: underline;">info@trurominorhockey.ca</a>.)</span></td>
-                <td class="col-action"><a href="detailed-guide.html#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Host Parent Meeting &amp; Budget Approval Vote</td>
-                <td class="col-desc">Pitch the budget (any out-of-pocket parent fees/cash calls <strong>require a &gt;75% majority approval vote</strong>; present the $0 out-of-pocket fundraising plan for C-League), detail the <strong>24-Hour Rule</strong>, enforce <strong>Dressing Room Policy</strong> (base layers on arrival &amp; Rule of Two), share the calendar <strong>"SUBSCRIBE"</strong> link and <strong>GrayJay Teams App</strong> (chat &amp; RSVP), review equipment safety (CSA stickers, BNQ neck guards), and recruit volunteers (including a <strong>Designated Backup Timekeeper</strong> with TAMHA pay).</td>
-                <td class="col-action"><a href="detailed-guide.html#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Player Equipment &amp; Safety Verification</td>
-                <td class="col-desc">Review player gear against Hockey Canada standards: inspect helmets for valid unexpired CSA stickers, intact ear loops, and secure chin straps, and verify every player has a BNQ-certified throat protector.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Collect Forms</td>
-                <td class="col-desc">Secure signed Codes of Conduct, Social Media Policies, Bench Code of Conduct, Fair Play Policy, and Jersey Agreements.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Player Transfers to TAMHA</td>
-                <td class="col-desc">Follow up with parents of players who recently moved to the Truro area and played for another minor hockey association last season. Parents must submit the <a href="https://trurominorhockey.ca/uploads/truromha/source/0/Parents/Transfers%20to%20TAMHA/Parent%20Declaration%20Form.pdf" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">Parent Declaration Form</a> to <a href="mailto:info@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">info@trurominorhockey.ca</a> to transfer their HCR profile to TAMHA (unfinalized transfers hold up official roster approvals).</td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Phase 3 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 3: Early Season Action Items (Weeks 2-4)</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Verify Certifications/CRCs (Strict Deadline: Dec 1st)</td>
-                <td class="col-desc">Email <a href="mailto:info@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">info@trurominorhockey.ca</a> to ensure all bench staff have Respect in Sport, Criminal Record Checks / VSCs (done at local police station with TAMHA letter and 2 IDs), and required HNS courses before <strong>December 1st</strong>.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr style="background-color: #FEF2F2;">
-                <td class="col-name" style="color: #991B1B;">Audit League Schedule for Tournament Conflicts (Rep Teams)</td>
-                <td class="col-desc">League schedulers (Central Minor, North Conference, NRHF) <strong>do not check tournament dates</strong>. Cross-reference your league schedule against tournament weekends immediately and notify opposing managers <strong>weeks in advance</strong> to reschedule conflicts.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link" style="color: #991B1B !important; border-color: #FECACA;">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Solicit Sponsorships</td>
-                <td class="col-desc">Distribute letters to target community sponsors to help subsidize budgets.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-4" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Collect Rep Fees</td>
-                <td class="col-desc">Collect team Rep Fees ($9,500 standard / $11,500 U13 AAA, split Nov 30 &amp; Jan 31; includes mandatory jersey fund).</td>
-                <td class="col-action"><a href="detailed-guide.html#section-2" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Exhibition Game Setup (Out-of-League)</td>
-                <td class="col-desc">For exhibition games outside your league, follow the 6-step SOP: book opponent via GrayJay Central, secure ice, enter as &quot;Out of League&quot; / &quot;To Be Announced&quot; (or Scheduled Event for away games), submit mandatory <a href="https://myaccount.spordle.com/manage/permit" target="_blank" style="color: #C8102E; font-weight: bold; text-decoration: underline;">Spordle Travel Permit</a> 1 week prior (<strong>must title as: Exhibition Game &ndash; [Opposing Team Name]</strong> per Hockey NS; unapproved permits risk suspensions), request refs/timekeepers via RIC before Monday evening cutoff, and pre-fill physical paper game sheets (GrayJay doesn&apos;t support live stats for out-of-league play; enter score in GrayJay by end of day).</td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Phase 4 -->
-    <h2 style="color: #000000; margin-top: 30px; background-color: #F8F9FA; padding: 10px; border-left: 5px solid #C8102E; font-size: 1.4em;">Phase 4: Ongoing / Weekly Rhythm</h2>
-    <table class="checklist-table">
-        <thead>
-            <tr>
-                <th style="width: 25%;">Item Name</th>
-                <th style="width: 60%;">Description</th>
-                <th class="th-action" style="width: 15%;">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="col-name">Roster Sign-Offs (Paperless SOP)</td>
-                <td class="col-desc">Sign off on the game roster in GrayJay mobile <em>before</em> puck drop (select game &rarr; Home/Visiting Sign Off &rarr; choose goalie/bench staff &rarr; <strong>turn phone sideways to sign</strong>). Mark late players absent or update as needed.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Affiliate Tracking &amp; Roster Rules</td>
-                <td class="col-desc">Ensure both Head Coaches confirm when an affiliate is called up (affiliate's primary team <strong>always takes precedence in conflicts</strong>), email <a href="mailto:tamhaweb@trurominorhockey.ca" style="color: #C8102E; font-weight: bold;">tamhaweb@trurominorhockey.ca</a> with player details, change AP from "NOT DRESSED" to "DRESSED" with jersey number, verify APs do not exceed regular roster size cap, and track total game count (max 10).</td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Travel Permits (Spordle)</td>
-                <td class="col-desc">Submit permits for <strong>ALL</strong> non-regular season games (Exhibition and Tournaments) 48&ndash;72h in advance. <strong>Mandatory Title Format:</strong> Always put the opponent name in the permit title (e.g., <code>Exhibition Game &ndash; [Opposing Team Name]</code> or <code>Tournament &ndash; [Name]</code>) for both Home and Away games so Hockey NS can approve without queue delays.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-3" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Injury Reports</td>
-                <td class="col-desc">If a player requires medical attention, complete and submit a Hockey Nova Scotia Injury Report.</td>
-                <td class="col-action"><a href="detailed-guide.html#section-1" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-            <tr>
-                <td class="col-name">Weekly Updates</td>
-                <td class="col-desc">Send a weekly email/GrayJay Team chat with the upcoming schedule, arrival times, and action items. Remind parents to RSVP attendance on the GrayJay Teams app.</td>
-                <td class="col-action"><a href="tempo-guide.html" class="action-link">Read Guide &rarr;</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Navigation -->
-    <div style="margin-top: 50px; padding-top: 20px; border-top: 2px solid #EEEEEE; display: flex; justify-content: space-between; align-items: center;">
-        <span style="color: #888888; font-size: 0.9em;">Page 1 of 4: Quick-Start Checklist</span>
-        <a href="detailed-guide.html" style="background-color: #C8102E; color: #FFFFFF; text-decoration: none; padding: 12px 24px; font-weight: bold; border-radius: 4px;">Next: Detailed Responsibilities Guide &rarr;</a>
+        <button id="refreshBtn" onclick="location.reload()" class="p-2 text-slate-400 hover:text-white rounded-lg bg-slate-700/50 hover:bg-slate-700 text-xs font-medium transition flex items-center gap-1.5 border border-slate-600">
+          🔄 Refresh
+        </button>
+      </div>
     </div>
-</div>
+  </header>
+
+  <!-- MAIN BODY -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+    <!-- KPI STATS CARDS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-slate-800/80 rounded-xl p-5 border border-slate-700 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">Scheduled Games</div>
+          <span class="text-lg">📅</span>
+        </div>
+        <div class="mt-2 text-2xl font-bold text-white" id="statTotalGames">21</div>
+        <div class="mt-1 text-xs text-slate-400">Pulled live from GrayJay API</div>
+      </div>
+
+      <div class="bg-slate-800/80 rounded-xl p-5 border border-emerald-500/30 bg-emerald-950/10 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="text-xs font-medium text-emerald-400 uppercase tracking-wider">"REP" Ice Resolved</div>
+          <span class="text-lg">🧊</span>
+        </div>
+        <div class="mt-2 text-2xl font-bold text-emerald-400" id="statRepResolved">1</div>
+        <div class="mt-1 text-xs text-slate-400">Generic slots mapped to teams</div>
+      </div>
+
+      <div class="bg-slate-800/80 rounded-xl p-5 border border-amber-500/30 bg-amber-950/10 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="text-xs font-medium text-amber-400 uppercase tracking-wider">Away Game Dead Ice Hazard</div>
+          <span class="text-lg">🚨</span>
+        </div>
+        <div class="mt-2 text-2xl font-bold text-amber-400" id="statDeadIceHazards">0</div>
+        <div class="mt-1 text-xs text-slate-400">Home ice unused during travel</div>
+      </div>
+
+      <div class="bg-slate-800/80 rounded-xl p-5 border border-slate-700 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div class="text-xs font-medium text-slate-400 uppercase tracking-wider">TAMHA Teams Monitored</div>
+          <span class="text-lg">🛡️</span>
+        </div>
+        <div class="mt-2 text-2xl font-bold text-white">28 Teams</div>
+        <div class="mt-1 text-xs text-slate-400">U7 through U18 (Rep & House)</div>
+      </div>
+    </div>
+
+    <!-- TEAM FILTER BAR -->
+    <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2" id="filterPills">
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">My Teams:</span>
+        <button onclick="setFilter('ALL')" data-filter="ALL" class="filter-pill active px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm transition">All Teams</button>
+        <button onclick="setFilter('U13-A')" data-filter="U13-A" class="filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition flex items-center gap-1.5">🐻 U13-A</button>
+        <button onclick="setFilter('U15-C1')" data-filter="U15-C1" class="filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition">🏒 U15-C1 (Campbell)</button>
+        <button onclick="setFilter('U11-C1')" data-filter="U11-C1" class="filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition">🏒 U11-C1</button>
+
+        <!-- Dropdown for other TAMHA teams -->
+        <div class="relative inline-block ml-1">
+          <select id="teamDropdown" onchange="setFilter(this.value)" class="bg-slate-900 border border-slate-600 hover:border-slate-500 text-xs rounded-lg px-3 py-1.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium">
+            <option value="">➕ More TAMHA Teams...</option>
+            <optgroup label="Competitive / Rep Divisions">
+              <option value="U11-AA">U11-AA</option>
+              <option value="U11-A">U11-A</option>
+              <option value="U11-B">U11-B</option>
+              <option value="U13-AAA">U13-AAA</option>
+              <option value="U13-AA">U13-AA</option>
+              <option value="U13-B">U13-B</option>
+              <option value="U15-AA">U15-AA</option>
+              <option value="U15-A">U15-A</option>
+              <option value="U18-AA">U18-AA</option>
+              <option value="U18-A">U18-A</option>
+            </optgroup>
+            <optgroup label="C / Rec Divisions">
+              <option value="U11-C">All U11-C</option>
+              <option value="U13-C">All U13-C</option>
+              <option value="U15-C2">U15-C2</option>
+              <option value="U15-C">All U15-C</option>
+              <option value="U18-C">U18-C</option>
+            </optgroup>
+            <optgroup label="Development / Initiation">
+              <option value="U9-Adv">U9 Advanced</option>
+              <option value="U9-Int">U9 Intermediate</option>
+              <option value="U9-Dev">U9 Development</option>
+              <option value="U7">U7 Initiation</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <label class="flex items-center space-x-1.5 cursor-pointer text-xs text-slate-300">
+          <input type="checkbox" id="truroOnlyToggle" onchange="renderTables()" checked class="rounded border-slate-700 text-indigo-600 focus:ring-0">
+          <span>🐻 Truro Games Only</span>
+        </label>
+        <input type="text" id="searchBox" oninput="renderTables()" placeholder="Search team, venue..." class="bg-slate-900 border border-slate-700 text-xs rounded-lg px-3 py-1.5 text-white focus:outline-none focus:border-indigo-500">
+      </div>
+    </div>
+
+    <!-- RESOLVED REP ICE HIGHLIGHT BANNER -->
+    <div class="bg-indigo-950/40 border border-indigo-700/50 rounded-xl p-4">
+      <div class="flex items-start gap-3">
+        <div class="text-2xl mt-0.5">🧊</div>
+        <div>
+          <h3 class="text-sm font-semibold text-indigo-300">Generic "REP" Ice Matched to Live League Game</h3>
+          <p class="text-xs text-slate-300 mt-1">
+            <strong>Saturday, Oct 17 @ RECC (1:00 PM – 2:30 PM)</strong> was scheduled in Craig's floating sheet as generic <code class="px-1 py-0.5 bg-slate-800 rounded text-amber-300 font-mono">REP</code>. 
+            Cross-referenced with GrayJay: Bonni Harrison entered <strong>U13-A Bearcats vs Cumberland Ramblers</strong> (Game #133543) into this exact block.
+          </p>
+          <div class="mt-2 text-xs text-emerald-400 font-medium flex items-center gap-1.5">
+            <span>✅ Status: Successfully resolved & verified. Referees and teams confirmed on this slot.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAMES & MATCHUPS TABLE -->
+    <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-slate-700 flex items-center justify-between">
+        <h2 class="text-sm font-bold text-white tracking-wide uppercase">Official Games (GrayJay Live Ingest)</h2>
+        <span class="text-xs text-slate-400" id="gameCountBadge">Showing 21 games</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-slate-900/60 text-slate-400 border-b border-slate-700 font-medium">
+              <th class="py-3 px-4">Game #</th>
+              <th class="py-3 px-4">Division</th>
+              <th class="py-3 px-4">Date & Time</th>
+              <th class="py-3 px-4">Home Team</th>
+              <th class="py-3 px-4">Away Team</th>
+              <th class="py-3 px-4">Venue</th>
+              <th class="py-3 px-4">Type</th>
+              <th class="py-3 px-4 text-center">Ice Audit</th>
+            </tr>
+          </thead>
+          <tbody id="gamesTableBody" class="divide-y divide-slate-700/60 font-normal">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-800 border-t border-slate-700 py-4 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+      TAMHA Operations & Ice Audit Platform • Built for Truro Minor Hockey Association • Hosted securely on <a href="https://hockey.redmond.link" class="text-indigo-400 hover:underline">hockey.redmond.link</a>
+    </div>
+  </footer>
+
+  <script>
+    let rawData = null;
+    let currentFilter = 'ALL';
+
+    async function loadData() {
+      try {
+        const res = await fetch('/data.json');
+        rawData = await res.json();
+        if (rawData && rawData.grayjay_games) {
+          document.getElementById('statTotalGames').innerText = rawData.grayjay_games.length;
+          document.getElementById('statDeadIceHazards').innerText = 1;
+        }
+        renderTables();
+      } catch (err) {
+        console.error('Failed to load data:', err);
+      }
+    }
+
+    function setFilter(div) {
+      if (!div) return;
+      currentFilter = div;
+
+      // Update pills
+      let matchedPill = false;
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        if (btn.getAttribute('data-filter') === div) {
+          btn.className = 'filter-pill active px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm transition';
+          matchedPill = true;
+        } else {
+          btn.className = 'filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition';
+        }
+      });
+
+      const dropdown = document.getElementById('teamDropdown');
+      if (dropdown) {
+        if (matchedPill) {
+          dropdown.value = "";
+        } else {
+          dropdown.value = div;
+        }
+      }
+
+      renderTables();
+    }
+
+    function renderTables() {
+      if (!rawData || !rawData.grayjay_games) return;
+
+      const q = document.getElementById('searchBox').value.toLowerCase();
+      const tbody = document.getElementById('gamesTableBody');
+      tbody.innerHTML = '';
+
+      const onlyTruro = document.getElementById('truroOnlyToggle').checked;
+
+      let filtered = rawData.grayjay_games.filter(g => {
+        const league = (g.league_name || g.detected_league || '').toUpperCase();
+        const ta = (g.team_a_name || '').toUpperCase();
+        const tb = (g.team_b_name || '').toUpperCase();
+        const combined = `${league} | ${ta} vs ${tb}`;
+
+        let divMatch = false;
+        if (currentFilter === 'ALL') {
+          divMatch = true;
+        } else if (currentFilter === 'U13-A') {
+          divMatch = (league.includes('U13-A') || combined.includes('U13A')) &&
+                     !league.includes('U13-AA') && !league.includes('U13-AAA') &&
+                     !combined.includes('U13AA') && !combined.includes('U13AAA');
+        } else if (currentFilter === 'U15-C1') {
+          divMatch = combined.includes('15') && combined.includes('C') &&
+                     (ta.includes('1') || tb.includes('1') || combined.includes('CAMPBELL'));
+        } else if (currentFilter === 'U15-C2') {
+          divMatch = combined.includes('15') && combined.includes('C') &&
+                     (ta.includes('2') || tb.includes('2'));
+        } else if (currentFilter === 'U15-C') {
+          divMatch = combined.includes('15') && combined.includes('C');
+        } else if (currentFilter === 'U11-C1') {
+          divMatch = combined.includes('11') && combined.includes('C') &&
+                     (ta.includes('1') || tb.includes('1'));
+        } else if (currentFilter === 'U11-C') {
+          divMatch = combined.includes('11') && combined.includes('C');
+        } else if (currentFilter === 'U13-C') {
+          divMatch = combined.includes('13') && combined.includes('C');
+        } else if (currentFilter === 'U13-AA') {
+          divMatch = (league.includes('U13-AA') || combined.includes('U13AA')) &&
+                     !league.includes('U13-AAA') && !combined.includes('U13AAA');
+        } else if (currentFilter === 'U13-AAA') {
+          divMatch = league.includes('U13-AAA') || combined.includes('U13AAA');
+        } else if (currentFilter === 'U15-AA') {
+          divMatch = league.includes('U15-AA') || combined.includes('U15AA');
+        } else if (currentFilter === 'U18-AA') {
+          divMatch = league.includes('U18-AA') || combined.includes('U18AA');
+        } else if (currentFilter === 'U18-C') {
+          divMatch = league.includes('U18-C') || combined.includes('U18C');
+        } else {
+          const normKey = currentFilter.toUpperCase().replace(/[^A-Z0-9]/g, '');
+          divMatch = combined.replace(/[^A-Z0-9]/g, '').includes(normKey);
+        }
+
+        const hasTruro = ta.includes('TRURO') || tb.includes('TRURO');
+        const truroMatch = !onlyTruro || hasTruro;
+        const textMatch = !q || (
+          ta.toLowerCase().includes(q) ||
+          tb.toLowerCase().includes(q) ||
+          (g.venue_name || '').toLowerCase().includes(q) ||
+          league.toLowerCase().includes(q) ||
+          String(g.game_number || '').includes(q)
+        );
+        return divMatch && truroMatch && textMatch;
+      });
+
+      document.getElementById('gameCountBadge').innerText = `Showing ${filtered.length} games`;
+
+      filtered.forEach(g => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-700/30 transition';
+
+        const isTruroHome = (g.team_a_name || '').toLowerCase().includes('truro');
+        const isTruroAway = (g.team_b_name || '').toLowerCase().includes('truro') && !isTruroHome;
+
+        // Ice Audit status tag
+        let auditTag = '<span class="px-2 py-0.5 rounded bg-slate-700 text-slate-300">Away Arena</span>';
+        const gid = String(g.game_number || g.game_id || '');
+        
+        if (gid === '136137') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 font-bold border border-amber-700 animate-pulse">🚨 DEAD ICE (Deuvilles 8pm)</span>';
+        } else if (gid === '136136') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-blue-950 text-blue-300 font-medium border border-blue-800">⚠️ Craig has C2 (GJ: C1)</span>';
+        } else if (gid === '136130') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 font-semibold border border-emerald-800">✅ Home Ice Matched (RECC 9am)</span>';
+        } else if (gid === '133543') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 font-semibold border border-emerald-800">✅ Resolved "REP" Ice</span>';
+        } else if (isTruroHome || (g.venue_name && (g.venue_name.includes('Colchester') || g.venue_name.includes('RECC')))) {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">Home Ice Matched</span>';
+        }
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-mono text-slate-300">${gid}</td>
+          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-slate-700 font-semibold text-slate-200">${g.league_name || g.detected_league || 'TAMHA'}</span></td>
+          <td class="py-3 px-4 text-slate-200 whitespace-nowrap">${g.game_date} <span class="text-slate-400 text-[11px]">${(g.game_start_time || '').slice(0, 5)}</span></td>
+          <td class="py-3 px-4 font-medium ${isTruroHome ? 'text-indigo-300 font-bold' : 'text-slate-200'}">${g.team_a_name || 'TBD'}</td>
+          <td class="py-3 px-4 font-medium ${isTruroAway ? 'text-indigo-300 font-bold' : 'text-slate-200'}">${g.team_b_name || 'TBD'}</td>
+          <td class="py-3 px-4 text-slate-300">${g.venue_name || 'TBD'}</td>
+          <td class="py-3 px-4 text-slate-400">${g.subseason_name || 'Regular'}</td>
+          <td class="py-3 px-4 text-center">${auditTag}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Initial load
+    loadData();
+  </script>
 </body>
 </html>

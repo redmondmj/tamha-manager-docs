@@ -88,17 +88,43 @@
     <!-- TEAM FILTER BAR -->
     <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 flex flex-wrap items-center justify-between gap-4">
       <div class="flex flex-wrap items-center gap-2" id="filterPills">
-        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-2">Filter View:</span>
-        <button onclick="setFilter('ALL')" class="filter-pill active px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-600 text-white">All Teams</button>
-        <button onclick="setFilter('U13-A')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-A</button>
-        <button onclick="setFilter('U15-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U15-C (C1/C2)</button>
-        <button onclick="setFilter('U18-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U18-C</button>
-        <button onclick="setFilter('U13-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-C</button>
-        <button onclick="setFilter('U11-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U11-C</button>
-        <button onclick="setFilter('U13-AA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-AA</button>
-        <button onclick="setFilter('U13-AAA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-AAA</button>
-        <button onclick="setFilter('U15-AA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U15-AA</button>
-        <button onclick="setFilter('U18-AA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U18-AA</button>
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">My Teams:</span>
+        <button onclick="setFilter('ALL')" data-filter="ALL" class="filter-pill active px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm transition">All Teams</button>
+        <button onclick="setFilter('U13-A')" data-filter="U13-A" class="filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition flex items-center gap-1.5">🐻 U13-A</button>
+        <button onclick="setFilter('U15-C1')" data-filter="U15-C1" class="filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition">🏒 U15-C1 (Campbell)</button>
+        <button onclick="setFilter('U11-C1')" data-filter="U11-C1" class="filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition">🏒 U11-C1</button>
+
+        <!-- Dropdown for other TAMHA teams -->
+        <div class="relative inline-block ml-1">
+          <select id="teamDropdown" onchange="setFilter(this.value)" class="bg-slate-900 border border-slate-600 hover:border-slate-500 text-xs rounded-lg px-3 py-1.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium">
+            <option value="">➕ More TAMHA Teams...</option>
+            <optgroup label="Competitive / Rep Divisions">
+              <option value="U11-AA">U11-AA</option>
+              <option value="U11-A">U11-A</option>
+              <option value="U11-B">U11-B</option>
+              <option value="U13-AAA">U13-AAA</option>
+              <option value="U13-AA">U13-AA</option>
+              <option value="U13-B">U13-B</option>
+              <option value="U15-AA">U15-AA</option>
+              <option value="U15-A">U15-A</option>
+              <option value="U18-AA">U18-AA</option>
+              <option value="U18-A">U18-A</option>
+            </optgroup>
+            <optgroup label="C / Rec Divisions">
+              <option value="U11-C">All U11-C</option>
+              <option value="U13-C">All U13-C</option>
+              <option value="U15-C2">U15-C2</option>
+              <option value="U15-C">All U15-C</option>
+              <option value="U18-C">U18-C</option>
+            </optgroup>
+            <optgroup label="Development / Initiation">
+              <option value="U9-Adv">U9 Advanced</option>
+              <option value="U9-Int">U9 Intermediate</option>
+              <option value="U9-Dev">U9 Development</option>
+              <option value="U7">U7 Initiation</option>
+            </optgroup>
+          </select>
+        </div>
       </div>
 
       <div class="flex items-center space-x-3">
@@ -183,14 +209,29 @@
     }
 
     function setFilter(div) {
+      if (!div) return;
       currentFilter = div;
+
+      // Update pills
+      let matchedPill = false;
       document.querySelectorAll('.filter-pill').forEach(btn => {
-        if (btn.innerText.includes(div === 'ALL' ? 'All' : div)) {
-          btn.className = 'filter-pill active px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-600 text-white';
+        if (btn.getAttribute('data-filter') === div) {
+          btn.className = 'filter-pill active px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm transition';
+          matchedPill = true;
         } else {
-          btn.className = 'filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600';
+          btn.className = 'filter-pill px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600 transition';
         }
       });
+
+      const dropdown = document.getElementById('teamDropdown');
+      if (dropdown) {
+        if (matchedPill) {
+          dropdown.value = "";
+        } else {
+          dropdown.value = div;
+        }
+      }
+
       renderTables();
     }
 
@@ -204,16 +245,56 @@
       const onlyTruro = document.getElementById('truroOnlyToggle').checked;
 
       let filtered = rawData.grayjay_games.filter(g => {
-        const leagueName = (g.league_name || g.detected_league || '');
-        const divMatch = (currentFilter === 'ALL') || 
-                         (leagueName.toLowerCase().replace(/[^a-z0-9]/g, '') === currentFilter.toLowerCase().replace(/[^a-z0-9]/g, ''));
-        const hasTruro = (g.team_a_name || '').toLowerCase().includes('truro') || (g.team_b_name || '').toLowerCase().includes('truro');
+        const league = (g.league_name || g.detected_league || '').toUpperCase();
+        const ta = (g.team_a_name || '').toUpperCase();
+        const tb = (g.team_b_name || '').toUpperCase();
+        const combined = `${league} | ${ta} vs ${tb}`;
+
+        let divMatch = false;
+        if (currentFilter === 'ALL') {
+          divMatch = true;
+        } else if (currentFilter === 'U13-A') {
+          divMatch = (league.includes('U13-A') || combined.includes('U13A')) &&
+                     !league.includes('U13-AA') && !league.includes('U13-AAA') &&
+                     !combined.includes('U13AA') && !combined.includes('U13AAA');
+        } else if (currentFilter === 'U15-C1') {
+          divMatch = combined.includes('15') && combined.includes('C') &&
+                     (ta.includes('1') || tb.includes('1') || combined.includes('CAMPBELL'));
+        } else if (currentFilter === 'U15-C2') {
+          divMatch = combined.includes('15') && combined.includes('C') &&
+                     (ta.includes('2') || tb.includes('2'));
+        } else if (currentFilter === 'U15-C') {
+          divMatch = combined.includes('15') && combined.includes('C');
+        } else if (currentFilter === 'U11-C1') {
+          divMatch = combined.includes('11') && combined.includes('C') &&
+                     (ta.includes('1') || tb.includes('1'));
+        } else if (currentFilter === 'U11-C') {
+          divMatch = combined.includes('11') && combined.includes('C');
+        } else if (currentFilter === 'U13-C') {
+          divMatch = combined.includes('13') && combined.includes('C');
+        } else if (currentFilter === 'U13-AA') {
+          divMatch = (league.includes('U13-AA') || combined.includes('U13AA')) &&
+                     !league.includes('U13-AAA') && !combined.includes('U13AAA');
+        } else if (currentFilter === 'U13-AAA') {
+          divMatch = league.includes('U13-AAA') || combined.includes('U13AAA');
+        } else if (currentFilter === 'U15-AA') {
+          divMatch = league.includes('U15-AA') || combined.includes('U15AA');
+        } else if (currentFilter === 'U18-AA') {
+          divMatch = league.includes('U18-AA') || combined.includes('U18AA');
+        } else if (currentFilter === 'U18-C') {
+          divMatch = league.includes('U18-C') || combined.includes('U18C');
+        } else {
+          const normKey = currentFilter.toUpperCase().replace(/[^A-Z0-9]/g, '');
+          divMatch = combined.replace(/[^A-Z0-9]/g, '').includes(normKey);
+        }
+
+        const hasTruro = ta.includes('TRURO') || tb.includes('TRURO');
         const truroMatch = !onlyTruro || hasTruro;
         const textMatch = !q || (
-          (g.team_a_name || '').toLowerCase().includes(q) ||
-          (g.team_b_name || '').toLowerCase().includes(q) ||
+          ta.toLowerCase().includes(q) ||
+          tb.toLowerCase().includes(q) ||
           (g.venue_name || '').toLowerCase().includes(q) ||
-          leagueName.toLowerCase().includes(q) ||
+          league.toLowerCase().includes(q) ||
           String(g.game_number || '').includes(q)
         );
         return divMatch && truroMatch && textMatch;
