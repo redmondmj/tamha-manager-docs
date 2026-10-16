@@ -28,7 +28,7 @@ Exhibition games provide vital development and game repetitions outside of regul
    * Scheduled regular-season games always take precedence over exhibition matches.
    * You cannot cancel or reschedule an official league game to play an exhibition without written sign-off from both associations and the North Conference Hockey League (NCHL) Scheduler.
 5. **Affiliate Player (AP) Regulations**:
-   * Affiliates can play in exhibition games with prior mutual agreement between both Head Coaches.
+   * Affiliates can play in exhibition games with prior mutual agreement between both Head Coaches. In the event of any schedule conflict, the affiliate player's primary team **always takes precedence**.
    * **Crucial Rule**: Every exhibition game counts toward the player's strict **10-game AP maximum** for the season. Keep a dedicated tracking column for AP appearances.
 
 ---
@@ -120,7 +120,7 @@ Tournaments are the highlight of the minor hockey season, but require rapid coor
 ### Tournament Roster & Affiliate Management
 * **Official HCR Roster**: Keep 10+ printed copies of your official HCR roster in the team binder. Most tournament headquarters require a paper copy at registration desk check-in.
 * **Affiliate Players at Tournaments**:
-  * If an affiliated goalie or skater is replacing an absent player, confirm approval with the player's primary coach.
+  * If an affiliated goalie or skater is replacing an absent player, confirm approval with the player's primary coach (the player's primary rostered team **always takes precedence** in any schedule conflict).
   * Note: HCR rosters lock in mid-season and cannot be modified. Have the TAMHA Web Director (`tamhaweb@trurominorhockey.ca`) add the AP to your GrayJay roster, and carry email confirmation from TAMHA VP Hockey Ops/President if organizers ask for proof.
 
 ---
