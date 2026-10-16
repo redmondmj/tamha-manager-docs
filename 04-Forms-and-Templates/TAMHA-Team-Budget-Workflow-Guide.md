@@ -59,7 +59,7 @@ To ensure association-wide financial oversight and eliminate administrative fric
   * **Comprehensive Inclusions (No Sticker Shock):** To prevent double-charging families, the $9,500 Rep fee comprehensively bundles:
     1. **Mandatory Jersey/Sweater Fund:** (previously billed separately as an additional $550 charge).
     2. **HNS & Conference League Scheduling Fees:** Association-wide league and affiliation fees are fully covered.
-    3. **Official Team Game Socks:** Two (2) pairs per player (Home Crimson & Away White) supplied directly at equipment pickup.
+    3. **Official Team Game Socks:** Two (2) pairs per player supplied directly at equipment pickup.
     *On the Expenses tab, these rows are listed at `$0.00` with explanatory notes.*
   * Collect $150/player Jersey Deposits (held in trust).
   * Incur tournament entry fees, exhibition ice costs, and ref/timekeeper cash payouts.
