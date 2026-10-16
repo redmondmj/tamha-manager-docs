@@ -8,7 +8,9 @@ Drawing from successful manager communication patterns across TAMHA, this timeli
 - **Review GrayJay:** Log into GrayJay to confirm upcoming week practices/games. If the games schedule hasn't been populated yet, contact the scheduler (games typically need to be confirmed early in the week so the association can assign officials and timekeepers).
 - **Confirm Ice Times:** Check the Ice Schedule spreadsheet to ensure the times match what is in GrayJay AND that no new ice times have been assigned to your team. It's a good opportunity to check a couple weeks ahead to catch changes early.
 - **Check-in with Head Coach:** Confirm if there are any specific messages they want delivered to the parents this week (e.g., "optional practice", "remind kids to bring both jerseys").
-- **Financial/Permit Check:** If you are playing an exhibition game this coming weekend, double-check that your Travel Permit is approved (ensure Spordle permit was submitted 48–72h in advance and titled `Exhibition Game - [Opposing Team Name]`).
+- **Monday RIC Referee Deadline:** If hosting an exhibition game this coming week or weekend, lock in the schedule by **Monday evening** so the Referee-in-Chief can assign certified officials and timekeepers.
+- **Tournament Conflict Check (Rep Teams):** Look ahead 3–4 weeks. League schedulers do **not** accommodate tournament dates. If your team is traveling to a tournament, verify whether a regular season league game was scheduled that weekend. If there is a conflict, contact the opposing team's manager **immediately** to arrange a reschedule date.
+- **Financial/Permit Check:** If you are playing an exhibition game this coming weekend, double-check that your Travel Permit is approved (ensure Spordle permit was submitted 1 week in advance and titled `Exhibition Game - [Opposing Team Name]`).
 
 ### Tuesday: The Weekly Update Email
 *Consistency reduces questions. If you send your email on Tuesday every week, parents will stop asking "when is practice?" on Monday night.*
@@ -16,8 +18,8 @@ Drawing from successful manager communication patterns across TAMHA, this timeli
 **What to Include in the Tuesday Update:**
 1. **Clear Subject Line:** `[DIVISION-TEAM]: Weekly Update - [DATE]` (e.g., `U13C-Campbell: Weekly Update Nov 15-21`)
 2. **The Schedule:** Bullet list of the week's ice times, locations, and opponent (if a game).
-3. **Arrival Times:** Remind them exactly what time players need to be at the rink (usually 30-45 mins before games, 20 mins before practices).
-4. **Action Items:** Are forms overdue? Is a jersey deposit needed? Are sponsors submitted? Put this in **bold** at the top.
+3. **Arrival Times:** Remind them exactly what time players need to be at the rink (usually 30-45 mins before games, 20 mins before practices) with base layers on.
+4. **Action Items:** Are forms overdue? Is a jersey deposit needed? Are sponsors submitted? Remind parents to RSVP attendance on the GrayJay Teams app. Put this in **bold** at the top.
 5. **Volunteer Requests:** If applicable (e.g., dressing room monitors, 50/50 sellers).
 
 > **Pro-Tip (Skipping GrayJay Bulk Emailer):** Send this weekly update directly from your official `@trurominorhockey.ca` Google Workspace account using **Gmail Templates** and a parent BCC group. This avoids GrayJay's mobile formatting glitches and spam folder filtering while giving you a clean two-way reply thread. See the full [Weekly Team Update Email Template](file:///c:/Users/redmo/OneDrive/Documents/GitRepos/tamha-manager-docs/04-Forms-and-Templates/Weekly-Email-Update-Template.md) for setup details.
@@ -28,14 +30,14 @@ Drawing from successful manager communication patterns across TAMHA, this timeli
 
 ### Friday: Game Day Prep
 - Ensure the GrayJay electronic game sheet is active for the weekend (home games).
-- Ensure the Coach's Binder is updated with current medical forms and travel permits.
+- Ensure the Coach's Binder is updated with current medical forms, blank injury reports, and travel permits.
 
 ### Saturday/Sunday: Game Day
 - **Pre-Game:** Grab the sponsor banner and dressing room banner for setup at the rink.
-- **Pre-Game:** Use the link in the Teams App or log into GrayJay Leagues to sign off on the roster.
+- **Pre-Game Sign-Off (Mandatory):** Log into GrayJay mobile before puck drop &rarr; Select game &rarr; Home Sign Off &rarr; verify roster/goalie/staff &rarr; **turn phone sideways (landscape) to sign name and save**. Remind the visiting manager to complete their sign-off early.
 - **Pre-Game:** If your team is lucky enough to have a livestreamer in the crowd, share the link and add to the "watch link" in GrayJay Leagues.
 - **Game-Time:** Try to enjoy the game and cheer on the whole team. Keep an eye on the bench and be ready to assist the coaches if needed (e.g. items left in the dressing room or flagging down a parent).
-- **Post-Game:** Remind parents of the **24-Hour Rule** if it was a contentious game. Celebrate the successes. 
+- **Post-Game:** Remind parents of the **24-Hour Rule** if it was a contentious game. If a paper game sheet was used (e.g. out-of-league game), ensure the final score is entered into GrayJay by **end of day**. Celebrate the successes. 
 
 ---
 
