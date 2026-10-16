@@ -67,7 +67,7 @@ To ensure association-wide financial oversight and eliminate administrative fric
   * Pay **$11,500 total** ($5,750 per installment: Nov 30 and Jan 31) to account for additional scheduled ice allocations.
 * **C-League / House Teams:**
   * **Do NOT pay Rep fees** ($0.00 default; core ice time and league operations are covered by base TAMHA player registration).
-  * Collect lower jersey deposits ($50/player).
+  * Collect $150/player Jersey Deposits (held in trust, unless your division receives sponsored jerseys).
   * Operating budgets focus on tournament entry, extra exhibition/practice ice, apparel/socks, and team activities/year-end events.
 
 ---
@@ -111,7 +111,7 @@ flowchart LR
 *   **1.0 Sponsorships:** Track Major ($1,000+), Gold ($500), Silver ($250), and Bronze ($100) sponsors. Track payment method and whether a sponsor receipt was issued.
 *   **2.0 Fundraising:** Enter planned events (Bottle Drive, 50/50, Grand in Your Hand). Enter Projected Net vs. Actual Net after expenses.
 *   **3.0 Parent Contributions:** Calculates Rep Fee installments dynamically based on the Association Fees entered on `Expenses!E6` and `Expenses!E7` divided by the roster count in `Budget Summary!G4` (e.g. $4,750 ÷ 17 = $279.41 per player per installment for standard Rep teams). Also tracks optional team cash calls.
-*   **4.0 Jersey Deposits (Held in Trust):** Track the $150/player Rep deposit ($50 House). **Crucial Rule:** Jersey deposits are liability trust funds—they must NOT be spent on team operating costs.
+*   **4.0 Jersey Deposits (Held in Trust):** Track the $150/player deposit (both Rep and House). **Crucial Rule:** Jersey deposits are liability trust funds—they must NOT be spent on team operating costs.
 *   **5.0 Miscellaneous & Interest:** Record bank interest or account credits.
 
 ### Sheet 3: `Expenses`
@@ -161,4 +161,4 @@ flowchart LR
     *   **Parent Fee Contributions:** Rep fee installments and operational cash calls paid by families out-of-pocket. Any parent fee assessment must be presented to the parent group and approved by at least a **>75% majority vote** at the initial parent meeting.
 4.  **Zero Deficit Policy:** Teams are strictly prohibited from projecting or operating at a deficit. Projected revenues must equal or exceed projected expenses at all milestone reporting stages.
 5.  **Surplus Distribution Policy:** Any year-end operating surplus remaining after all expenses and jersey refunds must be returned equally to parents **only up to the total amount of direct parent cash contributions paid during the season**. Excess fundraising cannot be paid out as cash to families and must be reinvested into team player development/activities or remitted to TAMHA.
-6.  **Jersey Deposits Held in Trust:** Mandatory $150 Rep / $50 House deposits must be held in trust (uncashed cheques dated May 15, 2027 or segregated funds). They are liabilities, must never be spent on team operations, and must be refunded 100% upon return of game jerseys in April.
+6.  **Jersey Deposits Held in Trust:** Mandatory $150 deposits for all teams (Rep & House) must be held in trust (uncashed cheques dated May 15, 2027 or segregated funds). They are liabilities, must never be spent on team operations, and must be refunded 100% upon return of game jerseys in April.

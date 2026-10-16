@@ -90,10 +90,13 @@
       <div class="flex flex-wrap items-center gap-2" id="filterPills">
         <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-2">Filter View:</span>
         <button onclick="setFilter('ALL')" class="filter-pill active px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-600 text-white">All Teams</button>
-        <button onclick="setFilter('U13-A')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-A (My Team)</button>
+        <button onclick="setFilter('U13-A')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-A</button>
+        <button onclick="setFilter('U15-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U15-C (C1/C2)</button>
+        <button onclick="setFilter('U18-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U18-C</button>
+        <button onclick="setFilter('U13-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-C</button>
+        <button onclick="setFilter('U11-C')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U11-C</button>
         <button onclick="setFilter('U13-AA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-AA</button>
         <button onclick="setFilter('U13-AAA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U13-AAA</button>
-        <button onclick="setFilter('U11-A')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U11-A</button>
         <button onclick="setFilter('U15-AA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U15-AA</button>
         <button onclick="setFilter('U18-AA')" class="filter-pill px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-700 text-slate-300 hover:bg-slate-600">U18-AA</button>
       </div>
@@ -169,6 +172,10 @@
       try {
         const res = await fetch('/data.json');
         rawData = await res.json();
+        if (rawData && rawData.grayjay_games) {
+          document.getElementById('statTotalGames').innerText = rawData.grayjay_games.length;
+          document.getElementById('statDeadIceHazards').innerText = 1;
+        }
         renderTables();
       } catch (err) {
         console.error('Failed to load data:', err);
@@ -197,14 +204,17 @@
       const onlyTruro = document.getElementById('truroOnlyToggle').checked;
 
       let filtered = rawData.grayjay_games.filter(g => {
-        const divMatch = (currentFilter === 'ALL') || (g.league_name === currentFilter);
+        const leagueName = (g.league_name || g.detected_league || '');
+        const divMatch = (currentFilter === 'ALL') || 
+                         (leagueName.toLowerCase().replace(/[^a-z0-9]/g, '') === currentFilter.toLowerCase().replace(/[^a-z0-9]/g, ''));
         const hasTruro = (g.team_a_name || '').toLowerCase().includes('truro') || (g.team_b_name || '').toLowerCase().includes('truro');
         const truroMatch = !onlyTruro || hasTruro;
         const textMatch = !q || (
           (g.team_a_name || '').toLowerCase().includes(q) ||
           (g.team_b_name || '').toLowerCase().includes(q) ||
           (g.venue_name || '').toLowerCase().includes(q) ||
-          (g.league_name || '').toLowerCase().includes(q)
+          leagueName.toLowerCase().includes(q) ||
+          String(g.game_number || '').includes(q)
         );
         return divMatch && truroMatch && textMatch;
       });
@@ -220,22 +230,28 @@
 
         // Ice Audit status tag
         let auditTag = '<span class="px-2 py-0.5 rounded bg-slate-700 text-slate-300">Away Arena</span>';
-        if (isTruroHome || (g.venue_name && (g.venue_name.includes('Colchester') || g.venue_name.includes('RECC')))) {
-          if (g.game_number == 133543) {
-            auditTag = '<span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 font-semibold border border-emerald-800">Resolved "REP" Ice</span>';
-          } else {
-            auditTag = '<span class="px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">Home Ice Matched</span>';
-          }
+        const gid = String(g.game_number || g.game_id || '');
+        
+        if (gid === '136137') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 font-bold border border-amber-700 animate-pulse">🚨 DEAD ICE (Deuvilles 8pm)</span>';
+        } else if (gid === '136136') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-blue-950 text-blue-300 font-medium border border-blue-800">⚠️ Craig has C2 (GJ: C1)</span>';
+        } else if (gid === '136130') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 font-semibold border border-emerald-800">✅ Home Ice Matched (RECC 9am)</span>';
+        } else if (gid === '133543') {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 font-semibold border border-emerald-800">✅ Resolved "REP" Ice</span>';
+        } else if (isTruroHome || (g.venue_name && (g.venue_name.includes('Colchester') || g.venue_name.includes('RECC')))) {
+          auditTag = '<span class="px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">Home Ice Matched</span>';
         }
 
         tr.innerHTML = `
-          <td class="py-3 px-4 font-mono text-slate-300">${g.game_number}</td>
-          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-slate-700 font-semibold text-slate-200">${g.league_name || 'TAMHA'}</span></td>
+          <td class="py-3 px-4 font-mono text-slate-300">${gid}</td>
+          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-slate-700 font-semibold text-slate-200">${g.league_name || g.detected_league || 'TAMHA'}</span></td>
           <td class="py-3 px-4 text-slate-200 whitespace-nowrap">${g.game_date} <span class="text-slate-400 text-[11px]">${(g.game_start_time || '').slice(0, 5)}</span></td>
           <td class="py-3 px-4 font-medium ${isTruroHome ? 'text-indigo-300 font-bold' : 'text-slate-200'}">${g.team_a_name || 'TBD'}</td>
           <td class="py-3 px-4 font-medium ${isTruroAway ? 'text-indigo-300 font-bold' : 'text-slate-200'}">${g.team_b_name || 'TBD'}</td>
           <td class="py-3 px-4 text-slate-300">${g.venue_name || 'TBD'}</td>
-          <td class="py-3 px-4 text-slate-400">${g.subseason_name || 'Game'}</td>
+          <td class="py-3 px-4 text-slate-400">${g.subseason_name || 'Regular'}</td>
           <td class="py-3 px-4 text-center">${auditTag}</td>
         `;
         tbody.appendChild(tr);
