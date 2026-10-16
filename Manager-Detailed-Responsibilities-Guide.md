@@ -92,7 +92,12 @@ This comprehensive guide outlines the primary responsibilities and "nice-to-have
         *   Select Game Type as **"Out of League"** / **"Exhibition"**.
         *   In the Opponent field, select **"To Be Announced"** (or out-of-league placeholder), then manually type the opponent's full association and team name (e.g., *"Pictou County Crushers U13 A"*).
         *   Select the correct venue, ice pad, game date, start time, and duration.
-    *   **Step 4 — Submit Spordle Travel Permit:** Hockey Nova Scotia mandates an approved travel permit for **all** exhibition games (both home and away) and tournaments. Submit your permit request via the Spordle portal at [https://myaccount.spordle.com/manage/permit](https://myaccount.spordle.com/manage/permit) at least **48 to 72 hours in advance** to allow for association and HNS approval.
+    *   **Step 4 — Submit Spordle Travel Permit (Mandatory Naming Convention):** Hockey Nova Scotia mandates an approved travel permit for **all exhibition games (both home and away)** and tournaments. Submit your permit request via the Spordle portal at [https://myaccount.spordle.com/manage/permit](https://myaccount.spordle.com/manage/permit) at least **48 to 72 hours in advance** to allow for association and HNS approval.
+        *   **🚨 Mandatory Title Naming Convention (Hockey Nova Scotia / Terry Nichol Rule):** When submitting your travel permit in Spordle, **always put the opposing team's name directly in the permit title**, formatted as:
+            > **`Exhibition Game - [Opposing Team Name]`**  
+            > *(e.g., `Exhibition Game - Pictou County Crushers Red` or `Exhibition Game - Cumberland Ramblers`)*
+        *   **Why this is mandatory (Home AND Away):** Even for away games where the opponent is listed as the host team, Hockey NS regional directors (Terry Nichol) review dozens of permit requests across the province daily in an administrative queue. If your title is just *"Exhibition Game"* or *"Away Game"*, approvers cannot see who you are playing without clicking through every individual permit, causing approval delays or rejected requests. Always make sure the specific opponent name is right in the title!
+        *   **Tournaments:** For tournaments, follow the same clear naming standard: `Tournament - [Tournament Name]` (e.g., `Tournament - Bluenose Invitational`).
     *   **Step 5 — Book Officials & Timekeepers (Home Games):** Home managers are responsible for ensuring certified on-ice officials (referees/linespersons) and off-ice officials (timekeeper/scorekeeper) are assigned. Contact the TAMHA Referee-in-Chief (RIC) / assignor immediately upon booking exhibition ice to request officials, and confirm assignments 24–48 hours prior to puck drop.
     *   **Step 6 — Prepare Paper Game Sheet:** **GrayJay does not support live game scoring or electronic game sheets for out-of-league exhibition games.** The home manager must prepare a physical paper game sheet before game day:
         *   Pre-populate or affix printed roster stickers detailing all player names, jersey numbers, and bench staff (with full HCR numbers and coaching certification levels).
@@ -105,7 +110,7 @@ This comprehensive guide outlines the primary responsibilities and "nice-to-have
     *   **Nova Scotia:** [Hockey NS Tournament Listings](https://hockeynovascotia.ca/admin-member/tournaments/minor-hockey-tournaments/)
     *   **New Brunswick:** [Hockey NB Sanctioned Tournaments](https://www.hnb.ca/en/)
     *   **PEI:** [Hockey PEI](https://hockeypei.com/) and individual minor hockey association websites.
-*   **Travel Permits:** Mandatory for any non-regular season game (exhibition or tournament) via [Spordle Travel Permits](https://myaccount.spordle.com/manage/permit).
+*   **Travel Permits (Spordle):** Mandatory for any non-regular season game (exhibition or tournament) via [Spordle Travel Permits](https://myaccount.spordle.com/manage/permit). Must be submitted 48–72 hours in advance. **Mandatory Title Format:** Always put the opponent name in the permit title (e.g., `Exhibition Game - [Opposing Team Name]`) for both Home and Away games so Hockey NS can approve promptly without queue delays.
 
 ---
 

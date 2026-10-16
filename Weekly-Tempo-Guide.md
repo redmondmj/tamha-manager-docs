@@ -8,7 +8,7 @@ Drawing from successful manager communication patterns across TAMHA, this timeli
 - **Review GrayJay:** Log into GrayJay to confirm upcoming week practices/games. If the games schedule hasn't been populated yet, contact the scheduler (games typically need to be confirmed early in the week so the association can assign officials and timekeepers).
 - **Confirm Ice Times:** Check the Ice Schedule spreadsheet to ensure the times match what is in GrayJay AND that no new ice times have been assigned to your team. It's a good opportunity to check a couple weeks ahead to catch changes early.
 - **Check-in with Head Coach:** Confirm if there are any specific messages they want delivered to the parents this week (e.g., "optional practice", "remind kids to bring both jerseys").
-- **Financial/Permit Check:** If you are playing an exhibition game this coming weekend, double-check that your Travel Permit is approved.
+- **Financial/Permit Check:** If you are playing an exhibition game this coming weekend, double-check that your Travel Permit is approved (ensure Spordle permit was submitted 48–72h in advance and titled `Exhibition Game - [Opposing Team Name]`).
 
 ### Tuesday: The Weekly Update Email
 *Consistency reduces questions. If you send your email on Tuesday every week, parents will stop asking "when is practice?" on Monday night.*
